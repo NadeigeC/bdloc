@@ -12,6 +12,6 @@ class DefaultController extends Controller
      */
     public function homeAction()
     {
-        return $this->render("default/home.html.twig");
+        return $this->render("home.html.twig");
     }
 }
