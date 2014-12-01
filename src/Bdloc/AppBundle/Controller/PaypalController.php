@@ -5,13 +5,13 @@ namespace Bdloc\AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class DefaultController extends Controller
+class PaypalController extends Controller
 {
     /**
      * @Route("/")
      */
-    public function homeAction()
+    public function Action()
     {
-        return $this->render("home.html.twig");
+        return $this->render("paypal.html.twig");
     }
 }

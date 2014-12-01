@@ -5,13 +5,13 @@ namespace Bdloc\AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class DefaultController extends Controller
+class CartController extends Controller
 {
     /**
      * @Route("/")
      */
-    public function homeAction()
+    public function findCartAction()
     {
-        return $this->render("home.html.twig");
+        return $this->render("cart.html.twig");
     }
 }
