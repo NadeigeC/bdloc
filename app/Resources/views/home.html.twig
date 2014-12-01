@@ -3,5 +3,13 @@
 {% block title %}Bdloc | Accueil {% endblock %}
 
 {% block main_content %}
+
+{% if app.user %}
+            Bonjour {{ app.user.username }} !
+            <a href="{{ path('logout') }}" title="Déconnectez-vous">Déconnexion</a>
+        {% else %}
+            Bonjour bel inconnu ! | <a href="{{ path('bdloc_app_security_login') }}" title="Déconnectez-vous">Connexion</a>
+{% endif %}
+
     <h1>Bdloc !</h1>
 {% endblock %}

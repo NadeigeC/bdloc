@@ -8,10 +8,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class BookController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("")
      */
-    public function findBookAction()
+    /*public function findBookAction()
     {
-        return $this->render("default/home.html.twig");
-    }
+
+    }*/
 }

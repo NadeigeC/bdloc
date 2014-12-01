@@ -2,15 +2,21 @@
 
 namespace Bdloc\AppBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
+
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * User
  *
- * @ORM\Table()
+ * @UniqueEntity("username", message="Ce pseudo est déjà utilisé !", groups={"registration"})
+ * @UniqueEntity("email", message="Vous avez déjà un compte ici !", groups={"registration"})
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="Bdloc\AppBundle\Entity\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer
@@ -130,7 +136,7 @@ class User
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -153,7 +159,7 @@ class User
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getUsername()
     {
@@ -176,7 +182,7 @@ class User
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -199,7 +205,7 @@ class User
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
@@ -222,7 +228,7 @@ class User
     /**
      * Get token
      *
-     * @return string 
+     * @return string
      */
     public function getToken()
     {
@@ -245,7 +251,7 @@ class User
     /**
      * Get salt
      *
-     * @return string 
+     * @return string
      */
     public function getSalt()
     {
@@ -268,7 +274,7 @@ class User
     /**
      * Get roles
      *
-     * @return array 
+     * @return array
      */
     public function getRoles()
     {
@@ -291,7 +297,7 @@ class User
     /**
      * Get firstName
      *
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -314,7 +320,7 @@ class User
     /**
      * Get lastName
      *
-     * @return string 
+     * @return string
      */
     public function getLastName()
     {
@@ -337,7 +343,7 @@ class User
     /**
      * Get zip
      *
-     * @return string 
+     * @return string
      */
     public function getZip()
     {
@@ -360,7 +366,7 @@ class User
     /**
      * Get adress
      *
-     * @return string 
+     * @return string
      */
     public function getAdress()
     {
@@ -383,7 +389,7 @@ class User
     /**
      * Get phone
      *
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
@@ -406,7 +412,7 @@ class User
     /**
      * Get isActive
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsActive()
     {
@@ -429,7 +435,7 @@ class User
     /**
      * Get dateCreated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -452,7 +458,7 @@ class User
     /**
      * Get dateModified
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateModified()
     {
@@ -475,10 +481,30 @@ class User
     /**
      * Get dropSpotId
      *
-     * @return integer 
+     * @return integer
      */
     public function getDropSpotId()
     {
         return $this->dropSpotId;
     }
+
+
+    public function eraseCredentials(){
+        $this->password = null;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function beforeInsert(){
+            $this->setDateCreated( new \DateTime() );
+            $this->setDateModified( new \DateTime() );
+        }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function beforeEdit(){
+            $this->setDateModified( new \DateTime() );
+        }
 }

@@ -1,0 +1,12 @@
+<html>
+    <head>
+    </head>
+        <body>
+
+            {% block content %}
+            <h2>cliquez sur le lien ci-dessous pour réinitiliser votre message</h2>
+            <a href="{{ path('bdloc_app_security_newpassword'), {token: user.token}, {email: user.email}  }}" title="nouveau mot de passe">Changer votre mot de passe</a>
+            {% endblock %}
+
+        </body>
+</html>
