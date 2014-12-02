@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class PaypalController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("")
      */
     /*public function Action()
     {

@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class CartController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("")
      */
     /*public function findCartAction()
     {

@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Bdloc | Catalogue {% endblock %}
+
+{% block main_content %}
+
+	{# J'affiche le formulaire de recherche #}
+	{{ form(bookSearchForm) }}
+
+	{# Affichage des BDs #}
+    {% for book in books %}
+    	<h2>{{ book.title }}</h2>
+    {% endfor %}
+
+    {# J'affiche page précédente, sauf si on se trouve sur la première page #}
+    {% if page > 1 %}
+    <a href="{{ path('bdloc_app_book_allbooks', {page: page-1}) }}">Page précédente -</a> 
+	{% endif %}
+
+	{# J'affiche page suivante, sauf si on se trouve sur la dernière page #}
+	{% if page < nombrePage %}
+	<a href="{{ path('bdloc_app_book_allbooks', {page: page+1}) }}">Page suivante</a>
+	{% endif %}
+
+{% endblock %}
