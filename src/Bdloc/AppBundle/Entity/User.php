@@ -3,11 +3,12 @@
 namespace Bdloc\AppBundle\Entity;
 
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
-
+//http://benjamin.leveque.me/symfony2-validation-groups.html
 
 /**
  * User
@@ -38,14 +39,14 @@ class User implements UserInterface
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez entrer un email", groups={"registration"})
+     * @Assert\NotBlank(message="Veuillez entrer un email", groups={"registration"}, groups={"forgotPassword"} )
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Veuillez entrer un mot de passe", groups={"registration"}, groups={"newPassword"})
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
@@ -103,7 +104,6 @@ class User implements UserInterface
      * @var string
      * @Assert\Regex(
      *           pattern= "/^0[1-9]([-. ]?[0-9]{2}){4}$/",
-     *           match=   false,
      *           message= "Entrez un numero valide(10 chiffres)",
      *           groups={"registration"})
      * @ORM\Column(name="phone", type="string", length=20)

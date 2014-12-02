@@ -62,7 +62,7 @@
             $params = array();
             $user = new User();
 
-            $forgotPasswordForm = $this->createForm(new ForgotPasswordType(), $user);
+            $forgotPasswordForm = $this->createForm(new ForgotPasswordType(), $user, array('validation_groups' => array('forgotPassword', 'Default')));
 
            //gère la soumission du form
             $request = $this->getRequest();
@@ -119,7 +119,7 @@
 
             /*print_r($user);*/
 
-            $newPasswordForm = $this->createForm(new newPasswordType(), $user);
+            $newPasswordForm = $this->createForm(new newPasswordType(), $user, array('validation_groups' => array('newPassword', 'Default')));
 
 
 

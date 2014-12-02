@@ -4,9 +4,9 @@
         <body>
 
             {% block content %}
-            <h1>BDLOC ! Réinitialistaion du mot de pass</h1>
+            <h1>BDLOC ! Réinitialistaion du mot de passe</h1>
             <hr>
-            <h2>Cliquez sur le lien ci-dessous pour réinitiliser votre e-mail</h2>
+            <h2>Cliquez sur le lien ci-dessous pour réinitialiser votre mot de passe</h2>
             <a href="{{ url('bdloc_app_security_newpassword', {token: user.token, email: user.email})  }}" title="nouveau mot de passe">Changer votre mot de passe</a>
             {% endblock %}
 
