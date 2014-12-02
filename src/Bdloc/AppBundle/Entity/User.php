@@ -2,10 +2,12 @@
 
 namespace Bdloc\AppBundle\Entity;
 
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * User
@@ -99,7 +101,10 @@ class User implements UserInterface
 
     /**
      * @var string
-     *
+     * @Assert\Regex(
+     *           pattern= "/^0[0-9]([-. ]?\d{2}){4}[-. ]?$/",
+     *           match=   false,
+     *           message= "Entrez un numero du type xx xx xx xx xx")
      * @ORM\Column(name="phone", type="string", length=20)
      */
     private $phone;

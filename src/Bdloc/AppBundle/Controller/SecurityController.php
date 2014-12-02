@@ -7,6 +7,8 @@
 
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\Security\Core\SecurityContextInterface;
+    use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+    use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
     use Bdloc\AppBundle\Entity\User;
     use Bdloc\AppBundle\Form\RegisterType;
@@ -58,7 +60,7 @@
         public function forgotPasswordAction(Request $request){
 
             $params = array();
-            $user= new User;
+            $user = new User();
 
             $forgotPasswordForm = $this->createForm(new ForgotPasswordType(), $user);
 
@@ -80,9 +82,10 @@
                 $message = \Swift_Message::newInstance()
                 ->setSubject("Reinitialisez votre mot de passe")
                 ->setFrom('site@bdloc.com')
+                ->setTo($current_user->getEmail())
                 ->setContentType('text/html')
                 ->setBody(
-                    $this->renderView('emails/reinitialistaion_mot_de_passe.html.twig')
+                    $this->renderView('emails/reinitialistaion_mot_de_passe.html.twig', array('user'=>$current_user))
                     )
                 ;
                 $this->get('mailer')->send($message);
@@ -105,12 +108,20 @@
          /**
         * @Route("/nouveau-mot-de-passe/{token}/{email}")
         */
-        public function newPasswordAction(Request $request){
+        public function newPasswordAction(Request $request, $token, $email){
 
             $params = array();
-            $user = $this->getUser();
+
+            $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
+
+            $user = $userRepo->findOneByEmail($email);
+
+
+            /*print_r($user);*/
 
             $newPasswordForm = $this->createForm(new newPasswordType(), $user);
+
+
 
            //gère la soumission du form
             $request = $this->getRequest();
@@ -129,6 +140,7 @@
                 $user->setPassword($password);
 
                 $em = $this->getDoctrine()->getManager();
+
                 $em->persist($user);
                 $em->flush();
 

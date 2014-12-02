@@ -3,6 +3,7 @@
 
 {% block main_content %}
 
+
 {% if app.user %}
             Bonjour {{ app.user.username }} !
             <a href="{{ path('logout') }}" title="Déconnectez-vous">Déconnexion</a>
@@ -13,5 +14,7 @@
 <h1>Enregistrez-vous !</h1>
 
 {{ form(registerForm) }}
+
+
 
 {% endblock %}

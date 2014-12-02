@@ -8,7 +8,7 @@
             Bonjour {{ app.user.username }} !
             <a href="{{ path('logout') }}" title="Déconnectez-vous">Déconnexion</a>
         {% else %}
-            Bonjour bel inconnu ! | <a href="{{ path('bdloc_app_security_login') }}" title="Déconnectez-vous">Connexion</a>
+            Bonjour bel inconnu ! | <a href="{{ path('bdloc_app_security_login') }}" title="Connectez-vous">Connexion</a> | <a href="{{ path('bdloc_app_user_register') }}" title="Inscription">Inscription</a>
 {% endif %}
 
     <h1>Bdloc !</h1>

@@ -42,6 +42,7 @@
             //dates directement dans l'entité avec les lifecyclecallbaks
                 $user->setRoles( array("ROLE_USER"));
                 $user->setIsActive(1);
+                $user->setZip(75000);
                 $user->setDateModified( new \DateTime());
                 $user->setDateCreated( new \DateTime());
 
@@ -74,7 +75,7 @@
                 $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
 
 
-                //return $this->redirect( $this->generateUrl("bdloc_app_security_login"));
+                return $this->render("home.html.twig");
         }
 
             $params['registerForm'] = $registerForm->createView();
