@@ -1,0 +1,216 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald:400,700,300);
+
+/****************************************************
+*													*
+*													*
+*					GENERALE						*
+*													*
+*													*
+****************************************************/
+body{
+	background:#000;
+	font-family: 'Oswald';
+}
+
+h1{
+	color:#fff;
+}
+/****************************************************
+*													*
+*													*
+*					MENU HEADER						*
+*													*
+*													*
+****************************************************/
+.navbar-brand {
+	float: left;
+	height: 80px;
+	
+}
+
+#navbar-left{
+	text-transform:uppercase;
+	margin-top:20px;
+	font-size: 16px;
+	font-weight: 400;
+}
+
+#navbar-right {
+	font-size: 12px;
+	font-weight: 400;
+	color: #fff;
+	margin-top: 10px;
+	
+}
+
+#navbar-right a{
+		text-transform: uppercase;
+	color:#fff;
+	text-decoration:none;
+}
+.navbar-inverse .navbar-nav > li > a {
+	color: #fff;
+}
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+color: #AA161A;
+background-color: transparent;
+}
+
+#header{
+	margin-top: 30px;
+}
+
+/****************************************************
+*													*
+*													*
+*					SLIDER							*
+*													*
+*													*
+****************************************************/
+
+.titreslid{
+	font-family: 'Oswald';
+	font-size: 40px;
+	text-transform:uppercase;
+
+}
+
+.responsive-slider .slides ul li .slide-body .caption.header {
+	height:250px;
+	top: 25%;
+	left: 38%;
+	color:#000;
+}
+
+.responsive-slider .slides ul li .slide-body .caption.header h2 {
+	text-transform:uppercase;
+	font-size: 65px;
+	font-weight:700;
+}
+.responsive-slider .slides ul li .slide-body .caption.sub {
+	text-transform:uppercase;
+	font-size: 25px;
+	font-weight:300;
+	color:#000;
+	bottom: 5px;
+	right: 0;
+	top:85px;
+}
+
+.responsive-slider .slides ul li .slide-body .caption.sub2 {
+	text-transform:uppercase;
+	font-size: 14px;
+	font-weight:300;
+	color:#000;
+	right: 0;
+	top:120px;
+}
+
+
+.responsive-slider .slides ul li .slide-body .caption.img-loc120 {
+  top: 45%;
+  right: 2%;
+  width: 25%;
+}
+
+.responsive-slider .slides ul li .slide-body .caption.img-loc12 {
+  top: 15%;
+  right: 2%;
+  width: 25%;
+}
+
+.responsive-slider .slider-control {
+position: absolute;
+font-size: 20px;
+color: #fff;
+top: 40%;
+background-color: #000;
+padding: 10px;
+}
+
+.sub3{
+	font-size:25px;
+	width:200px;
+	height:50px;
+	text-transform:uppercase;
+	right: 0;
+	top: 160px;
+	position: absolute;
+	color: #fff;
+	background-color: #449d44;
+	border-color: #398439;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success.focus, .btn-success:active, .btn-success.active, .open > .dropdown-toggle.btn-success {
+	color: #fff;
+	background-color: #AA161A;
+	border-color: #AA161A;
+}
+
+/****************************************************
+*													*
+*													*
+*				SLIDER RESPONSIVE					*
+*													*
+*													*
+****************************************************/
+@media screen and (max-width: 1200px){
+.responsive-slider .slides ul li .slide-body .caption.header {
+	height:250px;
+	top: 25%;
+	left: 38%;
+	color:#000;
+	}
+	.responsive-slider .slides ul li .slide-body .caption.header h2 {
+	text-transform:uppercase;
+	font-size: 45px;
+	font-weight:700;
+}
+.responsive-slider .slides ul li .slide-body .caption.sub {
+	text-transform:uppercase;
+	font-size: 16px;
+	font-weight:300;
+	color:#000;
+	right: 0;
+	top:65px;
+}
+
+.responsive-slider .slides ul li .slide-body .caption.sub2 {
+	text-transform:uppercase;
+	font-size: 12px;
+	font-weight:300;
+	color:#000;
+	bottom: 5px;
+	right: 0;
+	top:85px;
+}
+
+
+.responsive-slider .slides ul li .slide-body .caption.img-loc120 {
+  top: 45%;
+  right: 10%;
+  width: 15%;
+}
+
+.responsive-slider .slides ul li .slide-body .caption.img-loc12 {
+  top: 15%;
+  right: 10%;
+  width: 15%;
+}
+}
+/****************************************************
+*													*
+*													*
+*					MENU FOOTER						*
+*													*
+*													*
+****************************************************/
+
+#footer{
+
+}
+ #copy {
+	text-align: center;
+	color:#fff;
+	
+}
