@@ -29,7 +29,7 @@
             $params = array();
 
             $user = new User();
-            $registerForm = $this->createForm(new RegisterType(), $user);
+            $registerForm = $this->createForm(new RegisterType(), $user, array('validation_groups' => array('registration', 'Default')));
 
            //gère la soumission du form
             $request = $this->getRequest();

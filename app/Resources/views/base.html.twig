@@ -15,7 +15,7 @@
     </head>
 
     <body>
-
+    
     <!-- HEADER -->
     <header id="header">
         <!-- Navigation -->
@@ -64,6 +64,21 @@
         </nav>
     </header>
     <!-- END HEADER -->
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="flash-notice">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            <div class="flash-error">
+                {{ flashMessage }}
+            </div>
+    {% endfor %}
+
+        {% block header %}
+            {% block menu %}
 
     <!-- MAIN_CONTENT-->
     <div class="container">

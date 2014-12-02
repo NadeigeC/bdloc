@@ -101,6 +101,18 @@ class Book
 
 
     /**
+    *@ORM\OneToMany(targetEntity="CartItem", mappedBy="book")
+    */
+    private $cartItems;
+
+
+
+
+
+
+
+
+    /**
      * Set id
      *
      * @param integer $id
@@ -489,5 +501,45 @@ class Book
     public function getSerie()
     {
         return $this->serie;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->cartItems = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add cartItems
+     *
+     * @param \Bdloc\AppBundle\Entity\CartItem $cartItems
+     * @return Book
+     */
+    public function addCartItem(\Bdloc\AppBundle\Entity\CartItem $cartItems)
+    {
+        $this->cartItems[] = $cartItems;
+
+        return $this;
+    }
+
+    /**
+     * Remove cartItems
+     *
+     * @param \Bdloc\AppBundle\Entity\CartItem $cartItems
+     */
+    public function removeCartItem(\Bdloc\AppBundle\Entity\CartItem $cartItems)
+    {
+        $this->cartItems->removeElement($cartItems);
+    }
+
+    /**
+     * Get cartItems
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCartItems()
+    {
+        return $this->cartItems;
     }
 }
