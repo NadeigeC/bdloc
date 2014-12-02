@@ -1,0 +1,21 @@
+<html>
+<body>
+    <h1>Page panier</h1>
+  
+
+    {% for cartItem in cart.cartItems %}
+            {{ cartItem.book.title}}<br/>
+          
+            <img src="{{ asset('img/Couvertures/'~cartItem.book.cover) }}" alt="{{ cartItem.book.title}}" title="{{ cartItem.book.title}}" width=70px height=100px/><br/>
+
+            <a href="{{ path('bdloc_app_cart_deleteitem',{id: cartItem.id})}}" title="retirer du panier">Retirer du panier</a><br/><br/><br/>
+            
+           
+    {% endfor %}
+            <a href="{{ path('bdloc_app_cart_validcart',{id:cart.id})}}" title="Valider ce panier">Valider ce panier !</a><br/><br/><br/>
+
+            <a href="" title="Retour au catalogue">Continuer à bouquiner</a>
+   
+
+</body>
+</html> 
