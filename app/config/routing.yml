@@ -3,3 +3,9 @@ bdloc_app:
     type:     annotation
     prefix:   /
 
+
+# app/config/routing.yml
+login_check:
+    path: /login_check
+logout:
+    path: /logout
