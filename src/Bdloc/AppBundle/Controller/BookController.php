@@ -10,8 +10,8 @@ class BookController extends Controller
     /**
      * @Route("/")
      */
-    public function findBookAction()
+   /* public function findBookAction()
     {
-        return $this->render("default/home.html.twig");
-    }
+        return $this->render("home.html.twig");
+    }*/
 }

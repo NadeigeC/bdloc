@@ -5,28 +5,89 @@
         <title>{% block title %}Bdloc !{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/shop-homepage.css') }}" >
+        <!-- Respomsive slider -->
+        <link href="../css/responsive-slider.css" rel="stylesheet">
     </head>
    
     <body>
+
+    <!-- HEADER -->
+    <header id="header">
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img alt="Brand" src="{{ asset('img/logo.png') }}">
+                    </a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav" id="navbar-left">
+                        <li>
+                            <a href="#">Les BDs</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Mon Compte</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Mon panier</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" id="navbar-right">
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> S'inscrire</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Connexion</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+    </header>
+    <!-- END HEADER -->
+
+    <!-- MAIN_CONTENT-->
+    <div class="container">
+
+        <div class="row">
+                {% block main_content %}{% endblock %}
+            </div>
+        </div>
+    </main>
+    <!-- END MAIN_CONTENT -->
+    
+    <!-- FOOTER -->
+        <footer id="footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    {% block footer %} 
+                    <p id="copy">BDloc.fr - Copyright ©2014</p>
+                {% endblock %}
+                </div>
+            </div>
+        </footer>
+    <!-- END FOOTER -->
+
         
-        {% block header %} 
-            {% block menu %} 
 
-                <nav class="navbar navbar-default" role="navigation">
-                  <div class="container-fluid">
-                    <div class="navbar-header">
-                      <a class="navbar-brand" href="#">
-                        <img alt="Brand" src="...">
-                      </a>
-                    </div>
-                  </div>
-                </nav>
-
-            {% endblock %}
+        {% block javascripts %}
+            <script src="../js/jquery.js"></script>
+            <script src="../js/jquery.event.move.js"></script>
+            <script src="../js/responsive-slider.js"></script>
         {% endblock %}
-
-
-        {% block main_content %}{% endblock %}
-        {% block javascripts %}{% endblock %}
     </body>
 </html>

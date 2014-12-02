@@ -10,8 +10,8 @@ class PaypalController extends Controller
     /**
      * @Route("/")
      */
-    public function Action()
+    /*public function Action()
     {
         return $this->render("paypal.html.twig");
-    }
+    }*/
 }

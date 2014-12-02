@@ -10,8 +10,8 @@ class SecurityController extends Controller
     /**
      * @Route("/")
      */
-    public function Action()
+  /*  public function Action()
     {
         return $this->render("default/home.html.twig");
-    }
+    }*/
 }

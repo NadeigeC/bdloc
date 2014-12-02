@@ -10,8 +10,8 @@ class CartController extends Controller
     /**
      * @Route("/")
      */
-    public function findCartAction()
+    /*public function findCartAction()
     {
         return $this->render("cart.html.twig");
-    }
+    }*/
 }
