@@ -157,7 +157,7 @@
 
                 $request->getSession()->getFlashBag()->add(
                 'notice',
-                'votre nouveau mot de passe est bien enregistré !'
+                'Votre nouveau mot de passe est bien enregistré !'
                 );
 
 

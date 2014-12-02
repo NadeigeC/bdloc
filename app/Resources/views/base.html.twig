@@ -8,6 +8,24 @@
     </head>
 
     <body>
+    {% if app.user %}
+            Bonjour {{ app.user.username }} !
+            <a href="{{ path('logout') }}" title="Déconnectez-vous">Déconnexion</a>
+        {% else %}
+            Bonjour bel inconnu !
+    {% endif %}
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="flash-notice">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            <div class="flash-error">
+                {{ flashMessage }}
+            </div>
+    {% endfor %}
 
         {% block header %}
             {% block menu %}

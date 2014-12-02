@@ -39,9 +39,9 @@ class RegisterType extends AbstractType
             ->add('adress')
             ->add('phone')
 
-            /*->add('submit','submit', array(
+            ->add('submit','submit', array(
                 "label" =>"Inscription"
-                ))*/
+                ))
         ;
     }
 
