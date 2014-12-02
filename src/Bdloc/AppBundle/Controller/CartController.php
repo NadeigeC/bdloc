@@ -59,8 +59,14 @@ class CartController extends Controller
      */
 
      public function validCartaction($id){
-      
 
+        // Pénalités
+        
+
+
+
+      
+        //Validation
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
       
 
