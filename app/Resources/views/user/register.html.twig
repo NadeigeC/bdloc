@@ -11,3 +11,27 @@
 
 
 {% endblock %}
+{% block javascripts %}
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+<script>
+    function geolocate() {
+
+        // On choppe notre input
+        var input = document.getElementById("bdloc_appbundle_user_adress");
+
+        // Paramètres
+        var options = {
+            types: ['address'],
+            componentRestrictions: {
+                country: 'fr'
+            }
+        }
+
+        // On ajoute l'autocomplete
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+
+    }
+</script>
+{% endblock %}
