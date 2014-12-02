@@ -4,6 +4,7 @@ use Doctrine\ORM\Mapping AS ORM;
 
 /**
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Bdloc\AppBundle\Entity\BookRepository")
  */
 class Book
 {

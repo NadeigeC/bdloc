@@ -8,10 +8,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class PaypalController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("")
      */
-    public function Action()
+    /*public function Action()
     {
         return $this->render("paypal.html.twig");
-    }
+    }*/
 }

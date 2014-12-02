@@ -10,6 +10,7 @@ use \Wf3\AppBundle\Entity\CartItem;
 class CartController extends Controller
 {
     /**
+     *
      * @Route("/panier/{id}")
      */
     public function findCartaction($id)
@@ -82,4 +83,5 @@ class CartController extends Controller
         return $this->render("cart/valid.html.twig");
 
      }
-}
+
+ }
