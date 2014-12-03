@@ -46,7 +46,7 @@
                         </li>
                         <li>
                         {% if app.user %}
-                            <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Mon panier</a>
+                            <a href="{{ path('bdloc_app_cart_findcart', {'id':app.user.id}) }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Mon panier</a>
                         {% endif %}
                         </li>
                     </ul>
