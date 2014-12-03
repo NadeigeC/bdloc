@@ -22,7 +22,7 @@ class NewPasswordType extends AbstractType
                     'first_options'  => array('label' => 'Mot de passe'),
                     'second_options' => array('label' => 'Mot de passe (confirmation)'),))
             ->add('submit','submit', array(
-                "label" =>"Enregistrer"));
+                "label" =>"Enregistrer"))
         ;
     }
 

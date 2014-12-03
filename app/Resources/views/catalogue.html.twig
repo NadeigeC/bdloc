@@ -6,12 +6,14 @@
 <!-- Page Content -->
 <div class="container">
 
+
+	
 	<div class="row">
-		
-			{# J'affiche le formulaire de recherche #}
-			{{ form(bookSearchForm) }}
-			{{ form(bookFilterDateForm) }}
-			{{ form(bookFilterTitreForm) }}
+
+	{# J'affiche les formulaires de recherche & de filtre #}
+	{{ form(bookSearchForm) }}
+	{{ form(bookFilterForm) }}
+
 	</div>
 		
 
@@ -35,6 +37,7 @@
 	    {% endfor %}
 	</div>
 
+
 	<div class="row">		
 		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
 	    	<div id="icon-position" class="btn-group pagination">
@@ -43,14 +46,14 @@
 	          	{% if page > 1 %}
 	          	<button class="btn btn-default" value="left" type="button">
 	          	<span class="glyphicon glyphicon-arrow-left"></span>
-			    <a href="{{ path('bdloc_app_book_allbooks', {page: page-1}) }}">Page précédente</a> 
+			    <a href="{{ path('bdloc_app_book_allbooks', {page: page-1, nombreparpage: nombreParPage}) }}">Page précédente -</a> 
 				{% endif %}
 				</button>
 
 	          	{# J'affiche page suivante, sauf si on se trouve sur la dernière page #}
 	          	{% if page < nombrePage %}
 	          	<button class="btn btn-default" value="right" type="button">
-				<a href="{{ path('bdloc_app_book_allbooks', {page: page+1}) }}">Page suivante</a>
+				<a href="{{ path('bdloc_app_book_allbooks', {page: page+1, nombreparpage: nombreParPage}) }}">Page suivante</a>
 				<span class="glyphicon glyphicon-arrow-right"></span>
 				{% endif %}
 				

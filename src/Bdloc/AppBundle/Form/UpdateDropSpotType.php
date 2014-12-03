@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UserType extends AbstractType
+class UpdateDropSpotType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -32,7 +32,7 @@ class UserType extends AbstractType
             ->add('dropSpotId')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
