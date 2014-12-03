@@ -56,12 +56,16 @@ class CartController extends Controller
      }
 
      /**
-     * @Route("/panier/validation/{id}/{user}")
+     * @Route("/panier/validation/{id}/{userId}")
      */
 
-     public function validCartAction($id,$user){
+     public function validCartAction($id,$userId){
 
         // Pénalités
+        $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
+        $user = $userRepo->find($userId);
+
+      
         $params = array();
         $fineRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Fine");
 
@@ -70,14 +74,20 @@ class CartController extends Controller
             
         );
 
-        $em = $this->getDoctrine()->getManager();
-        $em->flush();
+       
+        
+
+
+       
+        
+
 
         $params = array (
             "fines" => $fines,
-        
+            "user"  => $user,
         );
-       
+
+        
        /*print_r($cart);
         die();*/
 
@@ -109,7 +119,7 @@ class CartController extends Controller
      }
 
      /**
-     * @Route("/panier/validation/{id}/{user}")
+     * @Route("/panier/amende/{id}/{user}")
      */
 
       public function payFinesAction($user){
@@ -118,12 +128,16 @@ class CartController extends Controller
         $fineRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Fine");
 
         $fines = $fineRepo->findByUser($user);
-        $fines->setStatus("paye");
+
+        
+        for ($i=0;$i<count($fines);$i++){
+            $fines[$i]->setStatus("paye");
+        }
 
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
-        
+        return $this->redirect($this->generateUrl("bdloc_app_cart_validcart",array('id' => $id,'user'=>$user)) );
      }
 
  }

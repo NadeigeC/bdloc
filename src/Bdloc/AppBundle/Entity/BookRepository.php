@@ -17,11 +17,8 @@ class BookRepository extends EntityRepository
 	public function getBooks($nombreParPage, $page)
     {
 
-    	$champ = "b.dateCreated";
-    	$direction = "DESC";
-
         $query = $this->createQueryBuilder('b')
-        			  ->orderBy($champ, $direction)
+        			  ->orderBy('b.dateCreated', 'ASC')
         	          ->setFirstResult(($page-1) * $nombreParPage)
         			  ->setMaxResults($nombreParPage)
                       ->getQuery();
@@ -46,6 +43,24 @@ class BookRepository extends EntityRepository
         $query = $this->createQueryBuilder('b')
                       ->where('b.title LIKE :title')
                       ->setParameters(array('title' => '%' . $title . '%'))
+                      ->getQuery();
+
+        return $query->getResult();
+    }
+
+    public function orderBookByDate($direction) {
+
+    	$query = $this->createQueryBuilder('b')
+                      ->orderBy('b.dateCreated', $direction)
+                      ->getQuery();
+
+        return $query->getResult();
+    }
+
+    public function orderBookByTitre($direction) {
+
+    	$query = $this->createQueryBuilder('b')
+                      ->orderBy('b.title', $direction)
                       ->getQuery();
 
         return $query->getResult();
