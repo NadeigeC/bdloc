@@ -38,9 +38,9 @@ class RegisterType extends AbstractType
             ->add('zip')
             ->add('adress')
             ->add('phone')
-            ->add('dropspot', 'choice', array(
-                'choices'=>array(
-                    'property'=>'adress')))
+            ->add('dropspot', 'entity', array(
+                'class'=>'Bdloc\AppBundle\Entity\DropSpot',
+                   'property'=>'adress'))
             ->add('submit','submit', array(
                 "label" =>"Inscription"
                 ))

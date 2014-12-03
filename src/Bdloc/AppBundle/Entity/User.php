@@ -133,7 +133,7 @@ class User implements UserInterface
 
      /**
     *
-    *@ORM\ManyToOne(targetEntity="User", inversedBy="dropSpots")
+    *@ORM\ManyToOne(targetEntity="DropSpot", inversedBy="users")
     */
     private $dropSpot;
 

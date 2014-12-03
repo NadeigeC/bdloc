@@ -58,9 +58,9 @@ class DropSpot
 
      /**
     *
-    *@ORM\OneToMany(targetEntity="DropSpot", mappedBy="users")
+    *@ORM\OneToMany(targetEntity="user", mappedBy="dropSpot")
     */
-    private $user;
+    private $users;
 
 
     /**
@@ -223,7 +223,7 @@ class DropSpot
     /**
      * Get user
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUser()
     {
