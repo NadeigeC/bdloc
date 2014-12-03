@@ -6,7 +6,7 @@
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}" />
-       
+
         <link rel="stylesheet" type="text/css" href="{{ asset('css/shop-homepage.css') }}" >
         <!-- Respomsive slider -->
         <link href="../css/responsive-slider.css" rel="stylesheet">
@@ -15,7 +15,7 @@
     </head>
 
     <body>
-    
+
     <!-- HEADER -->
     <header id="header">
         <!-- Navigation -->
@@ -40,22 +40,26 @@
                             <a href="{{ path('bdloc_app_book_allbooks', {'page':1}) }}">Les BDs</a>
                         </li>
                         <li>
-                            <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Mon Compte</a>
+                        {% if app.user %}
+                            <a href="{{ path('bdloc_app_user_viewprofile', {'id':app.user.id}) }}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Mon Compte</a>
+                        {% endif %}
                         </li>
                         <li>
-                            <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Mon panier</a>
+                        {% if app.user %}
+                            <a href="{{ path('bdloc_app_cart_findcart', {'id':app.user.id}) }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Mon panier</a>
+                        {% endif %}
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right" id="navbar-right">
                         {% if app.user %} Bonjour {{ app.user.username }} !
                             <a href="{{ path('logout') }}" title="Déconnectez-vous">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Déconnexion</a>
-                        {% else %}Bonjour bel inconnu !
+                        {% else %}Bonjour Invité !
                         <a href="{{ path('bdloc_app_security_login') }}" title="Connectez-vous">
-                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Connexion</a> 
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Connexion</a>
                         <a href="{{ path('bdloc_app_user_register') }}" title="Inscription">
-                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> S'inscrire</a>
-                        {% endif %}         
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> ABONNEMENT</a>
+                        {% endif %}
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -64,7 +68,8 @@
         </nav>
     </header>
     <!-- END HEADER -->
-    {% block header %}
+ {% block header %}
+
     {% for flashMessage in app.session.flashbag.get('notice') %}
             <div class="flash-notice">
                 {{ flashMessage }}
@@ -76,10 +81,16 @@
                 {{ flashMessage }}
             </div>
     {% endfor %}
+
     {% endblock %}
         
             {% block menu %}
             {% endblock %}
+
+{% endblock %}
+
+            {% block menu %}{% endblock %}
+
 
     <!-- MAIN_CONTENT-->
     <div class="container">
@@ -90,12 +101,12 @@
         </div>
     </main>
     <!-- END MAIN_CONTENT -->
-    
+
     <!-- FOOTER -->
         <footer id="footer">
             <div class="row">
                 <div class="col-xs-12">
-                {% block footer %} 
+                {% block footer %}
                     <p id="copy">BDloc.fr - Copyright ©2014</p>
                 {% endblock %}
                 </div>
@@ -103,7 +114,7 @@
         </footer>
     <!-- END FOOTER -->
 
-        
+
 
         {% block javascripts %}
             <script src="../js/jquery.js"></script>

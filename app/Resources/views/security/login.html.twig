@@ -3,7 +3,11 @@
 
 {% block main_content %}
 {% if error %}
-    <div>{{ error.message }}</div>
+    <div>
+        {% if error.message == "Bad credentials" %}
+            {{"Veuillez vérifier vos identifiants !"}}
+        {% endif %}
+    </div>
 {% endif %}
 
 <h1>Connectez-vous !</h1>
