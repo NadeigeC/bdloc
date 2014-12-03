@@ -53,12 +53,13 @@
                     <ul class="nav navbar-nav navbar-right" id="navbar-right">
                         {% if app.user %} Bonjour {{ app.user.username }} !
                             <a href="{{ path('logout') }}" title="Déconnectez-vous">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Déconnexion</a>
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Déconnexion </a>
                         {% else %}Bonjour Invité !
                         <a href="{{ path('bdloc_app_security_login') }}" title="Connectez-vous">
-                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Connexion</a>
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Connexion </a>
                         <a href="{{ path('bdloc_app_user_register') }}" title="Inscription">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Abonnement</a>
+
                         {% endif %}
                     </ul>
                 </div>
@@ -95,11 +96,16 @@
 
     <!-- FOOTER -->
         <footer id="footer">
-            <div class="row">
-                <div class="col-xs-12">
-                {% block footer %}
-                    <p id="copy">BDloc.fr - Copyright ©2014</p>
-                {% endblock %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                    {% block footer %}
+                        <div id="copy">
+                        <p>BDloc.fr - Copyright ©2014 | <a href="#" title="CGV">Conditions générales de vente</a></p>
+
+                        </div>
+                    {% endblock %}
+                    </div>
                 </div>
             </div>
         </footer>
