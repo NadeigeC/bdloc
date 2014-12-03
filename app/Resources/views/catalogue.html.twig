@@ -6,7 +6,8 @@
 
 	{# J'affiche le formulaire de recherche #}
 	{{ form(bookSearchForm) }}
-	{{ form(bookFilterForm) }}
+	{{ form(bookFilterDateForm) }}
+	{{ form(bookFilterTitreForm) }}
 
 	{# Affichage des BDs #}
     {% for book in books %}
