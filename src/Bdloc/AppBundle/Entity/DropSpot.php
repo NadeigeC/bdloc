@@ -56,11 +56,17 @@ class DropSpot
      */
     private $dateModified;
 
+     /**
+    *
+    *@ORM\OneToMany(targetEntity="DropSpot", mappedBy="users")
+    */
+    private $user;
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -83,7 +89,7 @@ class DropSpot
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -106,7 +112,7 @@ class DropSpot
     /**
      * Get adress
      *
-     * @return string 
+     * @return string
      */
     public function getAdress()
     {
@@ -129,7 +135,7 @@ class DropSpot
     /**
      * Get zip
      *
-     * @return string 
+     * @return string
      */
     public function getZip()
     {
@@ -152,7 +158,7 @@ class DropSpot
     /**
      * Get dateCreated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -175,10 +181,52 @@ class DropSpot
     /**
      * Get dateModified
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateModified()
     {
         return $this->dateModified;
+    }
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add user
+     *
+     * @param \Bdloc\AppBundle\Entity\DropSpot $user
+     * @return DropSpot
+     */
+    public function addUser(\Bdloc\AppBundle\Entity\DropSpot $user)
+    {
+        $this->user[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \Bdloc\AppBundle\Entity\DropSpot $user
+     */
+    public function removeUser(\Bdloc\AppBundle\Entity\DropSpot $user)
+    {
+        $this->user->removeElement($user);
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

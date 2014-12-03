@@ -1,12 +1,15 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}Bdloc | Accueil {% endblock %}
+{% block title %}Accueil | Bdloc{% endblock %}
 
 {% block main_content %}
 
 	<!-- CAROUSEL-->
     	  
-    	    <!-- Responsive slider - START -->
+<!-- Responsive slider - START -->
+<div class="container">
+
+	<div class="row">
 <div class="responsive-slider" data-spy="responsive-slider" data-autoplay="true">
   <div class="slides" data-group="slides">
     <ul>
@@ -44,6 +47,10 @@
     <a class="page" href="#" data-jump-to="2">2</a>
   </div>
 </div>
+</div>
+
+    </div>
+    <!-- /.container -->
 <!-- Responsive slider - END -->
  <!--  END CAROUSEL -->
 {% endblock %}

@@ -56,6 +56,12 @@ class Fine
      */
     private $datePaid;
 
+    /**
+     * @var \decimal
+     *
+     * @ORM\Column(name="montant", type="decimal", precision=5, scale=2)
+     */
+    private $montant;
 
 
     /**
@@ -212,5 +218,28 @@ class Fine
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set montant
+     *
+     * @param string $montant
+     * @return Fine
+     */
+    public function setMontant($montant)
+    {
+        $this->montant = $montant;
+
+        return $this;
+    }
+
+    /**
+     * Get montant
+     *
+     * @return string 
+     */
+    public function getMontant()
+    {
+        return $this->montant;
     }
 }

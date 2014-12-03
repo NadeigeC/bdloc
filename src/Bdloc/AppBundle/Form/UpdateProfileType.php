@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UserType extends AbstractType
+class UpdateProfileType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -22,6 +22,9 @@ class UserType extends AbstractType
             ->add('zip')
             ->add('adress')
             ->add('phone')
+            ->add('submit','submit', array(
+                "label" =>"Modifier"
+                ))
             ;
     }
 

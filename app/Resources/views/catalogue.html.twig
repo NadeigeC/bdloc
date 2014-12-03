@@ -1,18 +1,47 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}Bdloc | Catalogue {% endblock %}
+{% block title %}Catalogue | Bdloc{% endblock %}
 
 {% block main_content %}
+<!-- Page Content -->
+<div class="container">
+
 
 	{# J'affiche les formulaires de recherche & de filtre #}
 	{{ form(bookSearchForm) }}
 	{{ form(bookFilterForm) }}
 
-	{# Affichage des BDs #}
-    {% for book in books %}
-    	<img src="{{ asset('img/Couvertures/Couvertures/' ~ book.cover ~ '') }}" alt="{{ book.title }}"/>
-    	<h2>{{ book.title }}</h2>
+	<div class="row">
+		<div class="col-md-3">
+	        <p class="lead">Categories</p>
+	        <div class="list-group">
+	            <a href="#" class="list-group-item">Categorie 1</a>
+	            <a href="#" class="list-group-item">Categorie 2</a>
+	            <a href="#" class="list-group-item">Categorie 3</a>
+	        </div>
+	</div>
+			{# Affichage des BDs #}
+
+	    
+	{% for book in books %}
+	
+		<div class="row">
+			<div class="col-md-9">
+				<div class="col-sm-4 col-lg-4 col-md-4">
+					<div class="thumbnail">
+						<img src="{{ asset('img/Couvertures/Couvertures/' ~ book.cover ~ '') }}" alt="{{ book.title }}"/>
+	    	
+						<div class="caption">
+						<h2>{{ book.title }}</h2>
+						</div>
+
+					</div>
+	   			</div>
+			</div>
+		</div>
+
     {% endfor %}
+
 
     {# J'affiche page précédente, sauf si on se trouve sur la première page #}
     {% if page > 1 %}
@@ -24,4 +53,7 @@
 	<a href="{{ path('bdloc_app_book_allbooks', {page: page+1, nombreparpage: nombreParPage}) }}">Page suivante</a>
 	{% endif %}
 
+
+</div>
+<!-- /.container -->
 {% endblock %}
