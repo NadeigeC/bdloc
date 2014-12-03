@@ -64,7 +64,7 @@
         </nav>
     </header>
     <!-- END HEADER -->
-
+    {% block header %}
     {% for flashMessage in app.session.flashbag.get('notice') %}
             <div class="flash-notice">
                 {{ flashMessage }}
@@ -76,17 +76,16 @@
                 {{ flashMessage }}
             </div>
     {% endfor %}
-
-        {% block header %}
+    {% endblock %}
+        
             {% block menu %}
-
+            {% endblock %}
+    
     <!-- MAIN_CONTENT-->
-    <div class="container">
-
-        <div class="row">
-                {% block main_content %}{% endblock %}
-            </div>
-        </div>
+    <main>
+    
+            {% block main_content %}{% endblock %}
+       
     </main>
     <!-- END MAIN_CONTENT -->
     

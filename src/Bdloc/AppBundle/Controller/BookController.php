@@ -36,7 +36,7 @@ class BookController extends Controller
 			// Je recherche par mots clés dans le titre
 			$books = $this->getDoctrine()
 					      ->getRepository('BdlocAppBundle:Book')
-   						  ->findBookWithTitle($book->getAll());
+   						  ->findBookWithTitle($book->getTitle());
 
   		// Init de variables
      	$params['nombrePage'] = "";
