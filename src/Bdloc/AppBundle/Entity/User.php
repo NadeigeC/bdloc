@@ -131,12 +131,11 @@ class User implements UserInterface
      */
     private $dateModified;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="drop_spot_id", type="integer")
-     */
-    private $dropSpotId;
+     /**
+    *
+    *@ORM\ManyToOne(targetEntity="User", inversedBy="dropSpots")
+    */
+    private $dropSpot;
 
 
      /**
@@ -483,28 +482,6 @@ class User implements UserInterface
         return $this->dateModified;
     }
 
-    /**
-     * Set dropSpotId
-     *
-     * @param integer $dropSpotId
-     * @return User
-     */
-    public function setDropSpotId($dropSpotId)
-    {
-        $this->dropSpotId = $dropSpotId;
-
-        return $this;
-    }
-
-    /**
-     * Get dropSpotId
-     *
-     * @return integer
-     */
-    public function getDropSpotId()
-    {
-        return $this->dropSpotId;
-    }
 
 
     public function eraseCredentials(){
@@ -597,5 +574,30 @@ class User implements UserInterface
     public function getFines()
     {
         return $this->fines;
+    }
+
+
+
+    /**
+     * Set dropSpot
+     *
+     * @param \Bdloc\AppBundle\Entity\User $dropSpot
+     * @return User
+     */
+    public function setDropSpot(\Bdloc\AppBundle\Entity\User $dropSpot = null)
+    {
+        $this->dropSpot = $dropSpot;
+
+        return $this;
+    }
+
+    /**
+     * Get dropSpot
+     *
+     * @return \Bdloc\AppBundle\Entity\User 
+     */
+    public function getDropSpot()
+    {
+        return $this->dropSpot;
     }
 }
