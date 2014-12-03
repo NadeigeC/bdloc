@@ -1,0 +1,47 @@
+
+
+
+cart :
+
+ /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer")
+     */
+    private $userId;
+
+
+ /**
+     * Set userId
+     *
+     * @param integer $userId
+     * @return Cart
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer 
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    <a href="{{ path('bdloc_app_cart_validcart',{id:cart.id,user:cart.user.id})}}" title="Valider ce panier">Valider ce panier !</a><br/><br/><br/>
+
+     {{ cart.user.id}}<br/>
+
+     $fines = $fineRepo->findBy(
+            array('user_id' => '$user'),
+            array('status' => 'a payer')
+        ); 
+<a href="{{ path('bdloc_app_cart_payfines',{user:fine.user.id})}}" title="Payer une amende">Amende payée !</a><br/><br/><br/>
+
+$fines = $fineRepo->findByUser($user);
