@@ -8,7 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 //Ajout des uses nécessaires
 use Bdloc\AppBundle\Entity\Book;
 use Bdloc\AppBundle\Form\BookSearchType;
-use Bdloc\AppBundle\Form\BookFilterType;
+use Bdloc\AppBundle\Form\BookFilterDateType;
+use Bdloc\AppBundle\Form\BookFilterTitreType;
 
 class BookController extends Controller
 {
@@ -24,12 +25,16 @@ class BookController extends Controller
     	$book = new Book();
         $bookSearchForm = $this->createForm(new BookSearchType(), $book);
 
-        // Ajout du formulaire de Tri
-        $bookFilterForm = $this->createForm(new BookFilterType(), $book);
+        // Ajout du formulaire de Tri par date
+        $bookFilterDateForm = $this->createForm(new BookFilterDateType(), $book);
+
+        // Ajout du formulaire de Tri par titre
+        $bookFilterTitreForm = $this->createForm(new BookFilterTitreType(), $book);
 
         $request = $this->getRequest();
         $bookSearchForm->handleRequest($request);
-        $bookFilterForm->handleRequest($request);
+        $bookFilterDateForm->handleRequest($request);
+        $bookFilterTitreForm->handleRequest($request);
 
         // Si le formulaire de recherche est soumis
 		if ( $bookSearchForm->isValid() ) {
@@ -41,6 +46,26 @@ class BookController extends Controller
   		// Init de variables
      	$params['nombrePage'] = "";
 
+		}
+
+		if ( $bookFilterDateForm->isValid() ) {
+
+			$books = $this->getDoctrine()
+					      ->getRepository('BdlocAppBundle:Book')
+					      ->orderBookByDate($book->getDateCreated());
+
+			// Init de variables
+	     	$params['nombrePage'] = "";
+		}
+
+		if ( $bookFilterTitreForm->isValid() ) {
+
+			$books = $this->getDoctrine()
+					      ->getRepository('BdlocAppBundle:Book')
+					      ->orderBookByTitre($book->getTitle());
+
+			// Init de variables
+	     	$params['nombrePage'] = "";
 		}
 		
 		// En temps normal
@@ -66,7 +91,8 @@ class BookController extends Controller
         $params['books'] = $books;
         $params['page'] = $page;
         $params['bookSearchForm'] = $bookSearchForm->createView();
-        $params['bookFilterForm'] = $bookFilterForm->createView();
+        $params['bookFilterDateForm'] = $bookFilterDateForm->createView();
+        $params['bookFilterTitreForm'] = $bookFilterTitreForm->createView();
 
       // j'envoie à la vue
       return $this->render("catalogue.html.twig", $params);

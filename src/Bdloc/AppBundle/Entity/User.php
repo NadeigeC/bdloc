@@ -139,6 +139,18 @@ class User implements UserInterface
     private $dropSpotId;
 
 
+     /**
+    *
+    *@ORM\OneToMany(targetEntity="Cart", mappedBy="user")
+    */
+    private $carts;
+
+     /**
+    *
+    *@ORM\OneToMany(targetEntity="Fine", mappedBy="user")
+    */
+    private $fines;
+
     /**
      * Get id
      *
@@ -513,4 +525,77 @@ class User implements UserInterface
     public function beforeEdit(){
             $this->setDateModified( new \DateTime() );
         }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->carts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add carts
+     *
+     * @param \Bdloc\AppBundle\Entity\Cart $carts
+     * @return User
+     */
+    public function addCart(\Bdloc\AppBundle\Entity\Cart $carts)
+    {
+        $this->carts[] = $carts;
+
+        return $this;
+    }
+
+    /**
+     * Remove carts
+     *
+     * @param \Bdloc\AppBundle\Entity\Cart $carts
+     */
+    public function removeCart(\Bdloc\AppBundle\Entity\Cart $carts)
+    {
+        $this->carts->removeElement($carts);
+    }
+
+    /**
+     * Get carts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCarts()
+    {
+        return $this->carts;
+    }
+
+    /**
+     * Add fines
+     *
+     * @param \Bdloc\AppBundle\Entity\Fine $fines
+     * @return User
+     */
+    public function addFine(\Bdloc\AppBundle\Entity\Fine $fines)
+    {
+        $this->fines[] = $fines;
+
+        return $this;
+    }
+
+    /**
+     * Remove fines
+     *
+     * @param \Bdloc\AppBundle\Entity\Fine $fines
+     */
+    public function removeFine(\Bdloc\AppBundle\Entity\Fine $fines)
+    {
+        $this->fines->removeElement($fines);
+    }
+
+    /**
+     * Get fines
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFines()
+    {
+        return $this->fines;
+    }
 }

@@ -13,7 +13,7 @@ class CartController extends Controller
      *
      * @Route("/panier/{id}")
      */
-    public function findCartaction($id)
+    public function findCartAction($id)
 
     {
         $params = array();
@@ -39,7 +39,7 @@ class CartController extends Controller
      * 
      */
 
-     public function deleteItemaction($id){
+     public function deleteItemAction($id){
 
         $cartItemrepo = $this->getDoctrine()->getRepository("BdlocAppBundle:CartItem");
 
@@ -56,17 +56,40 @@ class CartController extends Controller
      }
 
      /**
-     * @Route("/panier/validation/{id}")
+     * @Route("/panier/validation/{id}/{user}")
      */
 
-     public function validCartaction($id){
+     public function validCartAction($id,$user){
 
         // Pénalités
+        $params = array();
+        $fineRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Fine");
+
+        $fines = $fineRepo->findBy(
+            array('user'=>$user,'status'=>'a payer')
+            
+        );
+
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+
+        $params = array (
+            "fines" => $fines,
         
+        );
+       
+       /*print_r($cart);
+        die();*/
+
+        if ($fines){
+        
+        return $this->render("cart/fine.html.twig",$params);
+
+         }
 
 
 
-      
+
         //Validation
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
       
@@ -81,7 +104,26 @@ class CartController extends Controller
      
        
         return $this->render("cart/valid.html.twig");
+       
 
+     }
+
+     /**
+     * @Route("/panier/validation/{id}/{user}")
+     */
+
+      public function payFinesAction($user){
+
+        $params = array();
+        $fineRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Fine");
+
+        $fines = $fineRepo->findByUser($user);
+        $fines->setStatus("paye");
+
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+
+        
      }
 
  }

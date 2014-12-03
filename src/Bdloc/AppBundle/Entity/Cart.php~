@@ -42,15 +42,7 @@ class Cart
      */
     private $dateModified;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="user_id", type="integer")
-     */
-    private $userId;
-
-
-
+   
 
      /**
     *
@@ -59,7 +51,11 @@ class Cart
     private $cartItems;
 
    
-   
+    /**
+    *
+    *@ORM\ManyToOne(targetEntity="User", inversedBy="carts")
+    */
+    private $user;
 
 
     /**
@@ -141,28 +137,7 @@ class Cart
         return $this->dateModified;
     }
 
-    /**
-     * Set userId
-     *
-     * @param integer $userId
-     * @return Cart
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * Get userId
-     *
-     * @return integer 
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
+   
     /**
      * Constructor
      */
@@ -202,5 +177,28 @@ class Cart
     public function getCartItems()
     {
         return $this->cartItems;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Bdloc\AppBundle\Entity\User $user
+     * @return Cart
+     */
+    public function setUser(\Bdloc\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Bdloc\AppBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

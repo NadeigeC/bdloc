@@ -1,0 +1,13 @@
+<html>
+<body>
+    <h1>Page paiement des amendes</h1>
+
+
+    {% for fine in fines %}
+        {{ fine.status}}<br/>
+        {{ fine.user.id}}<br/>
+    {% endfor %}
+
+     <a href="{{ path('bdloc_app_cart_payfines',{user:fines.user.id})}}" title="Payer une amende">Amende payée !</a><br/><br/><br/>
+</body>
+</html> 

@@ -5,12 +5,12 @@ namespace Bdloc\AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Cart
+ * Fine
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Bdloc\AppBundle\Entity\CartRepository")
+ * @ORM\Entity(repositoryClass="Bdloc\AppBundle\Entity\FineRepository")
  */
-class Cart
+class Fine
 {
     /**
      * @var integer
@@ -24,7 +24,14 @@ class Cart
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=255)
+     * @ORM\Column(name="reason", type="string", length=50)
+     */
+    private $reason;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=50)
      */
     private $status;
 
@@ -42,20 +49,21 @@ class Cart
      */
     private $dateModified;
 
-   
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datePaid", type="datetime")
+     */
+    private $datePaid;
 
-     /**
-    *
-    *@ORM\OneToMany(targetEntity="CartItem", mappedBy="cart")
-    */
-    private $cartItems;
 
-   
+
     /**
     *
-    *@ORM\ManyToOne(targetEntity="User", inversedBy="carts")
+    *@ORM\ManyToOne(targetEntity="User", inversedBy="fines")
     */
     private $user;
+
 
 
     /**
@@ -69,10 +77,33 @@ class Cart
     }
 
     /**
+     * Set reason
+     *
+     * @param string $reason
+     * @return Fine
+     */
+    public function setReason($reason)
+    {
+        $this->reason = $reason;
+
+        return $this;
+    }
+
+    /**
+     * Get reason
+     *
+     * @return string 
+     */
+    public function getReason()
+    {
+        return $this->reason;
+    }
+
+    /**
      * Set status
      *
      * @param string $status
-     * @return Cart
+     * @return Fine
      */
     public function setStatus($status)
     {
@@ -95,7 +126,7 @@ class Cart
      * Set dateCreated
      *
      * @param \DateTime $dateCreated
-     * @return Cart
+     * @return Fine
      */
     public function setDateCreated($dateCreated)
     {
@@ -118,7 +149,7 @@ class Cart
      * Set dateModified
      *
      * @param \DateTime $dateModified
-     * @return Cart
+     * @return Fine
      */
     public function setDateModified($dateModified)
     {
@@ -137,53 +168,34 @@ class Cart
         return $this->dateModified;
     }
 
-   
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->cartItems = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add cartItems
+     * Set datePaid
      *
-     * @param \Bdloc\AppBundle\Entity\CartItem $cartItems
-     * @return Cart
+     * @param \DateTime $datePaid
+     * @return Fine
      */
-    public function addCartItem(\Bdloc\AppBundle\Entity\CartItem $cartItems)
+    public function setDatePaid($datePaid)
     {
-        $this->cartItems[] = $cartItems;
+        $this->datePaid = $datePaid;
 
         return $this;
     }
 
     /**
-     * Remove cartItems
+     * Get datePaid
      *
-     * @param \Bdloc\AppBundle\Entity\CartItem $cartItems
+     * @return \DateTime 
      */
-    public function removeCartItem(\Bdloc\AppBundle\Entity\CartItem $cartItems)
+    public function getDatePaid()
     {
-        $this->cartItems->removeElement($cartItems);
-    }
-
-    /**
-     * Get cartItems
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCartItems()
-    {
-        return $this->cartItems;
+        return $this->datePaid;
     }
 
     /**
      * Set user
      *
      * @param \Bdloc\AppBundle\Entity\User $user
-     * @return Cart
+     * @return Fine
      */
     public function setUser(\Bdloc\AppBundle\Entity\User $user = null)
     {
