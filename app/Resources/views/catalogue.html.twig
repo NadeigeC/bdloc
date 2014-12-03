@@ -6,6 +6,11 @@
 <!-- Page Content -->
 <div class="container">
 
+
+	{# J'affiche les formulaires de recherche & de filtre #}
+	{{ form(bookSearchForm) }}
+	{{ form(bookFilterForm) }}
+
 	<div class="row">
 		<div class="col-md-3">
 	        <p class="lead">Categories</p>
@@ -14,11 +19,6 @@
 	            <a href="#" class="list-group-item">Categorie 2</a>
 	            <a href="#" class="list-group-item">Categorie 3</a>
 	        </div>
-		
-			{# J'affiche le formulaire de recherche #}
-			{{ form(bookSearchForm) }}
-			{{ form(bookFilterDateForm) }}
-			{{ form(bookFilterTitreForm) }}
 	</div>
 			{# Affichage des BDs #}
 
@@ -43,17 +43,16 @@
     {% endfor %}
 
 
-	    {# J'affiche page précédente, sauf si on se trouve sur la première page #}
-	    {% if page > 1 %}
-	    <a href="{{ path('bdloc_app_book_allbooks', {page: page-1}) }}">Page précédente -</a> 
-		{% endif %}
+    {# J'affiche page précédente, sauf si on se trouve sur la première page #}
+    {% if page > 1 %}
+    <a href="{{ path('bdloc_app_book_allbooks', {page: page-1, nombreparpage: nombreParPage}) }}">Page précédente -</a> 
+	{% endif %}
 
-		{# J'affiche page suivante, sauf si on se trouve sur la dernière page #}
-		{% if page < nombrePage %}
-		<a href="{{ path('bdloc_app_book_allbooks', {page: page+1}) }}">Page suivante</a>
-		{% endif %}
+	{# J'affiche page suivante, sauf si on se trouve sur la dernière page #}
+	{% if page < nombrePage %}
+	<a href="{{ path('bdloc_app_book_allbooks', {page: page+1, nombreparpage: nombreParPage}) }}">Page suivante</a>
+	{% endif %}
 
-	</div>
 
 </div>
 <!-- /.container -->
