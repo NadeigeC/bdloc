@@ -2,18 +2,12 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
 
-#bazinga_geocoder:
-    #fake_ip:
-        #enabled:              true
-        #ip:                   123.345.643.133
-        #priority:             0
-    #adapter:
-        #class:                ~
-    #providers:
-            #google_maps:
-            #locale:               ~
-            #region:               ~
-            #use_ssl:              false
+bazinga_geocoder:
+    providers:
+        google_maps:
+            locale:       ~
+            region:       ~
+            use_ssl:      false
 
 framework:
     #esi:             ~

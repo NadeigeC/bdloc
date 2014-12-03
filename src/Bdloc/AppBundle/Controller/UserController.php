@@ -188,6 +188,24 @@
             }
                 $params['updatePasswordForm'] = $updatePasswordForm->createView();
                 return $this->render("user/update_password.html.twig", $params);
-            }
+        }
 
+
+        /*public function geocodeAction(Request $request)
+        {
+            $result = $this->container
+                ->get('bazinga_geocoder.geocoder')
+                ->geocode($request->server->get('REMOTE_ADDR'));
+
+            $body = $this->container
+                ->get('bazinga_geocoder.dumper_manager')
+                ->get('geojson')
+                ->dump($result);
+
+            $response = new Response();
+            $response->setContent($body);
+
+            return $response;
+        }
+*/
     }

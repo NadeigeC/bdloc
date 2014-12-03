@@ -104,7 +104,7 @@ class User implements UserInterface
      * @var string
      * @Assert\Regex(
      *           pattern= "/^0[1-9]([-. ]?[0-9]{2}){4}$/",
-     *           message= "Entrez un numero valide(10 chiffres)",
+     *           message= "Entrez un numero valide (10 chiffres avec ou sans espaces)",
      *           groups={"registration"}, groups={"updateProfile"})
      * @ORM\Column(name="phone", type="string", length=20)
      */
@@ -594,7 +594,7 @@ class User implements UserInterface
     /**
      * Get dropSpot
      *
-     * @return \Bdloc\AppBundle\Entity\User 
+     * @return \Bdloc\AppBundle\Entity\User
      */
     public function getDropSpot()
     {
