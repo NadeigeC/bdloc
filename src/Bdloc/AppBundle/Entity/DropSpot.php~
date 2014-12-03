@@ -229,37 +229,4 @@ class DropSpot
     {
         return $this->user;
     }
-
-    /**
-     * Set fullAdress
-     *
-     * @param string $fullAdress
-     * @return DropSpot
-     */
-    public function setFullAdress($fullAdress)
-    {
-        $this->fullAdress = $fullAdress;
-
-        return $this;
-    }
-
-    /**
-     * Get fullAdress
-     *
-     * @return string 
-     */
-    public function getFullAdress()
-    {
-        return $this->fullAdress;
-    }
-
-    /**
-     * Get users
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
 }
