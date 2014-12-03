@@ -48,8 +48,6 @@
                 $user->setDateModified( new \DateTime());
                 $user->setDateCreated( new \DateTime());
 
-                $user->setDropSpotId("2");
-
                 $stringHelper = new StringHelper();
 
                 $user->setSalt($stringHelper->randomString());
