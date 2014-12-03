@@ -56,6 +56,12 @@ class Fine
      */
     private $datePaid;
 
+    /**
+     * @var \decimal
+     *
+     * @ORM\Column(name="montant", type="decimal", precision=5, scale=2)
+     */
+    private $montant;
 
 
     /**
