@@ -4,10 +4,9 @@
 
 {% block main_content %}
 
-	{# J'affiche le formulaire de recherche #}
+	{# J'affiche les formulaires de recherche & de filtre #}
 	{{ form(bookSearchForm) }}
-	{{ form(bookFilterDateForm) }}
-	{{ form(bookFilterTitreForm) }}
+	{{ form(bookFilterForm) }}
 
 	{# Affichage des BDs #}
     {% for book in books %}
@@ -17,12 +16,12 @@
 
     {# J'affiche page précédente, sauf si on se trouve sur la première page #}
     {% if page > 1 %}
-    <a href="{{ path('bdloc_app_book_allbooks', {page: page-1}) }}">Page précédente -</a> 
+    <a href="{{ path('bdloc_app_book_allbooks', {page: page-1, nombreparpage: nombreParPage}) }}">Page précédente -</a> 
 	{% endif %}
 
 	{# J'affiche page suivante, sauf si on se trouve sur la dernière page #}
 	{% if page < nombrePage %}
-	<a href="{{ path('bdloc_app_book_allbooks', {page: page+1}) }}">Page suivante</a>
+	<a href="{{ path('bdloc_app_book_allbooks', {page: page+1, nombreparpage: nombreParPage}) }}">Page suivante</a>
 	{% endif %}
 
 {% endblock %}

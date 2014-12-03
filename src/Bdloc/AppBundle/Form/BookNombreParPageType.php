@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class BookFilterType extends AbstractType
+class BookNombreParPageType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,23 +16,13 @@ class BookFilterType extends AbstractType
     {
         $builder
             ->setMethod('GET')
-            ->add('entity', 'choice', array(
-                    'choices'   => array('b.title' => 'Titre', 'b.dateCreated' => 'Date'),
-                    "label" => "Trier par",
-                    'mapped' => false
-                ))
-            ->add('direction', 'choice', array(
-                    'choices'   => array('DESC' => 'DESC', 'ASC' => 'ASC'),
-                    "label" => "Dans quel sens",
-                    'mapped' => false
-                ))
-            ->add('nombre', 'choice', array(
-                    'choices'   => array('12' => '12', '24' => '24', '36' => '36', '48' => '48', '60' => '60'),
-                    "label" => "Combien par page",
-                    'mapped' => false
+            ->add('id', 'choice', array(
+                    'choices'   => array('10' => '10', '20' => '20', '30' => '30'),
+                    'required'  => false,
+                    "label" => "Nombre par page"
                 ))
             ->add('submit', 'submit', array(
-                "label" => "Trier"
+                "label" => "Ok"
                 ))
         ;
     }
@@ -52,6 +42,6 @@ class BookFilterType extends AbstractType
      */
     public function getName()
     {
-        return 'bdloc_appbundle_bookfilter';
+        return 'bdloc_appbundle_booknombreparpage';
     }
 }
