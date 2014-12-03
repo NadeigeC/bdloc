@@ -17,7 +17,11 @@ class BookRepository extends EntityRepository
 	public function getBooks($nombreParPage, $page)
     {
 
+    	$champ = "b.dateCreated";
+    	$direction = "DESC";
+
         $query = $this->createQueryBuilder('b')
+        			  ->orderBy($champ, $direction)
         	          ->setFirstResult(($page-1) * $nombreParPage)
         			  ->setMaxResults($nombreParPage)
                       ->getQuery();

@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 //Ajout des uses nécessaires
 use Bdloc\AppBundle\Entity\Book;
 use Bdloc\AppBundle\Form\BookSearchType;
+use Bdloc\AppBundle\Form\BookFilterType;
 
 class BookController extends Controller
 {
@@ -19,25 +20,29 @@ class BookController extends Controller
      	// Paramètres pour la vue
      	$params = array();
 
-		// Ajout du formulaire de tri
+		// Ajout du formulaire de recherche
     	$book = new Book();
         $bookSearchForm = $this->createForm(new BookSearchType(), $book);
 
+        // Ajout du formulaire de Tri
+        $bookFilterForm = $this->createForm(new BookFilterType(), $book);
+
         $request = $this->getRequest();
         $bookSearchForm->handleRequest($request);
+        $bookFilterForm->handleRequest($request);
 
         // Si le formulaire de recherche est soumis
 		if ( $bookSearchForm->isValid() ) {
 			// Je recherche par mots clés dans le titre
 			$books = $this->getDoctrine()
 					      ->getRepository('BdlocAppBundle:Book')
-   						  ->findBookWithTitle($book->getTitle());
+   						  ->findBookWithTitle($book->getAll());
 
   		// Init de variables
      	$params['nombrePage'] = "";
 
-		} 
-
+		}
+		
 		// En temps normal
 		else {
 
@@ -61,6 +66,7 @@ class BookController extends Controller
         $params['books'] = $books;
         $params['page'] = $page;
         $params['bookSearchForm'] = $bookSearchForm->createView();
+        $params['bookFilterForm'] = $bookFilterForm->createView();
 
       // j'envoie à la vue
       return $this->render("catalogue.html.twig", $params);

@@ -4,12 +4,47 @@
 
 {% block main_content %}
 
-{% if app.user %}
-            Bonjour {{ app.user.username }} !
-            <a href="{{ path('logout') }}" title="Déconnectez-vous">Déconnexion</a>
-        {% else %}
-            Bonjour bel inconnu ! | <a href="{{ path('bdloc_app_security_login') }}" title="Connectez-vous">Connexion</a> | <a href="{{ path('bdloc_app_user_register') }}" title="Inscription">Inscription</a>
-{% endif %}
+	<!-- CAROUSEL-->
+    	  
+    	    <!-- Responsive slider - START -->
+<div class="responsive-slider" data-spy="responsive-slider" data-autoplay="true">
+  <div class="slides" data-group="slides">
+    <ul>
+      <li>
+        <div class="slide-body" data-group="slide">
+          <img src="../img/slider/slide-1.jpg">
+          <div class="caption header" data-animate="slideAppearRightToLeft" data-delay="500" data-length="300">
+            <h2>Location BD</h2>
+            <div class="caption sub" data-animate="slideAppearLeftToRight" data-delay="800" data-length="300">choisissez votre offre !!!</div>
+            <div class="caption sub2" data-animate="slideAppearLeftToRight" data-delay="800" data-length="300">10 BD maximum par commande</div>
+            <div>
+            <a href="#" class="btn btn-success sub3" data-animate="slideAppearLeftToRight" data-delay="800" data-length="300">Je m’abonne !</a>
+          	</div>
 
-    <h1>Bdloc !</h1>
+          </div>
+          <div class="caption img-loc120" data-animate="slideAppearDownToUp" data-delay="200">
+            <img src="../img/loc120.png">
+          </div>
+          <div class="caption img-loc12" data-animate="slideAppearUpToDown">
+            <img src="../img/loc12.png">
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="slide-body" data-group="slide">
+          <img src="../img/slider/slide-3.jpg">
+        </div>
+      </li>
+    </ul>
+  </div>
+  <a class="slider-control left" href="#" data-jump="prev"><</a>
+  <a class="slider-control right" href="#" data-jump="next">></a>
+  <div class="pages">
+    <a class="page" href="#" data-jump-to="1">1</a>
+    <a class="page" href="#" data-jump-to="2">2</a>
+  </div>
+</div>
+<!-- Responsive slider - END -->
+ <!--  END CAROUSEL -->
 {% endblock %}
+

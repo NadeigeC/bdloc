@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class BookSearchType extends AbstractType
+class BookFilterType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,12 +15,20 @@ class BookSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title','text', array(
-                    "label" => " "
+            ->setMethod('GET')
+            ->add('dateCreated', 'choice', array(
+                    'choices'   => array('d' => 'DESC', 'a' => 'ASC'),
+                    'required'  => false,
+                    "label" => "Trier par date"
+                ))
+            ->add('title', 'choice', array(
+                    'choices'   => array('d' => 'DESC', 'a' => 'ASC'),
+                    'required'  => false,
+                    "label" => "Trier par ordre alphabétique"
                 ))
             ->add('submit', 'submit', array(
-                "label" => "Rechercher"
-            ))
+                "label" => "Trier"
+                ))
         ;
     }
     
@@ -39,6 +47,6 @@ class BookSearchType extends AbstractType
      */
     public function getName()
     {
-        return 'bdloc_appbundle_booksearch';
+        return 'bdloc_appbundle_bookfilter';
     }
 }

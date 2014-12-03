@@ -29,7 +29,7 @@
             $params = array();
 
             $user = new User();
-            $registerForm = $this->createForm(new RegisterType(), $user);
+            $registerForm = $this->createForm(new RegisterType(), $user, array('validation_groups' => array('registration', 'Default')));
 
            //gère la soumission du form
             $request = $this->getRequest();
@@ -83,6 +83,24 @@
             return $this->render("user/register.html.twig", $params);
 
         }
+
+        /**
+    *@Route("/profile/{id}")
+    */
+    public function viewProfileAction($id, Request $request){
+
+        //select
+        $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
+
+        //la méthode find() du repository s'attend à recevoir la clef primaire en paramètre
+        $user = $userRepo->find($id);
+
+        $params = array(
+            "user" => $user);
+       return $this->render("user/profile.html.twig", $params);
+
+    }
+
 
 
 

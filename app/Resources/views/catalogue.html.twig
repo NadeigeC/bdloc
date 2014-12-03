@@ -6,9 +6,11 @@
 
 	{# J'affiche le formulaire de recherche #}
 	{{ form(bookSearchForm) }}
+	{{ form(bookFilterForm) }}
 
 	{# Affichage des BDs #}
     {% for book in books %}
+    	<img src="{{ asset('img/Couvertures/Couvertures/' ~ book.cover ~ '') }}" alt="{{ book.title }}"/>
     	<h2>{{ book.title }}</h2>
     {% endfor %}
 

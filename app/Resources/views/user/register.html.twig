@@ -4,17 +4,34 @@
 {% block main_content %}
 
 
-{% if app.user %}
-            Bonjour {{ app.user.username }} !
-            <a href="{{ path('logout') }}" title="Déconnectez-vous">Déconnexion</a>
-        {% else %}
-            Bonjour bel inconnu !
-{% endif %}
-
 <h1>Enregistrez-vous !</h1>
 
-{{ form(registerForm) }}
+{{ form(registerForm, {'attr':{'novalidate': 'novalidate'}}) }}
 
 
 
+{% endblock %}
+{% block javascripts %}
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+<script>
+    function geolocate() {
+
+        // On choppe notre input
+        var input = document.getElementById("bdloc_appbundle_user_adress");
+
+        // Paramètres
+        var options = {
+            types: ['address'],
+            componentRestrictions: {
+                country: 'fr'
+            }
+        }
+
+        // On ajoute l'autocomplete
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+
+    }
+</script>
 {% endblock %}

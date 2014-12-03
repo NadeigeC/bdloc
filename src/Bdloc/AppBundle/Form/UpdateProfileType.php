@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class BookSearchType extends AbstractType
+class UserType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,22 +15,23 @@ class BookSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title','text', array(
-                    "label" => " "
-                ))
-            ->add('submit', 'submit', array(
-                "label" => "Rechercher"
-            ))
-        ;
+            ->add('username')
+            ->add('email')
+            ->add('firstName')
+            ->add('lastName')
+            ->add('zip')
+            ->add('adress')
+            ->add('phone')
+            ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Bdloc\AppBundle\Entity\Book'
+            'data_class' => 'Bdloc\AppBundle\Entity\User'
         ));
     }
 
@@ -39,6 +40,6 @@ class BookSearchType extends AbstractType
      */
     public function getName()
     {
-        return 'bdloc_appbundle_booksearch';
+        return 'bdloc_appbundle_user';
     }
 }

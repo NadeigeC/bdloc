@@ -35,8 +35,6 @@ class CartItem
      */
     private $dateModified;
 
-   
-
 
      /**
     *
@@ -56,7 +54,7 @@ class CartItem
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -79,7 +77,7 @@ class CartItem
     /**
      * Get dateCreated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -102,14 +100,14 @@ class CartItem
     /**
      * Get dateModified
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateModified()
     {
         return $this->dateModified;
     }
 
-   
+
     /**
      * Set cart
      *
@@ -126,7 +124,7 @@ class CartItem
     /**
      * Get cart
      *
-     * @return \Bdloc\AppBundle\Entity\Cart 
+     * @return \Bdloc\AppBundle\Entity\Cart
      */
     public function getCart()
     {
@@ -149,7 +147,7 @@ class CartItem
     /**
      * Get book
      *
-     * @return \Bdloc\AppBundle\Entity\Book 
+     * @return \Bdloc\AppBundle\Entity\Book
      */
     public function getBook()
     {

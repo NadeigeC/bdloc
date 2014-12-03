@@ -3,11 +3,12 @@
 namespace Bdloc\AppBundle\Entity;
 
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
-
+//http://benjamin.leveque.me/symfony2-validation-groups.html
 
 /**
  * User
@@ -31,21 +32,21 @@ class User implements UserInterface
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Veuillez entrer un pseudo", groups={"registration"})
      * @ORM\Column(name="username", type="string", length=255)
      */
     private $username;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Veuillez entrer un email", groups={"registration"}, groups={"forgotPassword"} )
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Veuillez entrer un mot de passe", groups={"registration"}, groups={"newPassword"})
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
@@ -73,14 +74,14 @@ class User implements UserInterface
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Veuillez entrer votre prénom", groups={"registration"})
      * @ORM\Column(name="firstName", type="string", length=255)
      */
     private $firstName;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Veuillez votre nom", groups={"registration"})
      * @ORM\Column(name="lastName", type="string", length=255)
      */
     private $lastName;
@@ -94,7 +95,7 @@ class User implements UserInterface
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Merci d'indiquer votre adresse postale", groups={"registration"})
      * @ORM\Column(name="adress", type="string", length=255)
      */
     private $adress;
@@ -102,9 +103,9 @@ class User implements UserInterface
     /**
      * @var string
      * @Assert\Regex(
-     *           pattern= "/^0[0-9]([-. ]?\d{2}){4}[-. ]?$/",
-     *           match=   false,
-     *           message= "Entrez un numero du type xx xx xx xx xx")
+     *           pattern= "/^0[1-9]([-. ]?[0-9]{2}){4}$/",
+     *           message= "Entrez un numero valide(10 chiffres)",
+     *           groups={"registration"})
      * @ORM\Column(name="phone", type="string", length=20)
      */
     private $phone;
