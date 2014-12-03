@@ -32,21 +32,21 @@ class User implements UserInterface
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez entrer un pseudo", groups={"registration"})
+     * @Assert\NotBlank(message="Veuillez entrer un pseudo", groups={"registration"}, groups={"updateProfile"})
      * @ORM\Column(name="username", type="string", length=255)
      */
     private $username;
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez entrer un email", groups={"registration"}, groups={"forgotPassword"} )
+     * @Assert\NotBlank(message="Veuillez entrer un email", groups={"registration"}, groups={"forgotPassword"}, groups={"updateProfile"}  )
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez entrer un mot de passe", groups={"registration"}, groups={"newPassword"})
+     * @Assert\NotBlank(message="Veuillez entrer un mot de passe", groups={"registration"}, groups={"newPassword"}, groups={"updatePassword"})
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
@@ -74,14 +74,14 @@ class User implements UserInterface
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez entrer votre prénom", groups={"registration"})
+     * @Assert\NotBlank(message="Veuillez entrer votre prénom", groups={"registration"}, groups={"updateProfile"})
      * @ORM\Column(name="firstName", type="string", length=255)
      */
     private $firstName;
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez votre nom", groups={"registration"})
+     * @Assert\NotBlank(message="Veuillez votre nom", groups={"registration"}, groups={"updateProfile"})
      * @ORM\Column(name="lastName", type="string", length=255)
      */
     private $lastName;
@@ -95,7 +95,7 @@ class User implements UserInterface
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Merci d'indiquer votre adresse postale", groups={"registration"})
+     * @Assert\NotBlank(message="Merci d'indiquer votre adresse postale", groups={"registration"}, groups={"updateProfile"})
      * @ORM\Column(name="adress", type="string", length=255)
      */
     private $adress;
@@ -105,7 +105,7 @@ class User implements UserInterface
      * @Assert\Regex(
      *           pattern= "/^0[1-9]([-. ]?[0-9]{2}){4}$/",
      *           message= "Entrez un numero valide(10 chiffres)",
-     *           groups={"registration"})
+     *           groups={"registration"}, groups={"updateProfile"})
      * @ORM\Column(name="phone", type="string", length=20)
      */
     private $phone;
@@ -559,7 +559,7 @@ class User implements UserInterface
     /**
      * Get carts
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCarts()
     {
@@ -592,7 +592,7 @@ class User implements UserInterface
     /**
      * Get fines
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFines()
     {

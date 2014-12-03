@@ -1,0 +1,11 @@
+{% extends "::base.html.twig" %}
+
+
+{% block main_content %}
+
+<h1>Modifier vos informations personnelles</h1>
+
+{{ form (updateProfileForm, {'attr':{'novalidate': 'novalidate'}}) }}
+
+
+{% endblock %}
