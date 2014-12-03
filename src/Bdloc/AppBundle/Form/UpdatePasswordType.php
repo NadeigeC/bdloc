@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UserType extends AbstractType
+class UpdatePasswordType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,24 +15,21 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username')
-            ->add('email')
-            ->add('password')
-            ->add('token')
-            ->add('salt')
-            ->add('roles')
-            ->add('firstName')
-            ->add('lastName')
-            ->add('zip')
-            ->add('adress')
-            ->add('phone')
-            ->add('isActive')
-            ->add('dateCreated')
-            ->add('dateModified')
-            ->add('dropSpotId')
+
+
+            ->add('password', 'repeated', array(
+                    'type' => 'password',
+                    'invalid_message' => 'Les mots de passe doivent correspondre',
+                    'options' => array('required' => true),
+                    'first_options'  => array('label' => 'Mot de passe'),
+                    'second_options' => array('label' => 'Mot de passe (confirmation)'),))
+            ->add('submit','submit', array(
+                "label" =>"Modifier le mot de passe"
+                ))
+
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

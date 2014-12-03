@@ -16,6 +16,8 @@
     use Bdloc\AppBundle\Util\StringHelper;
     use Bdloc\AppBundle\Form\ForgotPasswordType;
     use Bdloc\AppBundle\Form\NewPasswordType;
+    use Bdloc\AppBundle\Form\UpdateProfileType;
+    use Bdloc\AppBundle\Form\UpdatePasswordType;
 
 
     class UserController extends Controller {
@@ -102,6 +104,90 @@
     }
 
 
+        /**
+        * @Route("/modifier-mon-profil/{id}")
+        */
+        public function updateProfileAction(Request $request, $id){
 
+            $params = array();
+
+            $user = $this->getUser();
+            $updateProfileForm = $this->createForm(new UpdateProfileType(), $user, array('validation_groups' => array('updateProfile', 'Default')));
+
+           //gère la soumission du form
+            $request = $this->getRequest();
+            $updateProfileForm->handleRequest($request);
+
+            if ($updateProfileForm->isValid()){
+
+            //on termine l'hydratation de notre objet User
+            //avant enregistrement
+            //salt, token, roles
+            //dates directement dans l'entité avec les lifecyclecallbaks
+                $user->getRoles();
+                $user->getIsActive();
+                $user->setDateModified( new \DateTime());
+                $user->getDateCreated( new \DateTime());
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+                $em->flush();
+
+                $request->getSession()->getFlashBag()->add(
+                'notice',
+                'Données modifiées avec succès !'
+                );
+
+
+                return $this->redirect($this->generateUrl("bdloc_app_user_viewprofile", array('id' => $user->getId())));
+
+        }
+
+            $params['updateProfileForm'] = $updateProfileForm->createView();
+
+            return $this->render("user/update_profile.html.twig", $params);
+
+        }
+
+        /**
+        * @Route("/modifier-mon-mot-de-passe/{id}")
+        */
+        public function updatePasswordAction(Request $request, $id){
+
+            $params = array();
+
+            $user = $this->getUser();
+            $updatePasswordForm = $this->createForm(new UpdatePasswordType(), $user, array('validation_groups' => array('updatePassword', 'Default')));
+
+            //gère la soumission du form
+            $request = $this->getRequest();
+            $updatePasswordForm->handleRequest($request);
+
+            if ($updatePasswordForm->isValid()){
+                $stringHelper = new StringHelper();
+
+                $user->setSalt($stringHelper->randomString());
+                $user->setToken($stringHelper->randomString(30));
+
+                $factory = $this->get('security.encoder_factory');
+
+                $encoder = $factory->getEncoder($user);
+                $password = $encoder->encodePassword($user->getPassword(),$user->getSalt());
+                $user->setPassword($password);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+                $em->flush();
+
+                $request->getSession()->getFlashBag()->add(
+                'notice',
+                'Votre nouveau mot de passe est bien enregistré !'
+                );
+
+                return $this->redirect($this->generateUrl("bdloc_app_user_viewprofile", array('id' => $user->getId())));
+            }
+                $params['updatePasswordForm'] = $updatePasswordForm->createView();
+                return $this->render("user/update_password.html.twig", $params);
+            }
 
     }

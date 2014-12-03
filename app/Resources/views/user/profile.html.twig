@@ -18,10 +18,10 @@
         <p>Adresse postale : {{ user.adress }}</p>
         <p>Adresse mail :{{ user.email }}</p>
         <p>Telephone : {{ user.phone }}</p>
-        <p>Point relais favori : {{ user.dropSpotId }}</p>
+        <p>Point relais favori : {{ user.dropSpot }}</p>
 
-<a href="#">Modifier mes informations personnelles</a><br>
-<a href="#">Modifier mon mot de passe</a><br>
+<a href="{{ path('bdloc_app_user_updateprofile', {'id':app.user.id}) }}">Modifier mes informations personnelles</a><br>
+<a href="{{ path('bdloc_app_user_updatepassword', {'id':app.user.id}) }}">Modifier mon mot de passe</a><br>
 <a href="#">Modifier mon point relais</a><br>
 
 
@@ -29,7 +29,7 @@
 <h2>Informations de paiement</h2>
 <hr>
 <a href="#">Modifier mes informations de paiment</a><br>
-<a href="#">Consulter mon historique de location</a>
+<a href="#">Consulter mon historique de location</a><br>
 <a href="#">Payer une amende</a><br>
 <a href="#">Me désabonner</a><br>
 
