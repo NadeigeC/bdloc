@@ -56,14 +56,14 @@ class CartController extends Controller
      }
 
      /**
-     * @Route("/panier/validation/{id}/{userId}")
+     * @Route("/panier/validation/{id}/{user}")
      */
 
-     public function validCartAction($id,$userId){
+     public function validCartAction($id,$user){
 
         // Pénalités
         $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
-        $user = $userRepo->find($userId);
+        $user = $userRepo->find($user);
 
       
         $params = array();
@@ -74,17 +74,14 @@ class CartController extends Controller
             
         );
 
-       
-        
-
-
-       
+            
         
 
 
         $params = array (
             "fines" => $fines,
             "user"  => $user,
+            "id"    => $id,
         );
 
         
@@ -110,10 +107,19 @@ class CartController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
-
+        /*print_r($cart);
+        die();*/
      
-       
-        return $this->render("cart/valid.html.twig");
+        //Chercher le nombre d'de bd dans le panier.
+
+         $params = array (
+            "cart" => $cart,
+            "user" => $user,
+        
+        );
+
+
+        return $this->render("cart/valid.html.twig",$params);
        
 
      }
@@ -122,7 +128,7 @@ class CartController extends Controller
      * @Route("/panier/amende/{id}/{user}")
      */
 
-      public function payFinesAction($user){
+      public function payFinesAction($user,$id){
 
         $params = array();
         $fineRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Fine");
