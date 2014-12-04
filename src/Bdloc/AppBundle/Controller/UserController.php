@@ -33,16 +33,11 @@
             $user = new User();
             $registerForm = $this->createForm(new RegisterType(), $user, array('validation_groups' => array('registration', 'Default')));
 
-
-
            //gère la soumission du form
             $request = $this->getRequest();
             $registerForm->handleRequest($request);
 
-
-
             if ($registerForm->isValid()){
- //print_r($user);
             //on termine l'hydratation de notre objet User
             //avant enregistrement
             //salt, token, roles

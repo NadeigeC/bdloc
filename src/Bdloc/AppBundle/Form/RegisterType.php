@@ -19,29 +19,29 @@ class RegisterType extends AbstractType
             ->add('username', 'text', array(
                  "label" => "votre pseudo",
                  'attr' => array(
-                    'placeholder' => 'Pseudo',
-                    'class' => 'form-control')
+                    'placeholder' => 'Pseudo',)
+                    //'class' => 'form-control'
                ))
 
             ->add('firstName','text', array(
                 "label" => "votre prénom",
                 'attr' => array(
-                    'placeholder' => 'Prénom',
-                    'class' => 'form-control')
+                    'placeholder' => 'Prénom',)
+                    //'class' => 'form-control'
                 ))
 
             ->add('lastName','text', array(
                 "label" => "votre nom",
                 'attr' => array(
-                    'placeholder' => 'Nom',
-                    'class' => 'form-control')
+                    'placeholder' => 'Nom',)
+                    //'class' => 'form-control'
                 ))
 
             ->add('email', 'email', array(
                 "label" => "votre email",
                 'attr' => array(
-                    'placeholder' => 'Email',
-                    'class' => 'form-control')
+                    'placeholder' => 'Email',)
+                    //'class' => 'form-control'
                 ))
 
             ->add('password', 'repeated', array(
@@ -50,30 +50,30 @@ class RegisterType extends AbstractType
                     'options' => array('required' => true),
                     'first_options'  => array('label' => 'Mot de passe'),
                     'second_options' => array('label' => 'Mot de passe (validation)'),
-                    'attr' => array('class'=>'form-control')
+                    //'attr' => array('class'=>'form-control')
                     ))
 
-            ->add('adress','text', array(
+            ->add('adress')/*,'text', array(
                  'attr' => array(
-                    'class' => 'form-control')))
+                    'class' => 'form-control')))*/
 
             ->add('phone', 'text', array(
                     'attr' => array(
-                    'placeholder' => 'Ex : 01 45 21 23 40',
-                    'class' => 'form-control')
+                    'placeholder' => 'Ex : 01 45 21 23 40',)
+                    //'class' => 'form-control'
                     ))
 
             ->add('dropSpot', 'entity', array(
                     'class'=>'Bdloc\AppBundle\Entity\DropSpot',
                    'property'=>'fullAdress',
                    'empty_value' => 'Choisissez un point relais',
-                   'attr' => array(
-                       'class' => 'form-control')))
+                   /*'attr' => array(
+                       'class' => 'form-control')*/))
 
 
             ->add('submit','submit', array(
                 "label" =>"Inscription",
-                'attr' => array('class'=>'btn btn-primary')
+                //'attr' => array('class'=>'btn btn-primary')
                 ))
         ;
     }
