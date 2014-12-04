@@ -83,3 +83,11 @@ swiftmailer:
     port:      "%mailer_port%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
+
+#service:
+    #bd.slugger:
+      #  class: Bdloc\AppBundle\Service\Slugger
+      #  arguments:['bla']
+
+    #paypal_subscription:
+        #class: Bdloc\AppBundle\Service\PPSubscription

@@ -18,5 +18,17 @@ foreach($fine as $fines){
          $fine->setStatus("paye");
         };
 
+$cart->setDateDelivery(DATE_ADD(dateCreated, INTERVAL 15 DAY));
+$dateDelivery=date(strtotime($dateCreated,'+ 15 days'));
 
-     
+{% for cartItem in cart.cartItems %}
+            {{ cartItem.book.title}}<br/>
+    {% endfor %}
+
+  $dql = "SELECT SUM (fines->amount) AS montant FROM fine" .
+       "WHERE user_id=$user";
+    $montant = $em->createQuery($dql)
+              
+              ->getSingleScalarResult();   
+
+ $fineRepo->montant   ; 

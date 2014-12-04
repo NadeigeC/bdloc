@@ -1,16 +1,20 @@
-<html>
-<body>
+{% extends '::base.html.twig' %}
+
+{% block main_content %}
     <h1>Confirmation de votre commande</h1>
 
     Nombre de bds commandées : {{cart.cartItems|length}}
-    <a href="" title="Voir la liste">Voir la liste</a><br/><br/>
-    Date de livraison estimée : <br/><br/>
-    Au point-relais : {{user.username}}
-    <a href="" title="Changer de point-relais">Changer de point-relais</a><br/><br/>
-    <a href="" title="Valider ma commande">Valider ma commande</a>
 
-    
+    <a href="{{ path('bdloc_app_cart_seelist',{id:cart.id}) }}" title="Voir la liste">Voir la liste</a><br/><br/>
+
+    Date de livraison estimée : {{cart.dateCreated|date()}}<br/><br/>
+
+    Au point-relais : {{user.dropSpot.name}} , {{user.dropSpot.adress}}
+
+    <a href="" title="Changer de point-relais">Changer de point-relais</a><br/><br/>
+
+    <a href="" title="Valider ma commande">Valider ma commande</a>
+   
             
 
-</body>
-</html> 
+{% endblock %}

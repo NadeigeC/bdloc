@@ -5,12 +5,12 @@ namespace Bdloc\AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Cart
+ * Fine
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Bdloc\AppBundle\Entity\CartRepository")
+ * @ORM\Entity(repositoryClass="Bdloc\AppBundle\Entity\FineRepository")
  */
-class Cart
+class Fine
 {
     /**
      * @var integer
@@ -24,7 +24,14 @@ class Cart
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=255)
+     * @ORM\Column(name="reason", type="string", length=50)
+     */
+    private $reason;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=50)
      */
     private $status;
 
@@ -45,31 +52,36 @@ class Cart
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateDelivery", type="datetime")
+     * @ORM\Column(name="datePaid", type="datetime")
      */
-    private $dateDelivery;
+    private $datePaid;
 
-   
+    /**
+     * @var \decimal
+     *
+     * @ORM\Column(name="montant", type="decimal", precision=5, scale=2)
+     */
+    private $montant;
 
-     /**
-    *
-    *@ORM\OneToMany(targetEntity="CartItem", mappedBy="cart")
-    */
-    private $cartItems;
 
-   
     /**
     *
-    *@ORM\ManyToOne(targetEntity="User", inversedBy="carts")
+    *@ORM\ManyToOne(targetEntity="User", inversedBy="fines")
     */
     private $user;
 
-
-     /**
+    /**
     *
-    *@ORM\OneToMany(targetEntity="Fine", mappedBy="cart")
+    *@ORM\ManyToOne(targetEntity="Book", inversedBy="fines")
     */
-    private $fines;
+    private $book;
+
+    /**
+    *
+    *@ORM\ManyToOne(targetEntity="Cart", inversedBy="fines")
+    */
+    private $cart;
+
 
 
     /**
@@ -83,10 +95,33 @@ class Cart
     }
 
     /**
+     * Set reason
+     *
+     * @param string $reason
+     * @return Fine
+     */
+    public function setReason($reason)
+    {
+        $this->reason = $reason;
+
+        return $this;
+    }
+
+    /**
+     * Get reason
+     *
+     * @return string 
+     */
+    public function getReason()
+    {
+        return $this->reason;
+    }
+
+    /**
      * Set status
      *
      * @param string $status
-     * @return Cart
+     * @return Fine
      */
     public function setStatus($status)
     {
@@ -109,7 +144,7 @@ class Cart
      * Set dateCreated
      *
      * @param \DateTime $dateCreated
-     * @return Cart
+     * @return Fine
      */
     public function setDateCreated($dateCreated)
     {
@@ -132,7 +167,7 @@ class Cart
      * Set dateModified
      *
      * @param \DateTime $dateModified
-     * @return Cart
+     * @return Fine
      */
     public function setDateModified($dateModified)
     {
@@ -151,53 +186,34 @@ class Cart
         return $this->dateModified;
     }
 
-   
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->cartItems = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add cartItems
+     * Set datePaid
      *
-     * @param \Bdloc\AppBundle\Entity\CartItem $cartItems
-     * @return Cart
+     * @param \DateTime $datePaid
+     * @return Fine
      */
-    public function addCartItem(\Bdloc\AppBundle\Entity\CartItem $cartItems)
+    public function setDatePaid($datePaid)
     {
-        $this->cartItems[] = $cartItems;
+        $this->datePaid = $datePaid;
 
         return $this;
     }
 
     /**
-     * Remove cartItems
+     * Get datePaid
      *
-     * @param \Bdloc\AppBundle\Entity\CartItem $cartItems
+     * @return \DateTime 
      */
-    public function removeCartItem(\Bdloc\AppBundle\Entity\CartItem $cartItems)
+    public function getDatePaid()
     {
-        $this->cartItems->removeElement($cartItems);
-    }
-
-    /**
-     * Get cartItems
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCartItems()
-    {
-        return $this->cartItems;
+        return $this->datePaid;
     }
 
     /**
      * Set user
      *
      * @param \Bdloc\AppBundle\Entity\User $user
-     * @return Cart
+     * @return Fine
      */
     public function setUser(\Bdloc\AppBundle\Entity\User $user = null)
     {
@@ -217,58 +233,48 @@ class Cart
     }
 
     /**
-     * Set dateDelivery
+     * Set montant
      *
-     * @param \DateTime $dateDelivery
-     * @return Cart
+     * @param string $montant
+     * @return Fine
      */
-    public function setDateDelivery($dateDelivery)
+    public function setMontant($montant)
     {
-        $this->dateDelivery = $dateDelivery;
+        $this->montant = $montant;
 
         return $this;
     }
 
     /**
-     * Get dateDelivery
+     * Get montant
      *
-     * @return \DateTime 
+     * @return string 
      */
-    public function getDateDelivery()
+    public function getMontant()
     {
-        return $this->dateDelivery;
+        return $this->montant;
     }
 
     /**
-     * Add fines
+     * Set book
      *
-     * @param \Bdloc\AppBundle\Entity\Fine $fines
-     * @return Cart
+     * @param \Bdloc\AppBundle\Entity\Book $book
+     * @return Fine
      */
-    public function addFine(\Bdloc\AppBundle\Entity\Fine $fines)
+    public function setBook(\Bdloc\AppBundle\Entity\Book $book = null)
     {
-        $this->fines[] = $fines;
+        $this->book = $book;
 
         return $this;
     }
 
     /**
-     * Remove fines
+     * Get book
      *
-     * @param \Bdloc\AppBundle\Entity\Fine $fines
+     * @return \Bdloc\AppBundle\Entity\Book 
      */
-    public function removeFine(\Bdloc\AppBundle\Entity\Fine $fines)
+    public function getBook()
     {
-        $this->fines->removeElement($fines);
-    }
-
-    /**
-     * Get fines
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getFines()
-    {
-        return $this->fines;
+        return $this->book;
     }
 }
