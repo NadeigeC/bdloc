@@ -31,9 +31,9 @@ class CreditCard
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="valindUntil", type="date")
+     * @ORM\Column(name="validUntil", type="date")
      */
-    private $valindUntil;
+    private $validUntil;
 
     /**
      * @var \DateTime
@@ -60,7 +60,7 @@ class CreditCard
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -83,7 +83,7 @@ class CreditCard
     /**
      * Get paypalId
      *
-     * @return string 
+     * @return string
      */
     public function getPaypalId()
     {
@@ -91,26 +91,26 @@ class CreditCard
     }
 
     /**
-     * Set valindUntil
+     * Set validUntil
      *
-     * @param \DateTime $valindUntil
+     * @param \DateTime $validUntil
      * @return CreditCard
      */
-    public function setValindUntil($valindUntil)
+    public function setValidUntil($validUntil)
     {
-        $this->valindUntil = $valindUntil;
+        $this->validUntil = $validUntil;
 
         return $this;
     }
 
     /**
-     * Get valindUntil
+     * Get validUntil
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getValindUntil()
+    public function getValidUntil()
     {
-        return $this->valindUntil;
+        return $this->validUntil;
     }
 
     /**
@@ -129,7 +129,7 @@ class CreditCard
     /**
      * Get dateCreated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -152,7 +152,7 @@ class CreditCard
     /**
      * Get dateModified
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateModified()
     {
@@ -175,7 +175,7 @@ class CreditCard
     /**
      * Get userId
      *
-     * @return integer 
+     * @return integer
      */
     public function getUserId()
     {

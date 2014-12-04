@@ -12,7 +12,9 @@
     use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
     use Bdloc\AppBundle\Entity\User;
+    use Bdloc\AppBundle\Entity\DropSpot;
     use Bdloc\AppBundle\Form\RegisterType;
+    use Bdloc\AppBundle\Form\DropSpotType;
     use Bdloc\AppBundle\Util\StringHelper;
     use Bdloc\AppBundle\Form\ForgotPasswordType;
     use Bdloc\AppBundle\Form\NewPasswordType;
@@ -63,18 +65,18 @@
                 $em->persist($user);
                 $em->flush();
 
+
                 //CONNEXION AUTOMATIQUE
-                //tiré de http://stackoverflow.com/questions/9550079/how-to-programmatically-login-authenticate-a-user
-                // "secured_area" est le nom du firewall défini dans security.yml
-                $token = new UsernamePasswordToken($user, $user->getPassword(), "secured_area", $user->getRoles());
-                $this->get("security.context")->setToken($token);
+                                //tiré de http://stackoverflow.com/questions/9550079/how-to-programmatically-login-authenticate-a-user
+                                // "secured_area" est le nom du firewall défini dans security.yml
+                                $token = new UsernamePasswordToken($user, $user->getPassword(), "secured_area", $user->getRoles());
+                                $this->get("security.context")->setToken($token);
 
-                //déclanche l'évènement de login
-                $event = new InteractiveLoginEvent($request, $token);
-                $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
+                                //déclanche l'évènement de login
+                                $event = new InteractiveLoginEvent($request, $token);
+                                $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
 
-
-                return $this->render("home.html.twig");
+                return $this->redirect( $this->generateUrl("bdloc_app_user_dropspot"));
         }
 
             $params['registerForm'] = $registerForm->createView();
@@ -82,6 +84,39 @@
             return $this->render("user/register.html.twig", $params);
 
         }
+
+    /**
+        * @Route("/inscription/dropspot")
+    */
+
+    public function DropSpotAction(Request $request){
+
+            $params = array();
+
+            $user = $this->getUser();
+            $dropSpotForm = $this->createForm(new dropSpotType(), $user, array('validation_groups' => array('registration', 'Default')));
+
+           //gère la soumission du form
+            $request = $this->getRequest();
+            $dropSpotForm->handleRequest($request);
+
+            if ($dropSpotForm->isValid()){
+                $user->setDateModified( new \DateTime());
+                $user->setDateCreated( new \DateTime());
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+                $em->flush();
+
+                return $this->render("home.html.twig");
+        }
+
+            $params['dropSpotForm'] = $dropSpotForm->createView();
+
+            return $this->render("user/dropspot.html.twig", $params);
+
+        }
+
 
         /**
     *@Route("/profile/{id}")

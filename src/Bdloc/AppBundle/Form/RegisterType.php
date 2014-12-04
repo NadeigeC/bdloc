@@ -63,18 +63,13 @@ class RegisterType extends AbstractType
                     //'class' => 'form-control'
                     ))
 
-            ->add('dropSpot', 'entity', array(
-                    'class'=>'Bdloc\AppBundle\Entity\DropSpot',
-                   'property'=>'fullAdress',
-                   'empty_value' => 'Choisissez un point relais',
-                   /*'attr' => array(
-                       'class' => 'form-control')*/))
 
-
-            ->add('submit','submit', array(
+            /*->add('submit','submit', array(
                 "label" =>"Inscription",
-                //'attr' => array('class'=>'btn btn-primary')
-                ))
+                'attr' => array('class'=>'btn btn-primary')
+                ))*/
+            ->add('nextStep', 'submit')
+
         ;
     }
 
