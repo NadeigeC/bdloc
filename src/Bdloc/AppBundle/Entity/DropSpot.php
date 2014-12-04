@@ -188,25 +188,6 @@ class DropSpot
         return $this;
     }
 
-    /**
-     * Remove users
-     *
-     * @param \Bdloc\AppBundle\Entity\DropSpot $users
-     */
-    public function removeusers(\Bdloc\AppBundle\Entity\User $users)
-    {
-        $this->users->removeElement($users);
-    }
-
-    /**
-     * Get users
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getusers()
-    {
-        return $this->users;
-    }
 
     /**
      * Set fullAdress
@@ -231,4 +212,24 @@ class DropSpot
         return $this->fullAdress;
     }
 
+
+    /**
+     * Remove users
+     *
+     * @param \Bdloc\AppBundle\Entity\User $users
+     */
+    public function removeUser(\Bdloc\AppBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
 }

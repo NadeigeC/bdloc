@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UpdateProfileType extends AbstractType
+class CreditCardType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,25 +15,21 @@ class UpdateProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username')
-            ->add('email')
-            ->add('firstName')
-            ->add('lastName')
-            ->add('adress')
-            ->add('phone')
-            ->add('submit','submit', array(
-                "label" =>"Modifier"
-                ))
-            ;
+            ->add('paypalId')
+            ->add('validUntil')
+            ->add('dateCreated')
+            ->add('dateModified')
+            ->add('userId')
+        ;
     }
-
+    
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Bdloc\AppBundle\Entity\User'
+            'data_class' => 'Bdloc\AppBundle\Entity\CreditCard'
         ));
     }
 
@@ -42,6 +38,6 @@ class UpdateProfileType extends AbstractType
      */
     public function getName()
     {
-        return 'bdloc_appbundle_user';
+        return 'bdloc_appbundle_creditcard';
     }
 }

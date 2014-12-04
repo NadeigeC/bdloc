@@ -143,6 +143,15 @@ class User implements UserInterface
     */
     private $fines;
 
+
+    /**
+    *
+    *@ORM\OneToOne(targetEntity="CreditCard", mappedBy="user")
+    */
+    private $creditCard;
+
+
+
     /**
      * Get id
      *
@@ -456,7 +465,7 @@ class User implements UserInterface
 
 
     public function eraseCredentials(){
-        $this->password = null;
+        //$this->password = null;
     }
 
     /**
@@ -570,5 +579,28 @@ class User implements UserInterface
     public function getDropSpot()
     {
         return $this->dropSpot;
+    }
+
+    /**
+     * Set creditCard
+     *
+     * @param \Bdloc\AppBundle\Entity\CreditCard $creditCard
+     * @return User
+     */
+    public function setCreditCard(\Bdloc\AppBundle\Entity\CreditCard $creditCard = null)
+    {
+        $this->creditCard = $creditCard;
+
+        return $this;
+    }
+
+    /**
+     * Get creditCard
+     *
+     * @return \Bdloc\AppBundle\Entity\CreditCard
+     */
+    public function getCreditCard()
+    {
+        return $this->creditCard;
     }
 }

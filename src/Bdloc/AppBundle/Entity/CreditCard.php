@@ -50,11 +50,10 @@ class CreditCard
     private $dateModified;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="user_id", type="integer")
-     */
-    private $userId;
+    *
+    *@ORM\OneToOne(targetEntity="User", inversedBy="creditCard")
+    */
+    private $user;
 
 
     /**
@@ -180,5 +179,28 @@ class CreditCard
     public function getUserId()
     {
         return $this->userId;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Bdloc\AppBundle\Entity\User $user
+     * @return CreditCard
+     */
+    public function setUser(\Bdloc\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Bdloc\AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

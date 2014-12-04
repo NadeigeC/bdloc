@@ -26,7 +26,7 @@ class DropSpotType extends AbstractType
 
 
             ->add('nextStep','submit', array(
-                "label" =>"Inscription",
+                "label" =>"Confirmation",
                 'attr' => array('class'=>'btn btn-primary')
                 ))
 
