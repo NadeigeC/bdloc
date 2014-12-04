@@ -4,10 +4,10 @@
 {% block main_content %}
 
 
-<h1>Enregistrez-vous !</h1>
+<h1>Choisissez un Point Relais dans la liste</h1>
 
 
-{{ form(registerForm, {'attr':{'novalidate': 'novalidate'}}) }}
+{{ form(dropSpotForm, {'attr':{'novalidate': 'novalidate'}}) }}
 
 
 
@@ -18,7 +18,7 @@
 <script>
 
         // On choppe notre input
-        var input = document.getElementById("bdloc_appbundle_register_adress");
+        var input = document.getElementById("bdloc_appbundle_user_adress");
 
         // Paramètres
         var options = {
