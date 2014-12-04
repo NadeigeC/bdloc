@@ -17,32 +17,63 @@ class RegisterType extends AbstractType
         $builder
 
             ->add('username', 'text', array(
-                "label" => "votre pseudo"))
+                 "label" => "votre pseudo",
+                 'attr' => array(
+                    'placeholder' => 'Pseudo',
+                    'class' => 'form-control')
+               ))
 
             ->add('firstName','text', array(
-                "label" => "votre prénom"))
+                "label" => "votre prénom",
+                'attr' => array(
+                    'placeholder' => 'Prénom',
+                    'class' => 'form-control')
+                ))
 
             ->add('lastName','text', array(
-                "label" => "votre nom"))
+                "label" => "votre nom",
+                'attr' => array(
+                    'placeholder' => 'Nom',
+                    'class' => 'form-control')
+                ))
 
             ->add('email', 'email', array(
-                "label" => "votre email"))
+                "label" => "votre email",
+                'attr' => array(
+                    'placeholder' => 'Email',
+                    'class' => 'form-control')
+                ))
 
             ->add('password', 'repeated', array(
                     'type' => 'password',
                     'invalid_message' => 'Les mots de passe doivent correspondre',
                     'options' => array('required' => true),
                     'first_options'  => array('label' => 'Mot de passe'),
-                    'second_options' => array('label' => 'Mot de passe (validation)'),))
+                    'second_options' => array('label' => 'Mot de passe (validation)'),
+                    'attr' => array('class'=>'form-control')
+                    ))
 
-            ->add('zip')
-            ->add('adress')
-            ->add('phone')
-            ->add('dropspot', 'entity', array(
-                'class'=>'Bdloc\AppBundle\Entity\DropSpot',
-                   'property'=>'adress'))
+            ->add('adress','text', array(
+                 'attr' => array(
+                    'class' => 'form-control')))
+
+            ->add('phone', 'text', array(
+                    'attr' => array(
+                    'placeholder' => 'Ex : 01 45 21 23 40',
+                    'class' => 'form-control')
+                    ))
+
+            ->add('dropSpot', 'entity', array(
+                    'class'=>'Bdloc\AppBundle\Entity\DropSpot',
+                   'property'=>'fullAdress',
+                   'empty_value' => 'Choisissez un point relais',
+                   'attr' => array(
+                       'class' => 'form-control')))
+
+
             ->add('submit','submit', array(
-                "label" =>"Inscription"
+                "label" =>"Inscription",
+                'attr' => array('class'=>'btn btn-primary')
                 ))
         ;
     }
@@ -62,6 +93,6 @@ class RegisterType extends AbstractType
      */
     public function getName()
     {
-        return 'bdloc_appbundle_user';
+        return 'bdloc_appbundle_register';
     }
 }

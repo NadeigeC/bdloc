@@ -552,10 +552,10 @@ class User implements UserInterface
     /**
      * Set dropSpot
      *
-     * @param \Bdloc\AppBundle\Entity\User $dropSpot
+     * @param \Bdloc\AppBundle\Entity\DropSpot $dropSpot
      * @return User
      */
-    public function setDropSpot(\Bdloc\AppBundle\Entity\User $dropSpot = null)
+    public function setDropSpot(\Bdloc\AppBundle\Entity\DropSpot $dropSpot = null)
     {
         $this->dropSpot = $dropSpot;
 
@@ -565,7 +565,7 @@ class User implements UserInterface
     /**
      * Get dropSpot
      *
-     * @return \Bdloc\AppBundle\Entity\User
+     * @return \Bdloc\AppBundle\Entity\DropSpot
      */
     public function getDropSpot()
     {

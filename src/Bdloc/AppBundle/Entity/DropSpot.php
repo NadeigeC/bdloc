@@ -58,7 +58,7 @@ class DropSpot
 
      /**
     *
-    *@ORM\OneToMany(targetEntity="user", mappedBy="dropSpot")
+    *@ORM\OneToMany(targetEntity="User", mappedBy="dropSpot")
     */
     private $users;
 
@@ -119,28 +119,6 @@ class DropSpot
         return $this->adress;
     }
 
-    /**
-     * Set zip
-     *
-     * @param string $zip
-     * @return DropSpot
-     */
-    public function setZip($zip)
-    {
-        $this->zip = $zip;
-
-        return $this;
-    }
-
-    /**
-     * Get zip
-     *
-     * @return string
-     */
-    public function getZip()
-    {
-        return $this->zip;
-    }
 
     /**
      * Set dateCreated
@@ -194,40 +172,40 @@ class DropSpot
      */
     public function __construct()
     {
-        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Add user
      *
-     * @param \Bdloc\AppBundle\Entity\DropSpot $user
+     * @param \Bdloc\AppBundle\Entity\DropSpot $users
      * @return DropSpot
      */
-    public function addUser(\Bdloc\AppBundle\Entity\DropSpot $user)
+    public function addUser(\Bdloc\AppBundle\Entity\User $users)
     {
-        $this->user[] = $user;
+        $this->users[] = $users;
 
         return $this;
     }
 
     /**
-     * Remove user
+     * Remove users
      *
-     * @param \Bdloc\AppBundle\Entity\DropSpot $user
+     * @param \Bdloc\AppBundle\Entity\DropSpot $users
      */
-    public function removeUser(\Bdloc\AppBundle\Entity\DropSpot $user)
+    public function removeusers(\Bdloc\AppBundle\Entity\User $users)
     {
-        $this->user->removeElement($user);
+        $this->users->removeElement($users);
     }
 
     /**
-     * Get user
+     * Get users
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUser()
+    public function getusers()
     {
-        return $this->user;
+        return $this->users;
     }
 
     /**
@@ -246,20 +224,11 @@ class DropSpot
     /**
      * Get fullAdress
      *
-     * @return string 
+     * @return string
      */
     public function getFullAdress()
     {
         return $this->fullAdress;
     }
 
-    /**
-     * Get users
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
 }

@@ -33,18 +33,22 @@
             $user = new User();
             $registerForm = $this->createForm(new RegisterType(), $user, array('validation_groups' => array('registration', 'Default')));
 
+
+
            //gère la soumission du form
             $request = $this->getRequest();
             $registerForm->handleRequest($request);
-            if ($registerForm->isValid()){
 
+
+
+            if ($registerForm->isValid()){
+ //print_r($user);
             //on termine l'hydratation de notre objet User
             //avant enregistrement
             //salt, token, roles
             //dates directement dans l'entité avec les lifecyclecallbaks
                 $user->setRoles( array("ROLE_USER"));
                 $user->setIsActive(1);
-                $user->setZip(75000);
                 $user->setDateModified( new \DateTime());
                 $user->setDateCreated( new \DateTime());
 
