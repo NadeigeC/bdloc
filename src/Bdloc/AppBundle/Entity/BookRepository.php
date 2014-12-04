@@ -27,7 +27,10 @@ class BookRepository extends EntityRepository
 	public function getBooks($page, $nombreParPage = "", $direction = 'DESC', $entity = 'b.dateCreated')
     {
 
-        $query = $this->createQueryBuilder('b')
+        $query = $this->getEntityManager()->createQueryBuilder()
+        			  ->select(array('b', 'a'))
+        			  ->from('Bdloc\AppBundle\Entity\Book', 'b')
+        			  ->leftJoin('b.illustrator', 'a')
         	          ->setFirstResult(($page-1) * $nombreParPage)
         			  ->setMaxResults($nombreParPage)
         			  ->orderBy($entity, $direction)
@@ -46,6 +49,6 @@ class BookRepository extends EntityRepository
                       ->getQuery();
 
         return $query->getResult();
-    }	
+    }		
 
 }

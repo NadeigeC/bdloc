@@ -93,15 +93,24 @@ class BookController extends Controller
 		$params['entity'] = $entity;
 		$params['bookSearchForm'] = $bookSearchForm->createView();
 		$params['bookFilterForm'] = $bookFilterForm->createView();
-        
+
       // j'envoie à la vue
       return $this->render("catalogue.html.twig", $params);
+
     }
 
     /**
      * @Route("/details/{id}")
      */
-    public function detailsAction()
+    public function detailsAction($id)
     {
+    	$bookRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Book");
+        $book = $bookRepo->find($id);
+
+        $params = array(
+            "book" => $book
+        );
+
+        return $this->render("details.html.twig", $params);
     }
 }

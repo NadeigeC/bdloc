@@ -114,9 +114,10 @@
 
 
         {% block javascripts %}
-            <script src="../js/jquery.js"></script>
-            <script src="../js/jquery.event.move.js"></script>
-            <script src="../js/responsive-slider.js"></script>
+            <script src="{{ asset('js/jquery.js') }}"></script>
+            <script src="{{ asset('js/app.js') }}"></script>
+            <script src="{{ asset('js/jquery.event.move.js') }}"></script>
+            <script src="{{ asset('js/responsive-slider.js') }}"></script>
         {% endblock %}
     </body>
 </html>
