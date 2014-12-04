@@ -5,12 +5,12 @@ namespace Bdloc\AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CreditCard
+ * Fine
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Bdloc\AppBundle\Entity\CreditCardRepository")
+ * @ORM\Entity(repositoryClass="Bdloc\AppBundle\Entity\FineRepository")
  */
-class CreditCard
+class Fine
 {
     /**
      * @var integer
@@ -24,16 +24,16 @@ class CreditCard
     /**
      * @var string
      *
-     * @ORM\Column(name="paypalId", type="string", length=255)
+     * @ORM\Column(name="reason", type="string", length=50)
      */
-    private $paypalId;
+    private $reason;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="validUntil", type="date")
+     * @ORM\Column(name="status", type="string", length=50)
      */
-    private $validUntil;
+    private $status;
 
     /**
      * @var \DateTime
@@ -50,16 +50,32 @@ class CreditCard
     private $dateModified;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datePaid", type="datetime")
+     */
+    private $datePaid;
+
+    /**
+     * @var \decimal
+     *
+     * @ORM\Column(name="montant", type="decimal", precision=5, scale=2)
+     */
+    private $montant;
+
+
+    /**
     *
-    *@ORM\OneToOne(targetEntity="User", inversedBy="creditCard")
+    *@ORM\ManyToOne(targetEntity="User", inversedBy="fines")
     */
     private $user;
+
 
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -67,56 +83,56 @@ class CreditCard
     }
 
     /**
-     * Set paypalId
+     * Set reason
      *
-     * @param string $paypalId
-     * @return CreditCard
+     * @param string $reason
+     * @return Fine
      */
-    public function setPaypalId($paypalId)
+    public function setReason($reason)
     {
-        $this->paypalId = $paypalId;
+        $this->reason = $reason;
 
         return $this;
     }
 
     /**
-     * Get paypalId
+     * Get reason
      *
-     * @return string
+     * @return string 
      */
-    public function getPaypalId()
+    public function getReason()
     {
-        return $this->paypalId;
+        return $this->reason;
     }
 
     /**
-     * Set validUntil
+     * Set status
      *
-     * @param \DateTime $validUntil
-     * @return CreditCard
+     * @param string $status
+     * @return Fine
      */
-    public function setValidUntil($validUntil)
+    public function setStatus($status)
     {
-        $this->validUntil = $validUntil;
+        $this->status = $status;
 
         return $this;
     }
 
     /**
-     * Get validUntil
+     * Get status
      *
-     * @return \DateTime
+     * @return string 
      */
-    public function getValidUntil()
+    public function getStatus()
     {
-        return $this->validUntil;
+        return $this->status;
     }
 
     /**
      * Set dateCreated
      *
      * @param \DateTime $dateCreated
-     * @return CreditCard
+     * @return Fine
      */
     public function setDateCreated($dateCreated)
     {
@@ -128,7 +144,7 @@ class CreditCard
     /**
      * Get dateCreated
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDateCreated()
     {
@@ -139,7 +155,7 @@ class CreditCard
      * Set dateModified
      *
      * @param \DateTime $dateModified
-     * @return CreditCard
+     * @return Fine
      */
     public function setDateModified($dateModified)
     {
@@ -151,7 +167,7 @@ class CreditCard
     /**
      * Get dateModified
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDateModified()
     {
@@ -159,33 +175,33 @@ class CreditCard
     }
 
     /**
-     * Set userId
+     * Set datePaid
      *
-     * @param integer $userId
-     * @return CreditCard
+     * @param \DateTime $datePaid
+     * @return Fine
      */
-    public function setUserId($userId)
+    public function setDatePaid($datePaid)
     {
-        $this->userId = $userId;
+        $this->datePaid = $datePaid;
 
         return $this;
     }
 
     /**
-     * Get userId
+     * Get datePaid
      *
-     * @return integer
+     * @return \DateTime 
      */
-    public function getUserId()
+    public function getDatePaid()
     {
-        return $this->userId;
+        return $this->datePaid;
     }
 
     /**
      * Set user
      *
      * @param \Bdloc\AppBundle\Entity\User $user
-     * @return CreditCard
+     * @return Fine
      */
     public function setUser(\Bdloc\AppBundle\Entity\User $user = null)
     {
@@ -197,10 +213,33 @@ class CreditCard
     /**
      * Get user
      *
-     * @return \Bdloc\AppBundle\Entity\User
+     * @return \Bdloc\AppBundle\Entity\User 
      */
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set montant
+     *
+     * @param string $montant
+     * @return Fine
+     */
+    public function setMontant($montant)
+    {
+        $this->montant = $montant;
+
+        return $this;
+    }
+
+    /**
+     * Get montant
+     *
+     * @return string 
+     */
+    public function getMontant()
+    {
+        return $this->montant;
     }
 }

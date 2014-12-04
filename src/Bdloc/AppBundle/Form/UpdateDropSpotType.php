@@ -15,21 +15,18 @@ class UpdateDropSpotType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username')
-            ->add('email')
-            ->add('password')
-            ->add('token')
-            ->add('salt')
-            ->add('roles')
-            ->add('firstName')
-            ->add('lastName')
-            ->add('zip')
-            ->add('adress')
-            ->add('phone')
-            ->add('isActive')
-            ->add('dateCreated')
-            ->add('dateModified')
-            ->add('dropSpotId')
+            ->add('dropSpot', 'entity', array(
+                    'class'=>'Bdloc\AppBundle\Entity\DropSpot',
+                   'property'=>'fullAdress',
+                   'empty_value' => 'Choisissez un point relais',
+                   /*'attr' => array(
+                       'class' => 'form-control')*/))
+
+
+            ->add('submit','submit', array(
+                "label" =>"Inscription",
+                'attr' => array('class'=>'btn btn-primary')
+                ))
         ;
     }
 

@@ -15,7 +15,7 @@
     </head>
 
     <body>
-
+<div class="container">
     <!-- HEADER -->
     <header id="header">
         <!-- Navigation -->
@@ -87,20 +87,22 @@
     {% endblock %}
 
     <!-- MAIN_CONTENT-->
-    <main>
 
+    <div class="container">
+        <div class="row">
             {% block main_content %}{% endblock %}
+        </div>
+    </div>
 
-    </main>
     <!-- END MAIN_CONTENT -->
 
     <!-- FOOTER -->
         <footer id="footer">
-            <div class="container">
+            <div class="container" >
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12" id="copy">
                     {% block footer %}
-                        <div id="copy">
+                        <div >
                         <p>BDloc.fr - Copyright ©2014 | <a href="#" title="CGV">Conditions générales de vente</a></p>
 
                         </div>
@@ -110,7 +112,7 @@
             </div>
         </footer>
     <!-- END FOOTER -->
-
+</div>
 
 
         {% block javascripts %}

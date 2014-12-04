@@ -77,3 +77,9 @@ swiftmailer:
     port:      "%mailer_port%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
+
+
+# Services
+services:
+    bd.slugger:
+        class: Bdloc\AppBundle\Service\Slugger

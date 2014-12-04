@@ -5,12 +5,12 @@ namespace Bdloc\AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CreditCard
+ * Cart
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Bdloc\AppBundle\Entity\CreditCardRepository")
+ * @ORM\Entity(repositoryClass="Bdloc\AppBundle\Entity\CartRepository")
  */
-class CreditCard
+class Cart
 {
     /**
      * @var integer
@@ -24,16 +24,9 @@ class CreditCard
     /**
      * @var string
      *
-     * @ORM\Column(name="paypalId", type="string", length=255)
+     * @ORM\Column(name="status", type="string", length=255)
      */
-    private $paypalId;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="validUntil", type="date")
-     */
-    private $validUntil;
+    private $status;
 
     /**
      * @var \DateTime
@@ -49,9 +42,18 @@ class CreditCard
      */
     private $dateModified;
 
+   
+
+     /**
+    *
+    *@ORM\OneToMany(targetEntity="CartItem", mappedBy="cart")
+    */
+    private $cartItems;
+
+   
     /**
     *
-    *@ORM\OneToOne(targetEntity="User", inversedBy="creditCard")
+    *@ORM\ManyToOne(targetEntity="User", inversedBy="carts")
     */
     private $user;
 
@@ -59,7 +61,7 @@ class CreditCard
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -67,56 +69,33 @@ class CreditCard
     }
 
     /**
-     * Set paypalId
+     * Set status
      *
-     * @param string $paypalId
-     * @return CreditCard
+     * @param string $status
+     * @return Cart
      */
-    public function setPaypalId($paypalId)
+    public function setStatus($status)
     {
-        $this->paypalId = $paypalId;
+        $this->status = $status;
 
         return $this;
     }
 
     /**
-     * Get paypalId
+     * Get status
      *
-     * @return string
+     * @return string 
      */
-    public function getPaypalId()
+    public function getStatus()
     {
-        return $this->paypalId;
-    }
-
-    /**
-     * Set validUntil
-     *
-     * @param \DateTime $validUntil
-     * @return CreditCard
-     */
-    public function setValidUntil($validUntil)
-    {
-        $this->validUntil = $validUntil;
-
-        return $this;
-    }
-
-    /**
-     * Get validUntil
-     *
-     * @return \DateTime
-     */
-    public function getValidUntil()
-    {
-        return $this->validUntil;
+        return $this->status;
     }
 
     /**
      * Set dateCreated
      *
      * @param \DateTime $dateCreated
-     * @return CreditCard
+     * @return Cart
      */
     public function setDateCreated($dateCreated)
     {
@@ -128,7 +107,7 @@ class CreditCard
     /**
      * Get dateCreated
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDateCreated()
     {
@@ -139,7 +118,7 @@ class CreditCard
      * Set dateModified
      *
      * @param \DateTime $dateModified
-     * @return CreditCard
+     * @return Cart
      */
     public function setDateModified($dateModified)
     {
@@ -151,41 +130,60 @@ class CreditCard
     /**
      * Get dateModified
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDateModified()
     {
         return $this->dateModified;
     }
 
+   
     /**
-     * Set userId
-     *
-     * @param integer $userId
-     * @return CreditCard
+     * Constructor
      */
-    public function setUserId($userId)
+    public function __construct()
     {
-        $this->userId = $userId;
+        $this->cartItems = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add cartItems
+     *
+     * @param \Bdloc\AppBundle\Entity\CartItem $cartItems
+     * @return Cart
+     */
+    public function addCartItem(\Bdloc\AppBundle\Entity\CartItem $cartItems)
+    {
+        $this->cartItems[] = $cartItems;
 
         return $this;
     }
 
     /**
-     * Get userId
+     * Remove cartItems
      *
-     * @return integer
+     * @param \Bdloc\AppBundle\Entity\CartItem $cartItems
      */
-    public function getUserId()
+    public function removeCartItem(\Bdloc\AppBundle\Entity\CartItem $cartItems)
     {
-        return $this->userId;
+        $this->cartItems->removeElement($cartItems);
+    }
+
+    /**
+     * Get cartItems
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCartItems()
+    {
+        return $this->cartItems;
     }
 
     /**
      * Set user
      *
      * @param \Bdloc\AppBundle\Entity\User $user
-     * @return CreditCard
+     * @return Cart
      */
     public function setUser(\Bdloc\AppBundle\Entity\User $user = null)
     {
@@ -197,7 +195,7 @@ class CreditCard
     /**
      * Get user
      *
-     * @return \Bdloc\AppBundle\Entity\User
+     * @return \Bdloc\AppBundle\Entity\User 
      */
     public function getUser()
     {
