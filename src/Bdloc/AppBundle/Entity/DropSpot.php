@@ -35,12 +35,12 @@ class DropSpot
      */
     private $adress;
 
-    /**
+     /**
      * @var string
      *
-     * @ORM\Column(name="zip", type="string", length=5)
+     * @ORM\Column(name="fullAdress", type="string", length=255)
      */
-    private $zip;
+    private $fullAdress;
 
     /**
      * @var \DateTime
@@ -58,7 +58,7 @@ class DropSpot
 
      /**
     *
-    *@ORM\OneToMany(targetEntity="user", mappedBy="dropSpot")
+    *@ORM\OneToMany(targetEntity="User", mappedBy="dropSpot")
     */
     private $users;
 
@@ -119,28 +119,6 @@ class DropSpot
         return $this->adress;
     }
 
-    /**
-     * Set zip
-     *
-     * @param string $zip
-     * @return DropSpot
-     */
-    public function setZip($zip)
-    {
-        $this->zip = $zip;
-
-        return $this;
-    }
-
-    /**
-     * Get zip
-     *
-     * @return string
-     */
-    public function getZip()
-    {
-        return $this->zip;
-    }
 
     /**
      * Set dateCreated
@@ -201,22 +179,49 @@ class DropSpot
     /**
      * Add users
      *
-     * @param \Bdloc\AppBundle\Entity\user $users
+     * @param \Bdloc\AppBundle\Entity\DropSpot $users
      * @return DropSpot
      */
-    public function addUser(\Bdloc\AppBundle\Entity\user $users)
+    public function addUser(\Bdloc\AppBundle\Entity\User $users)
+
     {
         $this->users[] = $users;
 
         return $this;
     }
 
+
+    /**
+     * Set fullAdress
+     *
+     * @param string $fullAdress
+     * @return DropSpot
+     */
+    public function setFullAdress($fullAdress)
+    {
+        $this->fullAdress = $fullAdress;
+
+        return $this;
+    }
+
+    /**
+     * Get fullAdress
+     *
+     * @return string
+     */
+    public function getFullAdress()
+    {
+        return $this->fullAdress;
+    }
+
+
     /**
      * Remove users
      *
-     * @param \Bdloc\AppBundle\Entity\user $users
+     * @param \Bdloc\AppBundle\Entity\User $users
      */
-    public function removeUser(\Bdloc\AppBundle\Entity\user $users)
+    public function removeUser(\Bdloc\AppBundle\Entity\User $users)
+
     {
         $this->users->removeElement($users);
     }
@@ -224,7 +229,7 @@ class DropSpot
     /**
      * Get users
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUsers()
     {

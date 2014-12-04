@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+use Doctrine\ORM\EntityRepository;
+
 class BookFilterType extends AbstractType
 {
     /**
@@ -16,15 +18,32 @@ class BookFilterType extends AbstractType
     {
         $builder
             ->setMethod('GET')
-            ->add('dateCreated', 'choice', array(
-                    'choices'   => array('d' => 'DESC', 'a' => 'ASC'),
-                    'required'  => false,
-                    "label" => "Trier par date"
+            ->add('entity', 'choice', array(
+                    'choices'   => array('b.title' => 'Titre', 'b.dateCreated' => 'Date'),
+                    "label" => "Trier par",
+                    'mapped' => false
                 ))
-            ->add('title', 'choice', array(
-                    'choices'   => array('d' => 'DESC', 'a' => 'ASC'),
-                    'required'  => false,
-                    "label" => "Trier par ordre alphabétique"
+            ->add('direction', 'choice', array(
+                    'choices'   => array('DESC' => 'DESC', 'ASC' => 'ASC'),
+                    "label" => "Dans quel sens",
+                    'mapped' => false
+                ))
+            ->add('nombre', 'choice', array(
+                    'choices'   => array('12' => '12', '24' => '24', '36' => '36', '48' => '48', '60' => '60'),
+                    "label" => "Combien par page",
+                    'mapped' => false
+                ))
+            ->add('serie', 'entity', array(
+                    'class' => 'BdlocAppBundle:Serie',
+                    'property' => 'style',
+                    'expanded' => true,
+                    'multiple' => true,
+                    'mapped' => false,
+                    'query_builder' => function( EntityRepository $er) {
+                        return $er->createQueryBuilder('s')
+                            ->orderBy('s.style', 'ASC')
+                            ->groupBy('s.style');
+                    },
                 ))
             ->add('submit', 'submit', array(
                 "label" => "Trier"

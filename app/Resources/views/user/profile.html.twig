@@ -18,7 +18,7 @@
         <p>Adresse postale : {{ user.adress }}</p>
         <p>Adresse mail :{{ user.email }}</p>
         <p>Telephone : {{ user.phone }}</p>
-        <p>Point relais favori : {{ user.dropSpot }}</p>
+        <p>Point relais favori : {{ user.dropSpot.fullAdress }}</p>
 
 <a href="{{ path('bdloc_app_user_updateprofile', {'id':app.user.id}) }}">Modifier mes informations personnelles</a><br>
 <a href="{{ path('bdloc_app_user_updatepassword', {'id':app.user.id}) }}">Modifier mon mot de passe</a><br>

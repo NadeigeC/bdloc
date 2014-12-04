@@ -14,19 +14,6 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class BookRepository extends EntityRepository
 {
 
-	public function getBooks($nombreParPage, $page)
-    {
-
-        $query = $this->createQueryBuilder('b')
-        			  ->orderBy('b.dateCreated', 'ASC')
-        	          ->setFirstResult(($page-1) * $nombreParPage)
-        			  ->setMaxResults($nombreParPage)
-                      ->getQuery();
-
-
-        return $query->getResult();
-    }
-
     public function countBooks()
 	{
 
@@ -37,6 +24,22 @@ class BookRepository extends EntityRepository
 	  return $query->getSingleScalarResult();
 	}
 
+	public function getBooks($page, $nombreParPage = "", $direction = 'DESC', $entity = 'b.dateCreated')
+    {
+
+        $query = $this->getEntityManager()->createQueryBuilder()
+        			  ->select(array('b', 'a'))
+        			  ->from('Bdloc\AppBundle\Entity\Book', 'b')
+        			  ->leftJoin('b.illustrator', 'a')
+        	          ->setFirstResult(($page-1) * $nombreParPage)
+        			  ->setMaxResults($nombreParPage)
+        			  ->orderBy($entity, $direction)
+                      ->getQuery();
+
+
+        return $query->getResult();
+    }
+
 	public function findBookWithTitle($title)
     {
 
@@ -46,23 +49,6 @@ class BookRepository extends EntityRepository
                       ->getQuery();
 
         return $query->getResult();
-    }
+    }		
 
-    public function orderBookByDate($direction) {
-
-    	$query = $this->createQueryBuilder('b')
-                      ->orderBy('b.dateCreated', $direction)
-                      ->getQuery();
-
-        return $query->getResult();
-    }
-
-    public function orderBookByTitre($direction) {
-
-    	$query = $this->createQueryBuilder('b')
-                      ->orderBy('b.title', $direction)
-                      ->getQuery();
-
-        return $query->getResult();
-    }
 }

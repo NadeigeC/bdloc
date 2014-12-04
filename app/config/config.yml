@@ -2,18 +2,12 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
 
-#bazinga_geocoder:
-    #fake_ip:
-        #enabled:              true
-        #ip:                   123.345.643.133
-        #priority:             0
-    #adapter:
-        #class:                ~
-    #providers:
-            #google_maps:
-            #locale:               ~
-            #region:               ~
-            #use_ssl:              false
+bazinga_geocoder:
+    providers:
+        google_maps:
+            locale:       ~
+            region:       ~
+            use_ssl:      false
 
 framework:
     #esi:             ~
@@ -84,6 +78,7 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
 
+<<<<<<< HEAD
 #service:
     #bd.slugger:
       #  class: Bdloc\AppBundle\Service\Slugger
@@ -91,3 +86,10 @@ swiftmailer:
 
     #paypal_subscription:
         #class: Bdloc\AppBundle\Service\PPSubscription
+=======
+
+# Services
+services:
+    bd.slugger:
+        class: Bdloc\AppBundle\Service\Slugger
+>>>>>>> 59d5581d7f65f1cccd497151d0c7dec1cd83573b

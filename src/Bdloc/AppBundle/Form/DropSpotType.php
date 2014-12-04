@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UpdateProfileType extends AbstractType
+class DropSpotType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,16 +15,25 @@ class UpdateProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username')
-            ->add('email')
-            ->add('firstName')
-            ->add('lastName')
-            ->add('adress')
-            ->add('phone')
-            ->add('submit','submit', array(
-                "label" =>"Modifier"
+
+
+            ->add('dropSpot', 'entity', array(
+                    'class'=>'Bdloc\AppBundle\Entity\DropSpot',
+                   'property'=>'fullAdress',
+                   'empty_value' => 'Choisissez un point relais',
+                   /*'attr' => array(
+                       'class' => 'form-control')*/))
+
+
+            ->add('nextStep','submit', array(
+                "label" =>"Confirmation",
+                'attr' => array('class'=>'btn btn-primary')
                 ))
-            ;
+
+             /*->add('previousStep', 'submit', array(
+                    'validation_groups' => false,
+                ))*/
+        ;
     }
 
     /**
@@ -42,6 +51,6 @@ class UpdateProfileType extends AbstractType
      */
     public function getName()
     {
-        return 'bdloc_appbundle_user';
+        return 'bdloc_appbundle_register';
     }
 }

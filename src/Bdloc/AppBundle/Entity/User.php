@@ -88,13 +88,6 @@ class User implements UserInterface
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="zip", type="string", length=5)
-     */
-    private $zip;
-
-    /**
-     * @var string
      * @Assert\NotBlank(message="Merci d'indiquer votre adresse postale", groups={"registration"}, groups={"updateProfile"})
      * @ORM\Column(name="adress", type="string", length=255)
      */
@@ -104,7 +97,7 @@ class User implements UserInterface
      * @var string
      * @Assert\Regex(
      *           pattern= "/^0[1-9]([-. ]?[0-9]{2}){4}$/",
-     *           message= "Entrez un numero valide(10 chiffres)",
+     *           message= "Entrez un numero valide (10 chiffres avec ou sans espaces)",
      *           groups={"registration"}, groups={"updateProfile"})
      * @ORM\Column(name="phone", type="string", length=20)
      */
@@ -149,6 +142,15 @@ class User implements UserInterface
     *@ORM\OneToMany(targetEntity="Fine", mappedBy="user")
     */
     private $fines;
+
+
+    /**
+    *
+    *@ORM\OneToOne(targetEntity="CreditCard", mappedBy="user")
+    */
+    private $creditCard;
+
+
 
     /**
      * Get id
@@ -344,28 +346,6 @@ class User implements UserInterface
         return $this->lastName;
     }
 
-    /**
-     * Set zip
-     *
-     * @param string $zip
-     * @return User
-     */
-    public function setZip($zip)
-    {
-        $this->zip = $zip;
-
-        return $this;
-    }
-
-    /**
-     * Get zip
-     *
-     * @return string
-     */
-    public function getZip()
-    {
-        return $this->zip;
-    }
 
     /**
      * Set adress
@@ -485,7 +465,7 @@ class User implements UserInterface
 
 
     public function eraseCredentials(){
-        $this->password = null;
+        //$this->password = null;
     }
 
     /**
@@ -603,5 +583,28 @@ class User implements UserInterface
     public function getDropSpot()
     {
         return $this->dropSpot;
+    }
+
+    /**
+     * Set creditCard
+     *
+     * @param \Bdloc\AppBundle\Entity\CreditCard $creditCard
+     * @return User
+     */
+    public function setCreditCard(\Bdloc\AppBundle\Entity\CreditCard $creditCard = null)
+    {
+        $this->creditCard = $creditCard;
+
+        return $this;
+    }
+
+    /**
+     * Get creditCard
+     *
+     * @return \Bdloc\AppBundle\Entity\CreditCard
+     */
+    public function getCreditCard()
+    {
+        return $this->creditCard;
     }
 }
