@@ -24,9 +24,32 @@ class CreditCard
     /**
      * @var string
      *
+     * @ORM\Column(name="creditCardType", type="string", length=255)
+     */
+    private $creditCardType;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="paypalId", type="string", length=255)
      */
     private $paypalId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cryptoCard", type="string", length=3)
+     */
+    private $cryptoCard;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ownerIdentity", type="string", length=255)
+     */
+    private $ownerIdentity;
+
 
     /**
      * @var \DateTime

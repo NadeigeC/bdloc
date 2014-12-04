@@ -24,9 +24,32 @@ class CreditCard
     /**
      * @var string
      *
+     * @ORM\Column(name="creditCardType", type="string", length=255)
+     */
+    private $creditCardType;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="paypalId", type="string", length=255)
      */
     private $paypalId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cryptoCard", type="string", length=3)
+     */
+    private $cryptoCard;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ownerIdentity", type="string", length=255)
+     */
+    private $ownerIdentity;
+
 
     /**
      * @var \DateTime
@@ -158,28 +181,6 @@ class CreditCard
         return $this->dateModified;
     }
 
-    /**
-     * Set userId
-     *
-     * @param integer $userId
-     * @return CreditCard
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * Get userId
-     *
-     * @return integer
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
 
     /**
      * Set user
@@ -202,5 +203,74 @@ class CreditCard
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set creditCardType
+     *
+     * @param string $creditCardType
+     * @return CreditCard
+     */
+    public function setCreditCardType($creditCardType)
+    {
+        $this->creditCardType = $creditCardType;
+
+        return $this;
+    }
+
+    /**
+     * Get creditCardType
+     *
+     * @return string
+     */
+    public function getCreditCardType()
+    {
+        return $this->creditCardType;
+    }
+
+    /**
+     * Set cryptoCard
+     *
+     * @param string $cryptoCard
+     * @return CreditCard
+     */
+    public function setCryptoCard($cryptoCard)
+    {
+        $this->cryptoCard = $cryptoCard;
+
+        return $this;
+    }
+
+    /**
+     * Get cryptoCard
+     *
+     * @return string
+     */
+    public function getCryptoCard()
+    {
+        return $this->cryptoCard;
+    }
+
+    /**
+     * Set ownerIdentity
+     *
+     * @param string $ownerIdentity
+     * @return CreditCard
+     */
+    public function setOwnerIdentity($ownerIdentity)
+    {
+        $this->ownerIdentity = $ownerIdentity;
+
+        return $this;
+    }
+
+    /**
+     * Get ownerIdentity
+     *
+     * @return string
+     */
+    public function getOwnerIdentity()
+    {
+        return $this->ownerIdentity;
     }
 }

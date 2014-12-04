@@ -16,13 +16,28 @@ class CreditCardType extends AbstractType
     {
         $builder
             ->add('paypalId')
-            ->add('validUntil')
-            ->add('dateCreated')
-            ->add('dateModified')
-            ->add('userId')
+            ->add('validUntil', 'date', array(
+                    'format' =>'MMM-yyyy  d',
+                    'years' => range(date('Y'), date('Y')+12),
+                    'days' => array(1),
+                    'empty_value' => array('year' => 'Select Year', 'month' => 'Select Month', 'day' => false)))
+            ->add('creditCardType','choice', array(
+                'choices'   => array(
+                'empty_value' => 'Type de carte',
+                'mastercard' => 'MasterCard',
+                 'visa' => 'Visa',
+                 'american_express' => 'Amex',
+                 'eurocard' => 'Eurocard',
+                 )))
+            ->add('cryptoCard')
+            ->add('ownerIdentity')
+            ->add('submit','submit', array(
+                "label" =>"Confirmation",
+                'attr' => array('class'=>'btn btn-primary')
+                ))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

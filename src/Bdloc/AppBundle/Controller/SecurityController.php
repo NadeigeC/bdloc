@@ -47,9 +47,8 @@
             array(
                 // last username entered by the user
                 'last_username' => $lastUsername,
-                'error'         => $error,
-            )
-        );
+                'error'         => $error,)
+                );
 
         }
 
@@ -113,15 +112,9 @@
             $params = array();
 
             $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
-
             $user = $userRepo->findOneByEmail($email);
 
-
-            /*print_r($user);*/
-
             $newPasswordForm = $this->createForm(new newPasswordType(), $user, array('validation_groups' => array('newPassword', 'Default')));
-
-
 
            //gère la soumission du form
             $request = $this->getRequest();

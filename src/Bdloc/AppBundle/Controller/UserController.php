@@ -13,8 +13,10 @@
 
     use Bdloc\AppBundle\Entity\User;
     use Bdloc\AppBundle\Entity\DropSpot;
+    use Bdloc\AppBundle\Entity\CreditCard;
     use Bdloc\AppBundle\Form\RegisterType;
     use Bdloc\AppBundle\Form\DropSpotType;
+    use Bdloc\AppBundle\Form\CreditCardType;
     use Bdloc\AppBundle\Util\StringHelper;
     use Bdloc\AppBundle\Form\ForgotPasswordType;
     use Bdloc\AppBundle\Form\NewPasswordType;
@@ -86,10 +88,10 @@
         }
 
     /**
-        * @Route("/inscription/dropspot")
+        * @Route("/inscription/point-relais")
     */
 
-    public function DropSpotAction(Request $request){
+    public function dropSpotAction(Request $request){
 
             $params = array();
 
@@ -108,7 +110,7 @@
                 $em->persist($user);
                 $em->flush();
 
-                return $this->render("home.html.twig");
+                return $this->redirect( $this->generateUrl("bdloc_app_user_creditcard"));
         }
 
             $params['dropSpotForm'] = $dropSpotForm->createView();
@@ -117,11 +119,47 @@
 
         }
 
-
         /**
+        * @Route("/inscription/carte-de-credit/")
+        */
+
+    public function creditCardAction(Request $request){
+
+            $params = array();
+
+            $user = $this->getUser();
+
+            $creditCard = new CreditCard();
+            $creditCardForm = $this->createForm(new CreditCardType(), $creditCard, array('validation_groups' => array('registration', 'Default')));
+
+
+           //gère la soumission du form
+            $request = $this->getRequest();
+            $creditCardForm->handleRequest($request);
+
+            if ($creditCardForm->isValid()){
+
+                $creditCard->setDateModified( new \DateTime());
+                $creditCard->setDateCreated( new \DateTime());
+
+                $em = $this->getDoctrine()->getManager();
+                $creditCard->setUser($user);
+                $em->persist($creditCard);
+                $em->flush();
+
+                return $this->render("home.html.twig");
+        }
+
+            $params['creditCardForm'] = $creditCardForm->createView();
+
+            return $this->render("user/credit_card.html.twig", $params);
+
+        }
+
+    /**
     *@Route("/profile/{id}")
     */
-    public function viewProfileAction($id, Request $request){
+    public function viewProfileAction(Request $request, $id){
 
         //select
         $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
