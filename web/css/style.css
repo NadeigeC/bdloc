@@ -17,6 +17,23 @@ h1{
 }
 
 
+#retour {
+	position: fixed;
+	top: 100px;
+	right: 100px;
+	width: 100px;
+	height: 100px;
+	color: #fff;
+	font-size: 80px;
+	display: block;
+	text-align: center;
+	z-index: 999;
+}
+
+#retour:hover {
+	text-decoration: none;
+	cursor: pointer;
+}
 
 /****************************************************
 *													*

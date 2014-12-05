@@ -1,13 +1,41 @@
-<html>
-<body>
+{% extends '::base.html.twig' %}
+
+{% block main_content %}
     <h1>Page paiement des amendes</h1>
 
-
+    <table>
+        <tr>
+            <th>Couverture</th>
+            <th>Titre</th>
+            <th>Emprunté le</th>
+            <th>Motif</th>
+            <th>Montant</th>
+         </tr>
+         
     {% for fine in fines %}
-        {{ fine.status}}<br/>
-        {{ fine.user.id}}<br/>
-    {% endfor %}
+        
+        <tr>
+            <td><img src="{{ asset('img/Couvertures/'~fine.book.cover) }}" alt="{{ fine.book.title}}" title="{{ fine.book.title}}" width=70px height=100px/><br/><td>
 
-     <a href="{{ path('bdloc_app_cart_payfines',{id:id ,user:user.id})}}" title="Payer une amende">Amende payée !</a><br/><br/><br/>
-</body>
-</html> 
+            <td>{{ fine.book.title}}</td>
+            <td>{{ fine.cart.dateCreated|date()}}</td>
+            <td>{{ fine.reason}}</td>
+            <td>{{ fine.montant}}</td>
+        </tr>
+
+    {% endfor %}
+        <tr>
+            <th>TOTAL</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>{{ total}}</th>
+ 
+        </tr>
+    </table>
+
+     <a href="{{ path('bdloc_app_cart_payfines',{id:cart.id ,user:user.id})}}" title="Payer une amende">Payer !</a><br/><br/><br/>
+
+     <a href="" title="Retour au catalogue">Retour au catalogue</a>
+
+{% endblock %}

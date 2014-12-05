@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+use Doctrine\ORM\EntityRepository;
+
 class BookFilterType extends AbstractType
 {
     /**
@@ -30,6 +32,18 @@ class BookFilterType extends AbstractType
                     'choices'   => array('12' => '12', '24' => '24', '36' => '36', '48' => '48', '60' => '60'),
                     "label" => "Combien par page",
                     'mapped' => false
+                ))
+            ->add('series', 'entity', array(
+                    'class' => 'BdlocAppBundle:Serie',
+                    'property' => 'style',
+                    'expanded' => true,
+                    'multiple' => true,
+                    'mapped' => false,
+                    'query_builder' => function( EntityRepository $er) {
+                        return $er->createQueryBuilder('s')
+                            ->orderBy('s.style', 'ASC')
+                            ->groupBy('s.style');
+                    },
                 ))
             ->add('submit', 'submit', array(
                 "label" => "Trier"

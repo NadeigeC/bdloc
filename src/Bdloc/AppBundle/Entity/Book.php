@@ -105,7 +105,10 @@ class Book
     */
     private $cartItems;
 
-
+     /**
+    *@ORM\OneToMany(targetEntity="Fine", mappedBy="book")
+    */
+    private $fines;
 
 
 
@@ -541,5 +544,38 @@ class Book
     public function getCartItems()
     {
         return $this->cartItems;
+    }
+
+    /**
+     * Add fines
+     *
+     * @param \Bdloc\AppBundle\Entity\Fine $fines
+     * @return Book
+     */
+    public function addFine(\Bdloc\AppBundle\Entity\Fine $fines)
+    {
+        $this->fines[] = $fines;
+
+        return $this;
+    }
+
+    /**
+     * Remove fines
+     *
+     * @param \Bdloc\AppBundle\Entity\Fine $fines
+     */
+    public function removeFine(\Bdloc\AppBundle\Entity\Fine $fines)
+    {
+        $this->fines->removeElement($fines);
+    }
+
+    /**
+     * Get fines
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFines()
+    {
+        return $this->fines;
     }
 }
