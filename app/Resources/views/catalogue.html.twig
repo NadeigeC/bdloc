@@ -9,8 +9,12 @@
 	<div class="row">
 
 	{# J'affiche les formulaires de recherche & de filtre #}
+	<div id="formsearch">
 	{{ form(bookSearchForm) }}
+	</div>
+	<div id="formfilter">
 	{{ form(bookFilterForm) }}
+	</div>
 
 	</div>
 	
@@ -24,10 +28,10 @@
 	            <div class="thumbnail">
 	                <img src="{{ asset('img/Couvertures/Couvertures/' ~ book.cover ~ '') }}" alt="{{ book.title }}" class="catalogue_img" />
 	                <div class="caption">
-	                    <h1><a href="#">{{ book.title }}</a></h1>
+	                    <h1><a href="{{ path('bdloc_app_book_details', {id: book.id}) }}">{{ book.title }}</a></h1>
 	                </div>
 	                <div class="ratings">
-	                    <p class="author">Author</p>
+	                    <p class="author">{{ book.illustrator.firstName }} {{ book.illustrator.lastName }}</p>
 	                    
 	                </div>
 	            </div>
@@ -42,7 +46,7 @@
 	          	
 	          	 {# J'affiche page précédente, sauf si on se trouve sur la première page #}
 	          	{% if page > 1 %}
-	          	<button class="btn btn-default" value="left" type="button">
+	          	<button class="btn btn-default pagination" value="left" type="button">
 	          	<span class="glyphicon glyphicon-arrow-left"></span>
 			    <a href="{{ path('bdloc_app_book_allbooks', {page: page-1, nombreparpage: nombreParPage}) }}">Page précédente</a> 
 				{% endif %}
@@ -50,7 +54,7 @@
 
 	          	{# J'affiche page suivante, sauf si on se trouve sur la dernière page #}
 	          	{% if page < nombrePage %}
-	          	<button class="btn btn-default" value="right" type="button">
+	          	<button class="btn btn-default pagination" value="right" type="button">
 				<a href="{{ path('bdloc_app_book_allbooks', {page: page+1, nombreparpage: nombreParPage}) }}">Page suivante</a>
 				<span class="glyphicon glyphicon-arrow-right"></span>
 				{% endif %}

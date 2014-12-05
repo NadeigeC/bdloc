@@ -44,7 +44,7 @@ class BookController extends Controller
         	$books = $this->getDoctrine()
                           ->getManager()
                           ->getRepository('BdlocAppBundle:Book')
-                          ->getBooks($page, $nombreParPage = $bookFilterForm->get('nombre')->getData(), $direction = $bookFilterForm->get('direction')->getData(), $entity = $bookFilterForm->get('entity')->getData() );
+                          ->getBooks($page, $nombreParPage = $bookFilterForm->get('nombre')->getData(), $direction = $bookFilterForm->get('direction')->getData(), $entity = $bookFilterForm->get('entity')->getData(), $series = $bookFilterForm->get('series')->getData() );
 
 	        // Jusqu'au max de BDs
 	        $nbBooks =  $this->getDoctrine()
@@ -53,8 +53,6 @@ class BookController extends Controller
 	                 		 ->countBooks();
 
 	        $params['nombrePage'] = ceil($nbBooks/$nombreParPage);
-
-	        $this->redirect($this->generateUrl('bdloc_app_book_allbooks'));
 
         } else {
 
@@ -93,15 +91,24 @@ class BookController extends Controller
 		$params['entity'] = $entity;
 		$params['bookSearchForm'] = $bookSearchForm->createView();
 		$params['bookFilterForm'] = $bookFilterForm->createView();
-        
+
       // j'envoie à la vue
       return $this->render("catalogue.html.twig", $params);
+
     }
 
     /**
      * @Route("/details/{id}")
      */
-    public function detailsAction()
+    public function detailsAction($id)
     {
+    	$bookRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Book");
+        $book = $bookRepo->find($id);
+
+        $params = array(
+            "book" => $book
+        );
+
+        return $this->render("details.html.twig", $params);
     }
 }

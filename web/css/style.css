@@ -17,6 +17,23 @@ h1{
 }
 
 
+#retour {
+	position: fixed;
+	top: 100px;
+	right: 100px;
+	width: 100px;
+	height: 100px;
+	color: #fff;
+	font-size: 80px;
+	display: block;
+	text-align: center;
+	z-index: 999;
+}
+
+#retour:hover {
+	text-decoration: none;
+	cursor: pointer;
+}
 
 /****************************************************
 *													*
@@ -286,13 +303,13 @@ padding: 10px;
 /****************************************************
 *													*
 *													*
-*					MENU FOOTER						*
+*					FORMULAIRE						*
 *													*
 *													*
 ****************************************************/
 
 label{
-	padding-bottom: 5px;
+	padding: 15px 0 2px 0;
 	font-weight:300;
 	color:#fff;
 
@@ -306,23 +323,47 @@ legend{
 }
 
 
-form h5 a {
-	font-weight:400;
+form h6 {
+	margin-top: -8px;
+	margin-left: 36px;
+}
+
+form h6 a {
+	font-weight:300;
 	color:#fff;
 }
 
-form h5 a:hover {
-	font-weight:400;
-	color:#AA161A;
+form h6 a:hover {
+	color:#fff;
+
 }
 
 
-.btn-default{
+
+.btn-default-red{
 	color: #fff;
 	background-color: #AA161A;
 	border-color: #AA161A;
 
+<<<<<<< HEAD
 	}
+=======
+	} 	
+
+.btn-default-red:hover{
+	color: #333;
+	background-color: #e6e6e6;
+	border-color: #adadad;
+}
+
+.red-button{
+	margin:20px 0 20px 0;
+}
+
+.imagebd{
+	margin-top:20px;
+}
+>>>>>>> e28542da286c827aa5fa5dcc20a8d6d634fff043
 
 
 

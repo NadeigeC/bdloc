@@ -42,6 +42,13 @@ class Cart
      */
     private $dateModified;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateDelivery", type="datetime")
+     */
+    private $dateDelivery;
+
    
 
      /**
@@ -56,6 +63,13 @@ class Cart
     *@ORM\ManyToOne(targetEntity="User", inversedBy="carts")
     */
     private $user;
+
+
+     /**
+    *
+    *@ORM\OneToMany(targetEntity="Fine", mappedBy="cart")
+    */
+    private $fines;
 
 
     /**
@@ -200,5 +214,61 @@ class Cart
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set dateDelivery
+     *
+     * @param \DateTime $dateDelivery
+     * @return Cart
+     */
+    public function setDateDelivery($dateDelivery)
+    {
+        $this->dateDelivery = $dateDelivery;
+
+        return $this;
+    }
+
+    /**
+     * Get dateDelivery
+     *
+     * @return \DateTime 
+     */
+    public function getDateDelivery()
+    {
+        return $this->dateDelivery;
+    }
+
+    /**
+     * Add fines
+     *
+     * @param \Bdloc\AppBundle\Entity\Fine $fines
+     * @return Cart
+     */
+    public function addFine(\Bdloc\AppBundle\Entity\Fine $fines)
+    {
+        $this->fines[] = $fines;
+
+        return $this;
+    }
+
+    /**
+     * Remove fines
+     *
+     * @param \Bdloc\AppBundle\Entity\Fine $fines
+     */
+    public function removeFine(\Bdloc\AppBundle\Entity\Fine $fines)
+    {
+        $this->fines->removeElement($fines);
+    }
+
+    /**
+     * Get fines
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFines()
+    {
+        return $this->fines;
     }
 }

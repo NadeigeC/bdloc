@@ -74,8 +74,7 @@ class CartController extends Controller
             
         );
 
-            
-        
+              
 
 
         $params = array (
@@ -89,6 +88,35 @@ class CartController extends Controller
         die();*/
 
         if ($fines){
+
+
+            $params = array();
+
+            $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
+      
+
+            $cart = $cartRepo->find($id);
+
+            $total=0;
+
+            for ($i=0;$i<count($fines);$i++){
+
+            $montant=$fines[$i]->getMontant();
+            $total=$total+$montant;
+            }                
+      
+
+             $params = array (
+                "cart" => $cart,
+                "fines" =>$fines,
+                "user" =>$user,
+                "total"=>$total,
+            
+            );
+
+         
+
+
         
         return $this->render("cart/fine.html.twig",$params);
 
@@ -103,13 +131,25 @@ class CartController extends Controller
 
         $cart = $cartRepo->find($id);
         $cart->setStatus("valide");
-      
+
+
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
         /*print_r($cart);
-        die();*/
-     
+         die();*/
+
+         //Calcul date de livraison
+         $dateCreated=$cart->getDateCreated();
+         
+        /*$dateDelivery = date('Y-m-d', strtotime($dateCreated.' +15 days'));
+         print_r($dateDelivery);
+         die();*/
+        /*$date=new DateTime($dateCreated);
+         $date->\DateTime add ( DateInterval ('P12M') );
+          print_r($date);
+         die();*/
+
         //Chercher le nombre d'de bd dans le panier.
 
          $params = array (
@@ -146,4 +186,28 @@ class CartController extends Controller
         return $this->redirect($this->generateUrl("bdloc_app_cart_validcart",array('id' => $id,'user'=>$user)) );
      }
 
+     /**
+     * @Route("/panier/list/{id}")
+     */
+     public function seeListAction($id){
+         $params = array();
+
+        $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
+      
+
+        $cart = $cartRepo->find($id);
+      
+
+        $params = array (
+            "cart" => $cart,
+        
+        );
+
+
+
+
+        return $this->render("cart/list.html.twig",$params);
+
+    }
  }
+

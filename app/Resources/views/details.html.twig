@@ -1,0 +1,24 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Details | Bdloc{% endblock %}
+
+{% block main_content %}
+
+<div id="details">
+
+	<img src="{{ asset('img/Couvertures/' ~ book.cover ~ '') }}" alt="{{ book.title }}">
+
+	Titre : {{ book.title }}
+	Illutrateur : {{ book.illustrator.firstName }} {{ book.illustrator.lastName }}
+	Nombre de page : {{ book.pages }}
+	scénarist : {{ book.scenarist.firstName }} {{ book.scenarist.lastName }}
+	coloriste : {{ book.colorist.firstName }} {{ book.colorist.lastName }}
+	Publiée par : {{ book.publisher }}
+
+	en stock : {{ book.stock }}
+
+
+	Catégorie : {{ book.serie.style }}
+</div>
+
+{% endblock %}
