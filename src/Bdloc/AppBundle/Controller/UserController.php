@@ -329,5 +329,15 @@
 
         }
 
+    /**
+    * @Route("/désabonnement")
+    */
+    public function quitBdlocAction(Request $request){
+
+
+            return $this->render("user/quit_bdloc.html.twig");
+
+        }
+
 
 }

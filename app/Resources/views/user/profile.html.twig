@@ -33,6 +33,8 @@
 <a href="{{ path('bdloc_app_user_updatecreditcard', {'id':app.user.id}) }}">Modifier mes informations de paiment</a><br>
 <a href="#">Consulter mon historique de location</a><br>
 <a href="#">Payer une amende</a><br>
-<a href="#">Me désabonner</a><br>
+<form action="{{ path('login_check') }}" method="post">
+    <input type="submit" value="Me désabonner" class="btn red-button btn-default-red">
+</form>
 
 {% endblock %}
