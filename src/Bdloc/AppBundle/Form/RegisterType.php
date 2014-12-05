@@ -18,6 +18,7 @@ class RegisterType extends AbstractType
 
             ->add('username', 'text', array(
                  "label" => "votre pseudo",
+                 "required" => true,
                  'attr' => array(
                     'placeholder' => 'Pseudo',)
                     //'class' => 'form-control'

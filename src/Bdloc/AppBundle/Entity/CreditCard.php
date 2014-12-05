@@ -2,6 +2,8 @@
 
 namespace Bdloc\AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,21 +25,25 @@ class CreditCard
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Veuillez entrer numero de carte de crédit", groups={"creditCard"}, groups={"updateCreditCard"})
      * @ORM\Column(name="creditCardType", type="string", length=255)
      */
     private $creditCardType;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Veuillez entrer numero de carte de crédit", groups={"creditCard"}, groups={"updateCreditCard"})
      * @ORM\Column(name="paypalId", type="string", length=255)
      */
     private $paypalId;
 
     /**
      * @var string
-     *
+     * @Assert\Regex(
+     *           pattern= "/^[0-9]{3,3}$/",
+     *           message= "Entrez un cryptogramme valide (3 chiffres sans espaces)",
+     *           groups={"registration"}, groups={"updateProfile"})
+     * @Assert\NotBlank(message="Veuillez entrer votre identifiant Paypal", groups={"creditCard"}, groups={"updateCreditCard"})
      * @ORM\Column(name="cryptoCard", type="string", length=3)
      */
     private $cryptoCard;
@@ -45,7 +51,7 @@ class CreditCard
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Merci de renseigner le propriétaire de la carte de crédit", groups={"creditCard"}, groups={"updateCreditCard"})
      * @ORM\Column(name="ownerIdentity", type="string", length=255)
      */
     private $ownerIdentity;
@@ -53,7 +59,7 @@ class CreditCard
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank(message="Merci de renseigner la date d'expiration", groups={"creditCard"}, groups={"updateCreditCard"})
      * @ORM\Column(name="validUntil", type="date")
      */
     private $validUntil;

@@ -22,6 +22,7 @@
     use Bdloc\AppBundle\Form\NewPasswordType;
     use Bdloc\AppBundle\Form\UpdateProfileType;
     use Bdloc\AppBundle\Form\UpdatePasswordType;
+    use Bdloc\AppBundle\Form\UpdateDropSpotType;
 
 
     class UserController extends Controller {
@@ -147,7 +148,12 @@
                 $em->persist($creditCard);
                 $em->flush();
 
-                return $this->render("home.html.twig");
+                $request->getSession()->getFlashBag()->add(
+                'notice',
+                'Vous êtes désormais abonné à BDLOC !'
+                );
+
+                return $this->redirect($this->generateUrl("bdloc_app_default_home"));
         }
 
             $params['creditCardForm'] = $creditCardForm->createView();
@@ -171,7 +177,7 @@
             "user" => $user);
        return $this->render("user/profile.html.twig", $params);
 
-    }
+        }
 
 
         /**
@@ -190,12 +196,6 @@
 
             if ($updateProfileForm->isValid()){
 
-            //on termine l'hydratation de notre objet User
-            //avant enregistrement
-            //salt, token, roles
-            //dates directement dans l'entité avec les lifecyclecallbaks
-                $user->getRoles();
-                $user->getIsActive();
                 $user->setDateModified( new \DateTime());
                 $user->getDateCreated( new \DateTime());
 
@@ -208,9 +208,7 @@
                 'Données modifiées avec succès !'
                 );
 
-
                 return $this->redirect($this->generateUrl("bdloc_app_user_viewprofile", array('id' => $user->getId())));
-
         }
 
             $params['updateProfileForm'] = $updateProfileForm->createView();
@@ -261,21 +259,37 @@
         }
 
 
-        /*public function geocodeAction(Request $request)
-        {
-            $result = $this->container
-                ->get('bazinga_geocoder.geocoder')
-                ->geocode($request->server->get('REMOTE_ADDR'));
+        /**
+        * @Route("/modifier-point-relais/{id}")
+        */
+        public function updateDropSpotAction(Request $request){
 
-            $body = $this->container
-                ->get('bazinga_geocoder.dumper_manager')
-                ->get('geojson')
-                ->dump($result);
+            $params = array();
+            $user = $this->getUser();
+            $dropSpotForm = $this->createForm(new DropSpotType(), $user, array('validation_groups' => array('dropSpot', 'Default')));
 
-            $response = new Response();
-            $response->setContent($body);
+            //gère la soumission du form
+            $request = $this->getRequest();
+            $dropSpotForm->handleRequest($request);
 
-            return $response;
+            if ($dropSpotForm->isValid()){
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+                $em->flush();
+
+                $request->getSession()->getFlashBag()->add(
+                'notice',
+                'Nouveau point relais sauvegardé !');
+
+                return $this->redirect($this->generateUrl("bdloc_app_user_viewprofile", array('id' => $user->getId())));
+            }
+
+                $params['dropSpotForm'] = $dropSpotForm->createView();
+                return $this->render("user/update_dropspot.html.twig", $params);
         }
-*/
-    }
+
+
+
+
+}
