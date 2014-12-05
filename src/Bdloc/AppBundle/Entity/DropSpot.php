@@ -38,10 +38,24 @@ class DropSpot
 
      /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez choisir un point relais", groups={"registration"}, groups={"updateDropspot"})
+     * @Assert\NotBlank(message="Veuillez choisir un point relais", groups={"registration","updateDropspot"})
      * @ORM\Column(name="fullAdress", type="string", length=255)
      */
     private $fullAdress;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="latitude", type="string", length=255)
+     */
+    private $latitude;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="longitude", type="string", length=255)
+     */
+    private $longitude;
 
     /**
      * @var \DateTime
@@ -57,7 +71,7 @@ class DropSpot
      */
     private $dateModified;
 
-     /**
+    /**
     *
     *@ORM\OneToMany(targetEntity="User", mappedBy="dropSpot")
     */
@@ -168,7 +182,7 @@ class DropSpot
     }
 
 
-     
+
     /**
      * Constructor
      */
@@ -235,5 +249,51 @@ class DropSpot
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Set latitude
+     *
+     * @param string $latitude
+     * @return DropSpot
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    /**
+     * Get latitude
+     *
+     * @return string 
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * Set longitude
+     *
+     * @param string $longitude
+     * @return DropSpot
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return string 
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
     }
 }

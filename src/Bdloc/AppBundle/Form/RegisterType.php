@@ -78,14 +78,9 @@ class RegisterType extends AbstractType
                     'label' => 'Téléphone',
                     'attr' => array(
                     'placeholder' => 'Ex : 01 45 21 23 40',
-                    'class' => 'form-control')
-                    ))
+                    'class' => 'form-control')))
 
 
-            /*->add('submit','submit', array(
-                "label" =>"Inscription",
-                'attr' => array('class'=>'btn btn-primary')
-                ))*/
             ->add('nextStep', 'submit', array(
                     'label' => 'Etape suivante',
                     'attr' => array(
