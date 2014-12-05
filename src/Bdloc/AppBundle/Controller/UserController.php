@@ -83,6 +83,7 @@
 
             $params['registerForm'] = $registerForm->createView();
 
+
             return $this->render("user/register.html.twig", $params);
 
         }
@@ -152,7 +153,7 @@
                 'Vous êtes désormais abonné à BDLOC !'
                 );
 
-                return $this->redirect($this->generateUrl("bdloc_app_default_home"));
+                return $this->redirect($this->generateUrl("bdloc_app_book_allbooks"));
         }
 
             $params['creditCardForm'] = $creditCardForm->createView();
@@ -330,14 +331,51 @@
         }
 
     /**
-    * @Route("/désabonnement")
+    * @Route("/desabonnement")
     */
-    public function quitBdlocAction(Request $request){
+/*    public function quitBdlocAction(Request $request){
 
+        $params = array();
 
-            return $this->render("user/quit_bdloc.html.twig");
+            $user = $this->getUser();
+            $quitBdlocForm = $this->createForm(new QuitBdlocType(), $user, array('validation_groups' => array('registration', 'Default')));
+
+         //gère la soumission du form
+            $request = $this->getRequest();
+            $quitBdlocForm->handleRequest($request);
+
+            if ($quitBdlocForm->isValid()){
+                $user->setDateModified( new \DateTime());
+                $user->setDateCreated( new \DateTime());
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+                $em->flush();
+
+                return $this->redirect( $this->generateUrl("bdloc_app_user_creditcard"));
+
+            //envoyer un mail
+                $message = \Swift_Message::newInstance()
+                ->setSubject("Reinitialisez votre mot de passe")
+                ->setFrom('site@bdloc.com')
+                ->setTo('nadeige.pirot@gmail.com')
+                ->setContentType('text/html')
+                ->setBody(
+                    $this->renderView('emails/desabonnement.html.twig', array('user'=>$current_user))
+                    )
+                ;
+                $this->get('mailer')->send($message);
+
+                $request->getSession()->getFlashBag()->add(
+                'notice',
+                'Le message a bien été envoyé !'
+                );
+
 
         }
 
+return $this->render("user/quit_bdloc.html.twig");
+
+}*/
 
 }

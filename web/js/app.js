@@ -66,7 +66,7 @@ app = {
 	init: function() {
 
 		// Gestion du formulaire en Ajax
-        $("#formfilter").on("submit", "form", this.myCriteres)
+        //$("#formfilter").on("submit", "form", this.myCriteres)
 
         // init pop up
         popup.init()
@@ -94,18 +94,20 @@ app = {
 				data: $(form).serialize(),
 	            success : function(html){
 
-	            	var details = $(html).find("#catalogue").hide()
+	            	var dataz = $(form).serialize()
+	            	console.log(dataz)
 
-	            	$("#catalogue").fadeOut({
+	            	var details = $(html).find(".catalogue").hide()
+
+	            	$(".catalogue").fadeOut({
 					complete: function() {
-						$("#catalogue").replaceWith( details )
+						$(".catalogue").replaceWith( details )
 						details.fadeIn()
 					}
-				})
+					})
 
 	           }
 	        })
-
 	},
 
 	maBd: function() {
@@ -129,6 +131,7 @@ app = {
 		return false
 	},
 
+
 	maPagination: function(event) {
 		console.log("pagination ok")
 
@@ -140,7 +143,7 @@ app = {
 	
 
 	
-}
+
 
 
 /************************

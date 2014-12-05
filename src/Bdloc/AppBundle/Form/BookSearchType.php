@@ -16,11 +16,17 @@ class BookSearchType extends AbstractType
     {
         $builder
             ->add('title','text', array(
-                    "label" => " "
-                ))
+                    "label" => " ",
+                    'attr' => array(
+                    'placeholder' => 'Rechercher un titre, un auteur...',
+                    'class' => 'form-control')
+
+               ))
             ->add('submit', 'submit', array(
-                "label" => "Rechercher"
-            ))
+                "label" => "Rechercher",
+                'attr' => array(
+                'class' => 'btn red-button btn-default-red droite')
+                    ))
         ;
     }
     

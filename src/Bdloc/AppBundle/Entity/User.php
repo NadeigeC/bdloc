@@ -32,21 +32,21 @@ class User implements UserInterface
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez entrer un pseudo", groups={"registration"}, groups={"updateProfile"})
+     * @Assert\NotBlank(message="Veuillez entrer un pseudo", groups={"registration","updateProfile"})
      * @ORM\Column(name="username", type="string", length=255)
      */
     private $username;
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez entrer un email", groups={"registration"}, groups={"forgotPassword"}, groups={"updateProfile"}  )
+     * @Assert\NotBlank(message="Veuillez entrer un email", groups={"registration","forgotPassword","updateProfile"}  )
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez entrer un mot de passe", groups={"registration"}, groups={"newPassword"}, groups={"updatePassword"})
+     * @Assert\NotBlank(message="Veuillez entrer un mot de passe", groups={"registration","newPassword","updatePassword"})
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
@@ -74,21 +74,21 @@ class User implements UserInterface
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez entrer votre prénom", groups={"registration"}, groups={"updateProfile"})
+     * @Assert\NotBlank(message="Veuillez entrer votre prénom", groups={"registration","updateProfile"})
      * @ORM\Column(name="firstName", type="string", length=255)
      */
     private $firstName;
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez votre nom", groups={"registration"}, groups={"updateProfile"})
+     * @Assert\NotBlank(message="Veuillez votre nom", groups={"registration","updateProfile"})
      * @ORM\Column(name="lastName", type="string", length=255)
      */
     private $lastName;
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Merci d'indiquer votre adresse postale", groups={"registration"}, groups={"updateProfile"})
+     * @Assert\NotBlank(message="Merci d'indiquer votre adresse postale", groups={"registration","updateProfile"})
      * @ORM\Column(name="adress", type="string", length=255)
      */
     private $adress;
@@ -99,6 +99,7 @@ class User implements UserInterface
      *           pattern= "/^0[1-9]([-. ]?[0-9]{2}){4}$/",
      *           message= "Entrez un numero valide (10 chiffres avec ou sans espaces)",
      *           groups={"registration"}, groups={"updateProfile"})
+     * @Assert\NotBlank(message="Veuillez entrer un numéro de téléphone", groups={"registration","updateProfile"})
      * @ORM\Column(name="phone", type="string", length=20)
      */
     private $phone;
@@ -558,9 +559,9 @@ class User implements UserInterface
 
 
 
-   
 
-    
+
+
 
     /**
      * Set dropSpot
@@ -578,7 +579,7 @@ class User implements UserInterface
     /**
      * Get dropSpot
      *
-     * @return \Bdloc\AppBundle\Entity\DropSpot 
+     * @return \Bdloc\AppBundle\Entity\DropSpot
      */
     public function getDropSpot()
     {

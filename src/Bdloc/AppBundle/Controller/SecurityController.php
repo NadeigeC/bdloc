@@ -25,7 +25,7 @@
 
         public function loginAction(Request $request){
 
-            $session = $request->getSession();
+        $session = $request->getSession();
 
         // get the login error if there is one
         if ($request->attributes->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
@@ -49,8 +49,8 @@
                 'last_username' => $lastUsername,
                 'error'         => $error,)
                 );
-
         }
+
 
          /**
         * @Route("/oubli-du-mot-de-passe")
@@ -71,9 +71,6 @@
                 $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
 
                 $current_user = $userRepo->findOneByEmail($user->getEmail());
-
-                /*print_r($current_user);*/
-
 
                 $link = $this->generateUrl("bdloc_app_security_newpassword", array('token'=>$current_user->getToken(),'email'=>$current_user->getEmail()));
 
