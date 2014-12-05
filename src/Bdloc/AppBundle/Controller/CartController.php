@@ -21,20 +21,20 @@ class CartController extends Controller
 
         /*print_r($user);
         die();*/
-       
-        
+
+
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
-      
+
         $cart = $cartRepo->findOneBy(
              array('user'=>$user,'status'=>"courant")
-           
+
         );
 
          $params = array (
             "cart" => $cart,
-            
+
         );
-       
+
         return $this->render("cart/cart.html.twig",$params);
 
 
@@ -44,14 +44,14 @@ class CartController extends Controller
         /*$params = array();
 
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
-      
+
 
         $cart = $cartRepo->findBy(
             array('id'=>$id,'status'=>"")
-         );   
+         );
         $params = array (
             "cart" => $cart,
-        
+
         );
         /*print_r($cart);
         die();
@@ -61,7 +61,7 @@ class CartController extends Controller
 
      /**
      * @Route("/panier/retirer/{id}")
-     * 
+     *
      */
 
      public function deleteItemAction($id){
@@ -69,15 +69,15 @@ class CartController extends Controller
         $cartItemrepo = $this->getDoctrine()->getRepository("BdlocAppBundle:CartItem");
 
         $cartItem = $cartItemrepo->find($id);
-     
-      
+
+
         $em = $this->getDoctrine()->getManager();
         $em -> remove( $cartItem );
         $em->flush();
 
         return $this->redirect($this->generateUrl("bdloc_app_cart_findcart",array('id' => $cartItem->getCart()->getId())) );
 
-        
+
      }
 
      /**
@@ -91,15 +91,15 @@ class CartController extends Controller
         $user = $userRepo->find($user);*/
         $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
         $user = $this->getUser();
-      
+
         $params = array();
         $fineRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Fine");
 
         $fines = $fineRepo->findBy(
             array('user'=>$user,'status'=>'a payer')
-            
+
         );
-           
+
 
         $params = array (
             "fines" => $fines,
@@ -107,7 +107,7 @@ class CartController extends Controller
             "id"    => $id,
         );
 
-        
+
        /*print_r($cart);
         die();*/
 
@@ -117,7 +117,7 @@ class CartController extends Controller
             $params = array();
 
             $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
-      
+
 
             $cart = $cartRepo->find($id);
 
@@ -127,18 +127,18 @@ class CartController extends Controller
 
             $montant=$fines[$i]->getMontant();
             $total=$total+$montant;
-            } 
+            }
 
-    
+
              $params = array (
                 "cart" => $cart,
                 "fines" =>$fines,
                 "user" =>$user,
                 "total"=>$total,
-            
+
             );
 
-                 
+
         return $this->render("cart/fine.html.twig",$params);
 
          }
@@ -148,7 +148,7 @@ class CartController extends Controller
 
         //Validation
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
-      
+
 
         $cart = $cartRepo->find($id);
         //$cart->setStatus("valide");
@@ -162,7 +162,7 @@ class CartController extends Controller
 
          //Calcul date de livraison
          $dateCreated=$cart->getDateCreated();
-         
+
         /*$dateDelivery = date('Y-m-d', strtotime($dateCreated.' +15 days'));
          print_r($dateDelivery);
          die();*/
@@ -176,12 +176,12 @@ class CartController extends Controller
          $params = array (
             "cart" => $cart,
             "user" => $user,
-        
+
         );
 
 
         return $this->render("cart/order.html.twig",$params);
-       
+
 
      }
 
@@ -200,7 +200,7 @@ class CartController extends Controller
 
         $fines = $fineRepo->findByUser($user);
 
-        
+
         for ($i=0;$i<count($fines);$i++){
             $fines[$i]->setStatus("paye");
         }
@@ -218,13 +218,13 @@ class CartController extends Controller
          $params = array();
 
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
-      
+
         $cart = $cartRepo->findOneBy(
                 array('id'=>$id,'status'=>"courant")
-         );      
+         );
         $params = array (
             "cart" => $cart,
-        
+
         );
 
 
@@ -236,7 +236,7 @@ class CartController extends Controller
 
      /**
      * @Route("/panier")
-     * 
+     *
      */
 
      public function CountItemAction(){
@@ -246,44 +246,44 @@ class CartController extends Controller
 
         /*print_r($user);
         die();*/
-       
-        
+
+
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
-      
+
         $cart = $cartRepo->findBy(
              array('user'=>$user,'status'=>"courant")
-           
+
         );
 
 
 
 
         $cartItemRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:CartItem");
-      
+
         $cartItems = $cartItemRepo->findBy(
              array('cart'=>$cart)
-            
+
         );
 
         $num=count($cartItems);
         /*echo($num);
         die();*/
-        
+
         $params = array (
             //"cart"     => $cart,
             "num"   =>$num,
             //'cartItem' => $cartItems,
             //'user'=>$user,
 
-        
+
         );
 
-          
+
 
 
        return $this->render("cart/countItem.html.twig",$params);
 
-        
+
      }
 
       /**
@@ -294,20 +294,20 @@ class CartController extends Controller
 
         $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
         $user = $this->getUser();
-            
-        
+
+
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
-      
+
         $cart = $cartRepo->findBy(
              array('user'=>$user)
-           
+
         );
 
         for ($i=0;$i<count($cart);$i++){
             $cart[$i]->setStatus("valide");
         }
 
-      
+
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
@@ -322,13 +322,13 @@ class CartController extends Controller
      public function addAction($id){
         $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
         $user = $this->getUser();
-        
+
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
         $cart = $cartRepo->findOneBy(
              array('user'=>$user, 'status'=>'courant')
         );
 
-        if(count($cart)==0){git status
+        if(count($cart)==0){
              $cart = new Cart();
              $cart -> setUser($user);
              $cart -> setStatus('courant');
@@ -357,12 +357,12 @@ class CartController extends Controller
         $em->flush();
 
         $params = array (
-            'id'=>$id        
+            'id'=>$id
         );
 
        //return $this->render("cart/addCart.html.twig");
-       return $this->redirect($this->generateUrl("bdloc_app_book_allbooks") );
-        
+       return $this->redirect($this->generateUrl('bdloc_app_book_allbooks', array('page'=>1, 'nombreParPage'=> 12, 'direction'=> 'ASC', 'entity'=> 'dateCreated') ));
+
 
 
     }
