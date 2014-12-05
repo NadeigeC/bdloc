@@ -45,7 +45,7 @@ h1{
 .navbar-brand {
 	float: left;
 	height: 80px;
-	
+
 }
 
 .navbar-inverse {
@@ -239,11 +239,12 @@ padding: 10px;
 *													*
 *													*
 ****************************************************/
-#catalogue {
+.catalogue {
 	border-top: 1px dashed #444;
 	padding: 20px 0 20px 0px;
 	margin-top: 20px;
 }
+
 .thumbnail {
 	width: 270px;
 	height: auto;
@@ -257,14 +258,19 @@ padding: 10px;
 
 
 .caption {
-    height: 118px;
+    height: 230px;
     overflow: hidden;
 }
 
-.thumbnail img{
+.thumbnail a img {
 	height:325px;
 	width: 250px;
 	overflow: hidden;
+}
+
+.pointiller {
+	border-bottom: 1px dashed #B3B3B3;
+	margin-bottom: 15px;
 }
 
 .caption h1 a {
@@ -285,31 +291,50 @@ padding: 10px;
 	margin-bottom: -45px;
 }
 
-.author {
-	border-top: 1px dashed #B3B3B3;
+.texte-rouge {
 	font-size: 12px;
 	color: #AA161A;
-	padding-top: 5px;
 }
 
+.texte-noir {
+	font-size: 12px;
+	color: #000;
+	padding-top: 5px;
+}
 
 .pagination {
 	float: right;
 	margin: auto;
 }
 
+.btn-panier {
+padding: 0;
+font-size: 12px;
+width: 100px;
+height: 25px;
+color: #fff;
+background-color: #AA161A;
+border-color: #AA161A;
+float: right;
+}
+
+.btn-panier:hover{
+	color: #333;
+	background-color: #e6e6e6;
+	border-color: #adadad;
+}
 
 
 /****************************************************
 *													*
 *													*
-*					MENU FOOTER						*
+*					FORMULAIRE						*
 *													*
 *													*
 ****************************************************/
 
 label{
-	padding-bottom: 5px;
+	padding: 15px 0 2px 0;
 	font-weight:300;
 	color:#fff;
 
@@ -323,23 +348,47 @@ legend{
 }
 
 
-form h5 a {
-	font-weight:400;
+form h6 {
+	margin-top: -8px;
+	margin-left: 36px;
+}
+
+form h6 a {
+	font-weight:300;
 	color:#fff;
 }
 
-form h5 a:hover {
-	font-weight:400;
-	color:#AA161A;
+form h6 a:hover {
+	color:#fff;
+
 }
 
 
-.btn-default{
+
+.btn-default-red{
 	color: #fff;
 	background-color: #AA161A;
 	border-color: #AA161A;
 
-	} 
+<<<<<<< HEAD
+	}
+=======
+	} 	
+
+.btn-default-red:hover{
+	color: #333;
+	background-color: #e6e6e6;
+	border-color: #adadad;
+}
+
+.red-button{
+	margin:20px 0 20px 0;
+}
+
+.imagebd{
+	margin-top:20px;
+}
+>>>>>>> e28542da286c827aa5fa5dcc20a8d6d634fff043
 
 
 
@@ -368,4 +417,9 @@ footer{
 
  #copy p a{
  	color: #AA161A;
+ }
+
+/*cache le jour dans le formulaire de paiement (date d'expiration)*/
+ #bdloc_appbundle_creditcard_validUntil_day{
+ 	visibility: hidden;
  }
