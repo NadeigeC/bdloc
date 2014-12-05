@@ -18,6 +18,7 @@ class DropSpotType extends AbstractType
 
 
             ->add('dropSpot', 'entity', array(
+                "label" => "Les points relais",
                     'class'=>'Bdloc\AppBundle\Entity\DropSpot',
                    'property'=>'fullAdress',
                    'empty_value' => 'Choisissez un point relais',

@@ -74,6 +74,9 @@ app = {
         // Affiche ma BD
        	$(".thumbnail").on("click", "a", this.maBd)
 
+       	// pagination
+       	$('.pagination').on("click", this.maPagination)
+
 
 	},
 
@@ -125,6 +128,14 @@ app = {
 		// Prevent Default
 		return false
 	},
+
+	maPagination: function(event) {
+		console.log("pagination ok")
+
+		event.preventDefault()
+
+
+	}
 
 }
 

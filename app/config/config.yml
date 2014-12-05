@@ -79,6 +79,7 @@ swiftmailer:
     password:  "%mailer_password%"
 
 
+# Services
 #service:
     #bd.slugger:
       #  class: Bdloc\AppBundle\Service\Slugger
@@ -88,8 +89,4 @@ swiftmailer:
         #class: Bdloc\AppBundle\Service\PPSubscription
 
 
-# Services
-services:
-    bd.slugger:
-        class: Bdloc\AppBundle\Service\Slugger
 

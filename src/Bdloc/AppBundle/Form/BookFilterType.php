@@ -33,7 +33,7 @@ class BookFilterType extends AbstractType
                     "label" => "Combien par page",
                     'mapped' => false
                 ))
-            ->add('serie', 'entity', array(
+            ->add('series', 'entity', array(
                     'class' => 'BdlocAppBundle:Serie',
                     'property' => 'style',
                     'expanded' => true,

@@ -4,6 +4,7 @@ namespace Bdloc\AppBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * CartRepository
@@ -24,21 +25,40 @@ class BookRepository extends EntityRepository
 	  return $query->getSingleScalarResult();
 	}
 
-	public function getBooks($page, $nombreParPage = "", $direction = 'DESC', $entity = 'b.dateCreated')
+	public function getBooks($page, $nombreParPage = "", $direction = 'DESC', $entity = 'b.dateCreated', $series = array())
     {
 
-        $query = $this->getEntityManager()->createQueryBuilder()
-        			  ->select(array('b', 'a'))
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        			  // requête des BDs, auteurs & séries de BD
+        			  $qb->select(array('b', 'a', 's'))
         			  ->from('Bdloc\AppBundle\Entity\Book', 'b')
         			  ->leftJoin('b.illustrator', 'a')
-        	          ->setFirstResult(($page-1) * $nombreParPage)
+        			  ->join('b.serie', 's');
+
+        			  // Je boucle sur mes séries
+        			  for( $i = 0; $i < count($series); $i++) {
+
+        			  	// Je récupère l'intitulé de la série
+        			  	$param = $series[$i]->getStyle();
+
+        			  		// Clause where le style = au style demandé par l'utilisateur
+				    		$qb->orWhere ('s.style = :serie' . $i . '');
+				    		// Paramètre nommé avec les données reçues
+				    		$qb->setParameter('serie' . $i , $param);
+				
+
+				      }
+        	          $qb->setFirstResult(($page-1) * $nombreParPage)
         			  ->setMaxResults($nombreParPage)
         			  ->orderBy($entity, $direction)
-                      ->getQuery();
+                      ;
 
 
-        return $query->getResult();
+        return $qb->getQuery()->getResult();
     }
+
+    //  "' . $serie->getStyle() . '"
 
 	public function findBookWithTitle($title)
     {

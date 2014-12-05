@@ -4,11 +4,21 @@
 {% block main_content %}
 
 
-<h1>Enregistrez-vous !</h1>
-
-
-{{ form(registerForm, {'attr':{'novalidate': 'novalidate'}}) }}
-
+<legend>Enregistrez-vous !</legend>
+<div class="form-group">
+    <div class="col-md-12">
+        <div class="col-md-6" id="formlog">
+            <div class="form-group">
+                {{ form(registerForm, {'attr':{'novalidate': 'novalidate'}}) }}
+            </div>
+        </div>
+         <div class="col-md-6 ">
+     <div class="col-md-6 col-md-offset-2 imagebd">
+        <img alt="Sandman" src="{{ asset('img/bd-perso/batman.jpg') }}"></a>
+     </div>
+ </div>
+    </div>
+</div>
 
 
 {% endblock %}

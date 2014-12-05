@@ -13,21 +13,17 @@ use Bdloc\AppBundle\Form\BookFilterType;
 class BookController extends Controller
 {
     /**
-     * @Route("/catalogue/{page}/{nombreparpage}", defaults={"page"= 1,"nombreparpage"= ""})
+     * @Route("/catalogue/{page}/{nombreParPage}/{direction}/{entity}/{serie}", defaults={"page"= 1,"nombreParPage" = "12", "direction" = "ASC", "entity" = "dateCreated", "serie" = ""})
      */
-    public function allBooksAction($page, $nombreParPage = "")
+    public function allBooksAction($page, $nombreParPage, $direction, $entity, $serie)
     {
      	// Paramètres pour la vue
      	$params = array();
 
-		// un book
+		  // un book
     	$book = new Book();
 
-    	$nombreParPage = 12;
-    	$direction = "";
-    	$entity = "";
-
-    	// Ajout du formulaire de recherche
+    	   // Ajout du formulaire de recherche
         $bookSearchForm = $this->createForm(new BookSearchType(), $book);
 
         // Ajout du formulaire de tri
@@ -44,7 +40,7 @@ class BookController extends Controller
         	$books = $this->getDoctrine()
                           ->getManager()
                           ->getRepository('BdlocAppBundle:Book')
-                          ->getBooks($page, $nombreParPage = $bookFilterForm->get('nombre')->getData(), $direction = $bookFilterForm->get('direction')->getData(), $entity = $bookFilterForm->get('entity')->getData() );
+                          ->getBooks($page, $nombreParPage = $bookFilterForm->get('nombre')->getData(), $direction = $bookFilterForm->get('direction')->getData(), $entity = $bookFilterForm->get('entity')->getData(), $series = $bookFilterForm->get('series')->getData() );
 
 	        // Jusqu'au max de BDs
 	        $nbBooks =  $this->getDoctrine()
@@ -53,8 +49,6 @@ class BookController extends Controller
 	                 		 ->countBooks();
 
 	        $params['nombrePage'] = ceil($nbBooks/$nombreParPage);
-
-	        $this->redirect($this->generateUrl('bdloc_app_book_allbooks'));
 
         } else {
 
@@ -88,6 +82,7 @@ class BookController extends Controller
         // Paramètres pour la vue
 		$params['books'] = $books;
 		$params['page'] = $page;
+    $params['serie'] = $serie;
 		$params['nombreParPage'] = $nombreParPage;
 		$params['direction'] = $direction;
 		$params['entity'] = $entity;

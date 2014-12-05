@@ -1,0 +1,13 @@
+{% extends "::base.html.twig" %}
+
+
+{% block main_content %}
+
+
+<h1>Modifier votre point relais favori</h1>
+
+<p>Point relais favori : {{ app.user.dropSpot.fullAdress }}</p>
+
+{{ form(dropSpotForm, {'attr':{'novalidate': 'novalidate'}}) }}
+
+{% endblock %}
