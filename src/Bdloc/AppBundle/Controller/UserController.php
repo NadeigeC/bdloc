@@ -83,6 +83,7 @@
 
             $params['registerForm'] = $registerForm->createView();
 
+
             return $this->render("user/register.html.twig", $params);
 
         }
@@ -152,7 +153,7 @@
                 'Vous êtes désormais abonné à BDLOC !'
                 );
 
-                return $this->redirect($this->generateUrl("bdloc_app_default_home"));
+                return $this->redirect($this->generateUrl("bdloc_app_book_allbooks"));
         }
 
             $params['creditCardForm'] = $creditCardForm->createView();
@@ -330,7 +331,7 @@
         }
 
     /**
-    * @Route("/désabonnement")
+    * @Route("/desabonnement")
     */
     public function quitBdlocAction(Request $request){
 
