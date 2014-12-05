@@ -94,6 +94,9 @@ app = {
 				data: $(form).serialize(),
 	            success : function(html){
 
+	            	var dataz = $(form).serialize()
+	            	console.log(dataz)
+
 	            	var details = $(html).find(".catalogue").hide()
 
 	            	$(".catalogue").fadeOut({
@@ -101,11 +104,10 @@ app = {
 						$(".catalogue").replaceWith( details )
 						details.fadeIn()
 					}
-				})
+					})
 
 	           }
 	        })
-
 	},
 
 	maBd: function() {
