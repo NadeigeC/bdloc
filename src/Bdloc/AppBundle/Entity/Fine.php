@@ -70,6 +70,18 @@ class Fine
     */
     private $user;
 
+    /**
+    *
+    *@ORM\ManyToOne(targetEntity="Book", inversedBy="fines")
+    */
+    private $book;
+
+    /**
+    *
+    *@ORM\ManyToOne(targetEntity="Cart", inversedBy="fines")
+    */
+    private $cart;
+
 
 
     /**
@@ -241,5 +253,51 @@ class Fine
     public function getMontant()
     {
         return $this->montant;
+    }
+
+    /**
+     * Set book
+     *
+     * @param \Bdloc\AppBundle\Entity\Book $book
+     * @return Fine
+     */
+    public function setBook(\Bdloc\AppBundle\Entity\Book $book = null)
+    {
+        $this->book = $book;
+
+        return $this;
+    }
+
+    /**
+     * Get book
+     *
+     * @return \Bdloc\AppBundle\Entity\Book 
+     */
+    public function getBook()
+    {
+        return $this->book;
+    }
+
+    /**
+     * Set cart
+     *
+     * @param \Bdloc\AppBundle\Entity\Cart $cart
+     * @return Fine
+     */
+    public function setCart(\Bdloc\AppBundle\Entity\Cart $cart = null)
+    {
+        $this->cart = $cart;
+
+        return $this;
+    }
+
+    /**
+     * Get cart
+     *
+     * @return \Bdloc\AppBundle\Entity\Cart 
+     */
+    public function getCart()
+    {
+        return $this->cart;
     }
 }

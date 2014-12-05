@@ -558,6 +558,10 @@ class User implements UserInterface
 
 
 
+   
+
+    
+
     /**
      * Set dropSpot
      *
@@ -574,7 +578,7 @@ class User implements UserInterface
     /**
      * Get dropSpot
      *
-     * @return \Bdloc\AppBundle\Entity\DropSpot
+     * @return \Bdloc\AppBundle\Entity\DropSpot 
      */
     public function getDropSpot()
     {

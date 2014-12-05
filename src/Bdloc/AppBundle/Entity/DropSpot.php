@@ -167,6 +167,7 @@ class DropSpot
     }
 
 
+     
     /**
      * Constructor
      */
@@ -176,12 +177,13 @@ class DropSpot
     }
 
     /**
-     * Add user
+     * Add users
      *
      * @param \Bdloc\AppBundle\Entity\DropSpot $users
      * @return DropSpot
      */
     public function addUser(\Bdloc\AppBundle\Entity\User $users)
+
     {
         $this->users[] = $users;
 
@@ -219,6 +221,7 @@ class DropSpot
      * @param \Bdloc\AppBundle\Entity\User $users
      */
     public function removeUser(\Bdloc\AppBundle\Entity\User $users)
+
     {
         $this->users->removeElement($users);
     }
