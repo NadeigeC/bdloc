@@ -17,50 +17,68 @@ class RegisterType extends AbstractType
         $builder
 
             ->add('username', 'text', array(
-                 "label" => "votre pseudo",
+                 "label" => "Pseudo",
                  'attr' => array(
-                    'placeholder' => 'Pseudo',)
-                    //'class' => 'form-control'
+                    'placeholder' => 'Votre pseudo',
+                    'class' => 'form-control')
+                    
                ))
 
             ->add('firstName','text', array(
-                "label" => "votre prénom",
+                "label" => "Prénom",
                 'attr' => array(
-                    'placeholder' => 'Prénom',)
-                    //'class' => 'form-control'
+                    'placeholder' => 'Votre prénom',
+                    'class' => 'form-control')
+                    
                 ))
 
             ->add('lastName','text', array(
-                "label" => "votre nom",
+                "label" => "Nom",
                 'attr' => array(
-                    'placeholder' => 'Nom',)
-                    //'class' => 'form-control'
+                    'placeholder' => 'Votre nom',
+                    'class' => 'form-control')
+                    
                 ))
 
             ->add('email', 'email', array(
-                "label" => "votre email",
+                "label" => "Email",
                 'attr' => array(
-                    'placeholder' => 'Email',)
-                    //'class' => 'form-control'
+                    'placeholder' => 'Votre email',
+                    'class' => 'form-control')
+                   
                 ))
 
             ->add('password', 'repeated', array(
                     'type' => 'password',
                     'invalid_message' => 'Les mots de passe doivent correspondre',
-                    'options' => array('required' => true),
-                    'first_options'  => array('label' => 'Mot de passe'),
-                    'second_options' => array('label' => 'Mot de passe (validation)'),
-                    //'attr' => array('class'=>'form-control')
-                    ))
+                    'options' => array(
+                        'required' => true),
+                    
+                    'first_options'  => array(
+                        'label' => 'Mot de passe',
+                        'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Votre mot de passe')),
+                    
+                    'second_options' => array(
+                        'label' => 'Confirmez votre mot de passe',
+                        'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Confirmez votre mot de passe')),
+                   
+                ))
 
-            ->add('adress')/*,'text', array(
-                 'attr' => array(
-                    'class' => 'form-control')))*/
+            ->add('adress','text', array(
+                    'label' => 'Adresse',
+                    'attr' => array(
+                    'class' => 'form-control')
+                 ))
 
             ->add('phone', 'text', array(
+                    'label' => 'Téléphone',
                     'attr' => array(
-                    'placeholder' => 'Ex : 01 45 21 23 40',)
-                    //'class' => 'form-control'
+                    'placeholder' => 'Ex : 01 45 21 23 40',
+                    'class' => 'form-control')
                     ))
 
 
@@ -68,9 +86,13 @@ class RegisterType extends AbstractType
                 "label" =>"Inscription",
                 'attr' => array('class'=>'btn btn-primary')
                 ))*/
-            ->add('nextStep', 'submit')
+            ->add('nextStep', 'submit', array(
+                    'label' => 'Etape suivante',
+                    'attr' => array(
+                    'class' => 'btn red-button btn-default-red')
+                    ))
 
-        ;
+        ; 
     }
 
     /**
