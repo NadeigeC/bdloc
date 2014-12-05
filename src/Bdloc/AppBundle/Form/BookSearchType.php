@@ -25,7 +25,7 @@ class BookSearchType extends AbstractType
             ->add('submit', 'submit', array(
                 "label" => "Rechercher",
                 'attr' => array(
-                'class' => 'btn red-button btn-default-red gauche')
+                'class' => 'btn red-button btn-default-red droite')
                     ))
         ;
     }

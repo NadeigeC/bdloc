@@ -21,24 +21,38 @@ class BookFilterType extends AbstractType
             ->add('entity', 'choice', array(
                     'choices'   => array('b.title' => 'Titre', 'b.dateCreated' => 'Date'),
                     "label" => "Trier par",
-                    'mapped' => false
+                    'mapped' => false,
+                    'attr' => array(
+                    'class' => 'form-control')
+
                 ))
+
             ->add('direction', 'choice', array(
                     'choices'   => array('DESC' => 'DESC', 'ASC' => 'ASC'),
                     "label" => "Dans quel sens",
-                    'mapped' => false
+                    'mapped' => false,
+                    'attr' => array(
+                    'class' => 'form-control')
+
                 ))
+
             ->add('nombre', 'choice', array(
                     'choices'   => array('12' => '12', '24' => '24', '36' => '36', '48' => '48', '60' => '60'),
                     "label" => "Combien par page",
-                    'mapped' => false
+                    'mapped' => false,
+                    'attr' => array(
+                    'class' => 'form-control')
+
                 ))
+
             ->add('series', 'entity', array(
                     'class' => 'BdlocAppBundle:Serie',
                     'property' => 'style',
                     'expanded' => true,
                     'multiple' => true,
                     'mapped' => false,
+                    'attr' => array(
+                    'class' => 'checkbox filtre'),
                     'query_builder' => function( EntityRepository $er) {
                         return $er->createQueryBuilder('s')
                             ->orderBy('s.style', 'ASC')
@@ -50,7 +64,7 @@ class BookFilterType extends AbstractType
                 ))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
