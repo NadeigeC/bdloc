@@ -59,8 +59,9 @@
 				      </div>
 				      <div class="col-md-5">
 						{# Bouton Ajouter au panier #}
-							<button type="submit" class="btn btn-panier">Ajouter au panier</button><br>
-							
+							<form method="POST" action="{{ path('bdloc_app_cart_add', {id: book.id}) }}">
+							<button type="submit" class="btn btn-panier" id="ajouter">Ajouter au panier</button><br>
+							</form>
 				      </div>
 				    </div>
 				  </div>

@@ -18,7 +18,7 @@
     </table>
               <a href="{{ path('bdloc_app_cart_validcart',{id:cart.id}) }}" title="Valider ce panier">Valider ce panier !</a><br/><br/><br/>
               
-            <a href="" title="Retour au catalogue">Continuer à bouquiner</a>
+            <a href="{{ path('bdloc_app_book_allbooks', {'page':1}) }}" title="Retour au catalogue">Continuer à bouquiner</a>
 
    
 {% endblock %}

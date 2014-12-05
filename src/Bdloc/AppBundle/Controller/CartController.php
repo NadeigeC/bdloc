@@ -4,8 +4,8 @@ namespace Bdloc\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use \Wf3\AppBundle\Entity\Cart;
-use \Wf3\AppBundle\Entity\CartItem;
+use \Bdloc\AppBundle\Entity\Cart;
+use \Bdloc\AppBundle\Entity\CartItem;
 
 class CartController extends Controller
 {
@@ -34,9 +34,7 @@ class CartController extends Controller
             "cart" => $cart,
             
         );
-        /*print_r($cart);
-        die();*/
-
+       
         return $this->render("cart/cart.html.twig",$params);
 
 
@@ -221,7 +219,7 @@ class CartController extends Controller
 
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
       
-        $cart = $cartRepo->findBy(
+        $cart = $cartRepo->findOneBy(
                 array('id'=>$id,'status'=>"courant")
          );      
         $params = array (
@@ -296,10 +294,7 @@ class CartController extends Controller
 
         $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
         $user = $this->getUser();
-
-        /*print_r($user);
-        die();*/
-       
+            
         
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
       
@@ -307,15 +302,68 @@ class CartController extends Controller
              array('user'=>$user)
            
         );
+
         for ($i=0;$i<count($cart);$i++){
             $cart[$i]->setStatus("valide");
         }
 
-        //$cart->setStatus("valide");
+      
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
         return $this->render("cart/validOrder.html.twig");
+
+    }
+
+    /**
+     * @Route("/panier/ajouter/{id}")
+     */
+
+     public function addAction($id){
+        $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
+        $user = $this->getUser();
+        
+        $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
+        $cart = $cartRepo->findOneBy(
+             array('user'=>$user, 'status'=>'courant')
+        );
+
+        if(count($cart)==0){git status
+             $cart = new Cart();
+             $cart -> setUser($user);
+             $cart -> setStatus('courant');
+             $cart ->setDateModified(new \DateTime());
+             $cart ->setDateCreated(new \DateTime());
+             $cart ->setDateDelivery(new \DateTime());
+             $em = $this->getDoctrine()->getManager();
+             $em->persist($cart);
+             $em->flush();
+        }
+
+        $bookRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Book");
+        $book = $bookRepo->findOneBy(
+             array('id'=>$id)
+        );
+
+        $cartItem = new CartItem();
+
+        $cartItem -> setCart($cart);
+        $cartItem -> setBook($book);
+        $cartItem ->setDateModified(new \DateTime());
+        $cartItem ->setDateCreated(new \DateTime());
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($cartItem);
+        $em->flush();
+
+        $params = array (
+            'id'=>$id        
+        );
+
+       //return $this->render("cart/addCart.html.twig");
+       return $this->redirect($this->generateUrl("bdloc_app_book_allbooks") );
+        
+
 
     }
  }

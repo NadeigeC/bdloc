@@ -77,7 +77,7 @@ app = {
        	// pagination
        	$('.pagination').on("click", this.maPagination)
 
-
+       	
 	},
 
 	myCriteres: function(event) {
@@ -137,6 +137,9 @@ app = {
 
 	}
 
+	
+
+	
 }
 
 
