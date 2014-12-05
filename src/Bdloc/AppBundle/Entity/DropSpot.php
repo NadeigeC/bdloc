@@ -2,6 +2,7 @@
 
 namespace Bdloc\AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,7 +38,7 @@ class DropSpot
 
      /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Veuillez choisir un point relais", groups={"registration"}, groups={"updateDropspot"})
      * @ORM\Column(name="fullAdress", type="string", length=255)
      */
     private $fullAdress;

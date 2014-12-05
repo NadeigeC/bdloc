@@ -45,7 +45,7 @@ h1{
 .navbar-brand {
 	float: left;
 	height: 80px;
-	
+
 }
 
 .navbar-inverse {
@@ -370,6 +370,9 @@ form h6 a:hover {
 	background-color: #AA161A;
 	border-color: #AA161A;
 
+<<<<<<< HEAD
+	}
+=======
 	} 	
 
 .btn-default-red:hover{
@@ -385,6 +388,7 @@ form h6 a:hover {
 .imagebd{
 	margin-top:20px;
 }
+>>>>>>> e28542da286c827aa5fa5dcc20a8d6d634fff043
 
 
 
@@ -413,4 +417,9 @@ footer{
 
  #copy p a{
  	color: #AA161A;
+ }
+
+/*cache le jour dans le formulaire de paiement (date d'expiration)*/
+ #bdloc_appbundle_creditcard_validUntil_day{
+ 	visibility: hidden;
  }

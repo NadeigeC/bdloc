@@ -21,7 +21,7 @@ class RegisterType extends AbstractType
                  'attr' => array(
                     'placeholder' => 'Votre pseudo',
                     'class' => 'form-control')
-                    
+
                ))
 
             ->add('firstName','text', array(
@@ -29,7 +29,7 @@ class RegisterType extends AbstractType
                 'attr' => array(
                     'placeholder' => 'Votre prénom',
                     'class' => 'form-control')
-                    
+
                 ))
 
             ->add('lastName','text', array(
@@ -37,7 +37,7 @@ class RegisterType extends AbstractType
                 'attr' => array(
                     'placeholder' => 'Votre nom',
                     'class' => 'form-control')
-                    
+
                 ))
 
             ->add('email', 'email', array(
@@ -45,7 +45,7 @@ class RegisterType extends AbstractType
                 'attr' => array(
                     'placeholder' => 'Votre email',
                     'class' => 'form-control')
-                   
+
                 ))
 
             ->add('password', 'repeated', array(
@@ -53,19 +53,19 @@ class RegisterType extends AbstractType
                     'invalid_message' => 'Les mots de passe doivent correspondre',
                     'options' => array(
                         'required' => true),
-                    
+
                     'first_options'  => array(
                         'label' => 'Mot de passe',
                         'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Votre mot de passe')),
-                    
+
                     'second_options' => array(
                         'label' => 'Confirmez votre mot de passe',
                         'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Confirmez votre mot de passe')),
-                   
+
                 ))
 
             ->add('adress','text', array(
@@ -92,7 +92,7 @@ class RegisterType extends AbstractType
                     'class' => 'btn red-button btn-default-red')
                     ))
 
-        ; 
+        ;
     }
 
     /**
