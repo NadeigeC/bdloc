@@ -4,6 +4,7 @@ namespace Bdloc\AppBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * CartRepository
@@ -24,21 +25,34 @@ class BookRepository extends EntityRepository
 	  return $query->getSingleScalarResult();
 	}
 
-	public function getBooks($page, $nombreParPage = "", $direction = 'DESC', $entity = 'b.dateCreated')
+	public function getBooks($page, $nombreParPage = "", $direction = 'DESC', $entity = 'b.dateCreated', $series = array())
     {
 
-        $query = $this->getEntityManager()->createQueryBuilder()
-        			  ->select(array('b', 'a'))
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        			  $qb->select(array('b', 'a', 's'))
         			  ->from('Bdloc\AppBundle\Entity\Book', 'b')
         			  ->leftJoin('b.illustrator', 'a')
-        	          ->setFirstResult(($page-1) * $nombreParPage)
+        			  ->leftJoin('b.serie', 's');
+
+        			  foreach( $series as $serie ) {
+        			  	$params = $serie->getStyle();
+        			  	$paramslength = strlen($params);
+        			  	for( $i = 0; $i <= $paramslength; $i++) {
+				    		$qb->orWhere ('s.style = ' . $params[$i] . '');
+				    	}
+
+				      }
+        	          $qb->setFirstResult(($page-1) * $nombreParPage)
         			  ->setMaxResults($nombreParPage)
         			  ->orderBy($entity, $direction)
-                      ->getQuery();
+                      ;
 
 
-        return $query->getResult();
+        return $qb->getQuery()->getResult();
     }
+
+    //  "' . $serie->getStyle() . '"
 
 	public function findBookWithTitle($title)
     {

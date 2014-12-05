@@ -44,7 +44,7 @@ class BookController extends Controller
         	$books = $this->getDoctrine()
                           ->getManager()
                           ->getRepository('BdlocAppBundle:Book')
-                          ->getBooks($page, $nombreParPage = $bookFilterForm->get('nombre')->getData(), $direction = $bookFilterForm->get('direction')->getData(), $entity = $bookFilterForm->get('entity')->getData() );
+                          ->getBooks($page, $nombreParPage = $bookFilterForm->get('nombre')->getData(), $direction = $bookFilterForm->get('direction')->getData(), $entity = $bookFilterForm->get('entity')->getData(), $series = $bookFilterForm->get('series')->getData() );
 
 	        // Jusqu'au max de BDs
 	        $nbBooks =  $this->getDoctrine()
@@ -53,8 +53,6 @@ class BookController extends Controller
 	                 		 ->countBooks();
 
 	        $params['nombrePage'] = ceil($nbBooks/$nombreParPage);
-
-	        $this->redirect($this->generateUrl('bdloc_app_book_allbooks'));
 
         } else {
 
