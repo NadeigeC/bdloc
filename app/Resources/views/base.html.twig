@@ -13,13 +13,14 @@
 
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
 
+
          {% block javascripts %}
             <script src="{{ asset('js/jquery.js') }}"></script>
             <script src="{{ asset('js/app.js') }}"></script>
             <script src="{{ asset('js/jquery.event.move.js') }}"></script>
             <script src="{{ asset('js/responsive-slider.js') }}"></script>
         {% endblock %}
-        
+
     </head>
 
     <body>
@@ -45,7 +46,9 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav" id="navbar-left">
                         <li>
+
                             <a href="{{ path('bdloc_app_book_allbooks', {'page':1, 'nombreParPage': 12, 'direction': 'ASC', 'entity': 'dateCreated'}) }}">Les BDs</a>
+
                         </li>
                         <li>
                         {% if app.user %}
@@ -121,8 +124,6 @@
         </footer>
     <!-- END FOOTER -->
 </div>
-
-
-       
+    
     </body>
 </html>

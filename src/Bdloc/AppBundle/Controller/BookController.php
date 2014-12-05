@@ -13,9 +13,9 @@ use Bdloc\AppBundle\Form\BookFilterType;
 class BookController extends Controller
 {
     /**
-     * @Route("/catalogue/{page}/{nombreParPage}/{direction}/{entity}/{serie}", defaults={"page"= 1,"nombreParPage" = "12", "direction" = "ASC", "entity" = "dateCreated", "serie" = ""})
+     * @Route("/catalogue/{page}/{nombreParPage}/{direction}/{entity}")
      */
-    public function allBooksAction($page, $nombreParPage, $direction, $entity, $serie)
+    public function allBooksAction($page, $nombreParPage, $direction, $entity)
     {
      	// Paramètres pour la vue
      	$params = array();
@@ -65,6 +65,7 @@ class BookController extends Controller
 	                 		 ->countBooks();
 
 	        $params['nombrePage'] = ceil($nbBooks/$nombreParPage);
+
         }
 
         // Si le formulaire de recherche est soumis
@@ -82,8 +83,7 @@ class BookController extends Controller
         // Paramètres pour la vue
 		$params['books'] = $books;
 		$params['page'] = $page;
-    $params['serie'] = $serie;
-		$params['nombreParPage'] = $nombreParPage;
+    $params['nombreParPage'] = $nombreParPage;
 		$params['direction'] = $direction;
 		$params['entity'] = $entity;
 		$params['bookSearchForm'] = $bookSearchForm->createView();
