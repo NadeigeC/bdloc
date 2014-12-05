@@ -153,6 +153,7 @@
                 'Votre nouveau mot de passe est bien enregistré !'
                 );
 
+                return $this->redirect($this->generateUrl("bdloc_app_default_home"));
 
         }
 

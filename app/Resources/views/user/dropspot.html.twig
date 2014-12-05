@@ -1,5 +1,18 @@
 {% extends "::base.html.twig" %}
 
+
+{% block main_content %}
+
+
+<h1>Choisissez un Point Relais dans la liste  - Step 2/3</h1>
+
+
+{{ form(dropSpotForm, {'attr':{'novalidate': 'novalidate'}}) }}
+
+<div id="map-canvas"></div>
+
+{% endblock %}
+
 {% block javascripts %}
 <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=API_KEY">
@@ -33,16 +46,3 @@
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 {% endblock %}
-{% block main_content %}
-
-
-<h1>Choisissez un Point Relais dans la liste  - Step 2/3</h1>
-
-
-{{ form(dropSpotForm, {'attr':{'novalidate': 'novalidate'}}) }}
-
-<div id="map-canvas"></div>
-
-{% endblock %}
-
-

@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * CreditCard
  *
  * @ORM\Table()
+ * @ORM\Table(name="creditcard")
  * @ORM\Entity(repositoryClass="Bdloc\AppBundle\Entity\CreditCardRepository")
  */
 class CreditCard
