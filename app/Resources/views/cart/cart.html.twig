@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block main_content %}
-    <h1>Votre panier</h1>
+    <h2>Votre panier</h2>
     
     <table>
     {% for cartItem in cart.cartItems %}
@@ -16,9 +16,10 @@
            
     {% endfor %}
     </table>
-              <a href="{{ path('bdloc_app_cart_validcart',{id:cart.id,user:cart.user.id})}}" title="Valider ce panier">Valider ce panier !</a><br/><br/><br/>
+              <a href="{{ path('bdloc_app_cart_validcart',{id:cart.id}) }}" title="Valider ce panier">Valider ce panier !</a><br/><br/><br/>
               
             <a href="" title="Retour au catalogue">Continuer à bouquiner</a>
+
    
 {% endblock %}
 

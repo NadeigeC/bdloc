@@ -30,17 +30,23 @@ class BookRepository extends EntityRepository
 
         $qb = $this->getEntityManager()->createQueryBuilder();
 
+        			  // requête des BDs, auteurs & séries de BD
         			  $qb->select(array('b', 'a', 's'))
         			  ->from('Bdloc\AppBundle\Entity\Book', 'b')
         			  ->leftJoin('b.illustrator', 'a')
-        			  ->leftJoin('b.serie', 's');
+        			  ->join('b.serie', 's');
 
-        			  foreach( $series as $serie ) {
-        			  	$params = $serie->getStyle();
-        			  	$paramslength = strlen($params);
-        			  	for( $i = 0; $i <= $paramslength; $i++) {
-				    		$qb->orWhere ('s.style = ' . $params[$i] . '');
-				    	}
+        			  // Je boucle sur mes séries
+        			  for( $i = 0; $i < count($series); $i++) {
+
+        			  	// Je récupère l'intitulé de la série
+        			  	$param = $series[$i]->getStyle();
+
+        			  		// Clause where le style = au style demandé par l'utilisateur
+				    		$qb->orWhere ('s.style = :serie' . $i . '');
+				    		// Paramètre nommé avec les données reçues
+				    		$qb->setParameter('serie' . $i , $param);
+				
 
 				      }
         	          $qb->setFirstResult(($page-1) * $nombreParPage)

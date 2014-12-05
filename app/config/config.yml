@@ -80,7 +80,6 @@ swiftmailer:
 
 
 # Services
-
 #service:
     #bd.slugger:
       #  class: Bdloc\AppBundle\Service\Slugger
@@ -88,3 +87,6 @@ swiftmailer:
 
     #paypal_subscription:
         #class: Bdloc\AppBundle\Service\PPSubscription
+
+
+

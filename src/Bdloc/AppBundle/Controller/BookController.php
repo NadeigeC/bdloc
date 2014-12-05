@@ -13,21 +13,17 @@ use Bdloc\AppBundle\Form\BookFilterType;
 class BookController extends Controller
 {
     /**
-     * @Route("/catalogue/{page}/{nombreparpage}", defaults={"page"= 1,"nombreparpage"= ""})
+     * @Route("/catalogue/{page}/{nombreParPage}/{direction}/{entity}/{serie}", defaults={"page"= 1,"nombreParPage" = "12", "direction" = "ASC", "entity" = "dateCreated", "serie" = ""})
      */
-    public function allBooksAction($page, $nombreParPage = "")
+    public function allBooksAction($page, $nombreParPage, $direction, $entity, $serie)
     {
      	// Paramètres pour la vue
      	$params = array();
 
-		// un book
+		  // un book
     	$book = new Book();
 
-    	$nombreParPage = 12;
-    	$direction = "";
-    	$entity = "";
-
-    	// Ajout du formulaire de recherche
+    	   // Ajout du formulaire de recherche
         $bookSearchForm = $this->createForm(new BookSearchType(), $book);
 
         // Ajout du formulaire de tri
@@ -86,6 +82,7 @@ class BookController extends Controller
         // Paramètres pour la vue
 		$params['books'] = $books;
 		$params['page'] = $page;
+    $params['serie'] = $serie;
 		$params['nombreParPage'] = $nombreParPage;
 		$params['direction'] = $direction;
 		$params['entity'] = $entity;
