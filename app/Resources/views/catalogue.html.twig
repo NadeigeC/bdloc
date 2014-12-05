@@ -6,19 +6,20 @@
 <!-- Page Content -->
 <div class="container">
 
+	
+	{# J'affiche les formulaires de recherche & de filtre #}
 	<div class="row">
-		{# J'affiche les formulaires de recherche & de filtre #}
-		<div id="formsearch">
-		{{ form(bookSearchForm) }}
+		<div class="col-xs-12 col-sm-6 col-md-6 ">
+			<div id="formsearch">
+			{{ form(bookSearchForm) }}
+			</div>
 		</div>
 	</div>
-	
 
+	{# Filtre de recherche #}
 	<div class="row catalogue">
-
-		<div class="col-md-3">
+		<div class="col-xs-12 col-sm-6 col-md-3">
 			<div id="formfilter">
-				{# Filtre de recherche #}
 				{{ form(bookFilterForm) }}
 			</div>
 		</div>
@@ -26,19 +27,19 @@
 		{# Affichage des BDs #}
 		{% for book in books %}
 		
-		<div class=" col-xs-3">
-
-		<div class="thumbnail">
-		{# Affichage l'image #}
-		<a href="{{ path('bdloc_app_book_details', {id: book.id}) }}">
-			<img src="{{ asset('img/Couvertures/Couvertures/' ~ book.cover ~ '') }}" alt="{{ book.title }}" class="catalogue_img" />
-		</a>
+		
+		<div class="col-xs-12 col-md-4 col-lg-3">
+			<div class="thumbnail">
+			{# Affichage l'image #}
+			<a href="{{ path('bdloc_app_book_details', {id: book.id}) }}">
+				<img src="{{ asset('img/Couvertures/Couvertures/' ~ book.cover ~ '') }}" alt="{{ book.title }}" class="catalogue_img" />
+			</a>
 
 		<div class="caption">
 		{# Affichage le titre #}
 			<div class="pointiller">
 			<h1>
-			<a href="{{ path('bdloc_app_book_details', {id: book.id}) }}">{{ book.title }}</a>
+				<a href="{{ path('bdloc_app_book_details', {id: book.id}) }}">{{ book.title }}</a>
 			</h1>
 			
 			{# Affichage l'auteur #}
