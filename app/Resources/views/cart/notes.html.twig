@@ -32,3 +32,86 @@ $dateDelivery=date(strtotime($dateCreated,'+ 15 days'));
               ->getSingleScalarResult();   
 
  $fineRepo->montant   ; 
+
+
+  /* $itemNum=0;
+
+        for ($i=0;$i<count($cart);$i++){
+
+        $itemNum=$itemNum + 1;
+            
+        };*/
+
+  {% include '::cart/countItem.html.twig' %}     
+
+
+
+     /**
+     * @Route("/panier/quantite/{cart}")
+     * 
+     */
+
+     public function CountItemAction($cart){
+
+        
+
+
+
+        
+
+        $cartItemRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:CartItem");
+      
+        $cartItems = $cartItemRepo->findBy(
+             array('cart'=>$cart)
+            
+        );
+
+        $num=count($cartItems);
+        /*echo($num);
+        die();*/
+        
+        $params = array (
+            "cart"     => $cart,
+            "num"   =>$num,
+            'cartItem' => $cartItems,
+        
+
+        
+        );
+
+          
+
+
+       return $this->render("cart/countItem.html.twig",$params);
+
+        
+     }
+
+ }
+ 
+  /**
+     *
+     * @Route("/panier/{id}")
+     */
+    public function findCartAction($id)
+
+    {
+        $params = array();
+
+        $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
+      
+
+        $cart = $cartRepo->findBy(
+            array('id'=>$id,'status'=>"")
+         );   
+        $params = array (
+            "cart" => $cart,
+        
+        );
+        /*print_r($cart);
+        die();*/
+
+        return $this->render("cart/cart.html.twig",$params);
+    }
+
+    {{ path('bdloc_app_cart_findcart', {'id':app.user.id}) }}

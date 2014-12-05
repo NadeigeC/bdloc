@@ -11,27 +11,54 @@ class CartController extends Controller
 {
     /**
      *
-     * @Route("/panier/{id}")
+     * @Route("/panier/affiche")
      */
-    public function findCartAction($id)
+    public function findCartAction()
 
     {
-        $params = array();
+        $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
+        $user = $this->getUser();
 
+        /*print_r($user);
+        die();*/
+       
+        
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
       
+        $cart = $cartRepo->findOneBy(
+             array('user'=>$user,'status'=>"courant")
+           
+        );
 
-        $cart = $cartRepo->find($id);
-      
-
-        $params = array (
+         $params = array (
             "cart" => $cart,
-        
+            
         );
         /*print_r($cart);
         die();*/
 
         return $this->render("cart/cart.html.twig",$params);
+
+
+
+
+
+        /*$params = array();
+
+        $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
+      
+
+        $cart = $cartRepo->findBy(
+            array('id'=>$id,'status'=>"")
+         );   
+        $params = array (
+            "cart" => $cart,
+        
+        );
+        /*print_r($cart);
+        die();
+
+        return $this->render("cart/cart.html.twig",$params);*/
     }
 
      /**
@@ -56,15 +83,16 @@ class CartController extends Controller
      }
 
      /**
-     * @Route("/panier/validation/{id}/{user}")
+     * @Route("/panier/validation/{id}")
      */
 
-     public function validCartAction($id,$user){
+     public function validCartAction($id){
 
         // Pénalités
+        /*$userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
+        $user = $userRepo->find($user);*/
         $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
-        $user = $userRepo->find($user);
-
+        $user = $this->getUser();
       
         $params = array();
         $fineRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Fine");
@@ -73,9 +101,7 @@ class CartController extends Controller
             array('user'=>$user,'status'=>'a payer')
             
         );
-
-              
-
+           
 
         $params = array (
             "fines" => $fines,
@@ -103,9 +129,9 @@ class CartController extends Controller
 
             $montant=$fines[$i]->getMontant();
             $total=$total+$montant;
-            }                
-      
+            } 
 
+    
              $params = array (
                 "cart" => $cart,
                 "fines" =>$fines,
@@ -114,10 +140,7 @@ class CartController extends Controller
             
             );
 
-         
-
-
-        
+                 
         return $this->render("cart/fine.html.twig",$params);
 
          }
@@ -130,11 +153,11 @@ class CartController extends Controller
       
 
         $cart = $cartRepo->find($id);
-        $cart->setStatus("valide");
+        //$cart->setStatus("valide");
 
 
-        $em = $this->getDoctrine()->getManager();
-        $em->flush();
+        //$em = $this->getDoctrine()->getManager();
+        //$em->flush();
 
         /*print_r($cart);
          die();*/
@@ -159,18 +182,22 @@ class CartController extends Controller
         );
 
 
-        return $this->render("cart/valid.html.twig",$params);
+        return $this->render("cart/order.html.twig",$params);
        
 
      }
 
      /**
-     * @Route("/panier/amende/{id}/{user}")
+     * @Route("/panier/amende/{id}")
      */
 
-      public function payFinesAction($user,$id){
+      public function payFinesAction($id){
 
         $params = array();
+
+        $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
+        $user = $this->getUser();
+
         $fineRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Fine");
 
         $fines = $fineRepo->findByUser($user);
@@ -194,10 +221,9 @@ class CartController extends Controller
 
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
       
-
-        $cart = $cartRepo->find($id);
-      
-
+        $cart = $cartRepo->findBy(
+                array('id'=>$id,'status'=>"courant")
+         );      
         $params = array (
             "cart" => $cart,
         
@@ -207,6 +233,89 @@ class CartController extends Controller
 
 
         return $this->render("cart/list.html.twig",$params);
+
+    }
+
+     /**
+     * @Route("/panier")
+     * 
+     */
+
+     public function CountItemAction(){
+
+        $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
+        $user = $this->getUser();
+
+        /*print_r($user);
+        die();*/
+       
+        
+        $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
+      
+        $cart = $cartRepo->findBy(
+             array('user'=>$user,'status'=>"courant")
+           
+        );
+
+
+
+
+        $cartItemRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:CartItem");
+      
+        $cartItems = $cartItemRepo->findBy(
+             array('cart'=>$cart)
+            
+        );
+
+        $num=count($cartItems);
+        /*echo($num);
+        die();*/
+        
+        $params = array (
+            //"cart"     => $cart,
+            "num"   =>$num,
+            //'cartItem' => $cartItems,
+            //'user'=>$user,
+
+        
+        );
+
+          
+
+
+       return $this->render("cart/countItem.html.twig",$params);
+
+        
+     }
+
+      /**
+     * @Route("/commande/validation/{id}")
+     */
+
+     public function validOrderAction($id){
+
+        $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
+        $user = $this->getUser();
+
+        /*print_r($user);
+        die();*/
+       
+        
+        $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
+      
+        $cart = $cartRepo->findBy(
+             array('user'=>$user)
+           
+        );
+        for ($i=0;$i<count($cart);$i++){
+            $cart[$i]->setStatus("valide");
+        }
+
+        //$cart->setStatus("valide");
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+
+        return $this->render("cart/validOrder.html.twig");
 
     }
  }
