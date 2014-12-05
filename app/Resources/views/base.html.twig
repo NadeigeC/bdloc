@@ -37,7 +37,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav" id="navbar-left">
                         <li>
-                            <a href="{{ path('bdloc_app_book_allbooks', {'page':1}) }}">Les BDs</a>
+                            <a href="{{ path('bdloc_app_book_allbooks', {'page':1, 'nombreParPage': 12, 'direction': 'ASC', 'entity': 'dateCreated'}) }}">Les BDs</a>
                         </li>
                         <li>
                         {% if app.user %}
