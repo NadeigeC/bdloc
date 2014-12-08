@@ -13,14 +13,6 @@
 
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
 
-
-         {% block javascripts %}
-            <script src="{{ asset('js/jquery.js') }}"></script>
-            <script src="{{ asset('js/app.js') }}"></script>
-            <script src="{{ asset('js/jquery.event.move.js') }}"></script>
-            <script src="{{ asset('js/responsive-slider.js') }}"></script>
-        {% endblock %}
-
     </head>
 
     <body>
@@ -124,6 +116,11 @@
         </footer>
     <!-- END FOOTER -->
 </div>
-    
+    {% block javascripts %}
+            <script src="{{ asset('js/jquery.js') }}"></script>
+            <script src="{{ asset('js/app.js') }}"></script>
+            <script src="{{ asset('js/jquery.event.move.js') }}"></script>
+            <script src="{{ asset('js/responsive-slider.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

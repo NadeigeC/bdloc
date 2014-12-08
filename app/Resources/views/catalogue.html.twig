@@ -3,130 +3,127 @@
 {% block title %}Catalogue | Bdloc{% endblock %}
 
 {% block main_content %}
-<!-- Page Content -->
-<div class="container">
+
 
 	
-	{# J'affiche les formulaires de recherche & de filtre #}
-	<div class="row ">
-		<div class="col-xs-12 col-sm-6 col-md-6 formsearch">
+
+	
+
+	<!--J'affiche les formulaires de recherche & de filtre-->
+	<div class="row">
+  		
+
+	<!--Pagination -->
+	<div class="col-md-12"> 
+
+		    	<div id="icon-position" class="position-r">
+		          	
+		          	 <!-- J'affiche page précédente, sauf si on se trouve sur la première page -->
+		          	{% if page > 1 %}
+				    <a class="pagination" href="{{ path('bdloc_app_book_allbooks', {'page': page-1, 'nombreParPage': nombreParPage, 'direction': direction, 'entity': entity}) }}"><span class="glyphicon glyphicon-chevron-left"></span>Page précédente </a> 
+					{% endif %}
+
+		          	<!-- J'affiche page suivante, sauf si on se trouve sur la dernière page -->
+		          	{% if page < nombrePage %}
+		          	
+					<a class="pagination" href="{{ path('bdloc_app_book_allbooks', {'page': page+1, 'nombreParPage': nombreParPage, 'direction': direction, 'entity': entity}) }}"> Page suivante<span class="glyphicon glyphicon-chevron-right"></span></a>
+					{% endif %}
+				</div>
+	</div> 
+	<!--Fin de Pagination -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  		<div class="col-md-3">
+			<!-- Filtre de recherche -->
 			<div id="formsearch">
-			{{ form(bookSearchForm) }}
+				{{ form(bookSearchForm) }}
 			</div>
-		</div>
-
-
-	
-		<div class="col-md-3 col-md-offset-3"> 
-	    	<div id="icon-position" class="btn-group pagination">
-	          	
-	          	 {# J'affiche page précédente, sauf si on se trouve sur la première page #}
-	          	{% if page > 1 %}
-	          	<button class="btn btn-default pagination" value="left" type="button">
-	          	<span class="glyphicon glyphicon-arrow-left"></span>
-			    <a class="pagination" href="{{ path('bdloc_app_book_allbooks', {page: page-1, nombreparpage: nombreParPage, direction: direction, entity: entity, serie: serie}) }}">Page précédente</a> 
-				{% endif %}
-				</button>
-
-	          	{# J'affiche page suivante, sauf si on se trouve sur la dernière page #}
-	          	{% if page < nombrePage %}
-	          	<button class="btn btn-default pagination" value="right" type="button">
-				<a class="pagination" href="{{ path('bdloc_app_book_allbooks', {page: page+1, nombreparpage: nombreParPage, direction: direction, entity: entity, serie: serie}) }}">Page suivante</a>
-				<span class="glyphicon glyphicon-arrow-right"></span>
-				{% endif %}
-				
-				</button>
-
-	    </div> 
-	</div>
-
-	</div>
-
-
-	{# Filtre de recherche #}
-	<div class="row catalogue">
-		<div class="col-xs-12 col-sm-6 col-md-3">
+			
+			<!--Filtre categories-->
 			<div id="formfilter">
 				{{ form(bookFilterForm) }}
 			</div>
 		</div>
+
+	
+
+		<div class="col-md-9">
 		
-		{# Affichage des BDs #}
-		{% for book in books %}
-		
-		
-		<div class="col-xs-12 col-md-4 col-lg-3 ">
+			<!-- Affichage des BDs -->
+			{% for book in books %}
+			
+			
+			
 			<div class="thumbnail">
-			{# Affichage l'image #}
+			<!-- Affichage l'image -->
 			<a href="{{ path('bdloc_app_book_details', {id: book.id}) }}">
 				<img src="{{ asset('img/Couvertures/Couvertures/' ~ book.cover ~ '') }}" alt="{{ book.title }}" class="catalogue_img" />
 			</a>
-
-		<div class="caption">
-		{# Affichage le titre #}
-			<div class="pointiller">
-			<h1>
-				<a href="{{ path('bdloc_app_book_details', {id: book.id}) }}">{{ book.title }}</a>
-			</h1>
 			
-			{# Affichage l'auteur #}
+
+			<div class="caption">
+			<!-- Affichage le titre -->
+			<h1><a href="{{ path('bdloc_app_book_details', {id: book.id}) }}">{{ book.title }}</a></h1>
+			
+			<!-- Affichage l'auteur -->
 			<p class="texte-rouge">{{ book.illustrator.firstName }} {{ book.illustrator.lastName }}</p>
+
+			<div class="pointiller"></div>
+			
+			<!-- Affichage le detail -->
+			<p><a href="{{ path('bdloc_app_book_details', {id: book.id}) }}" class="texte-noir" >Afficher plus de détails !</a></p>
+			<!-- Affichage du stock -->
+			<h6 class="texte-rouge">Plus que {{ book.stock }} en stock !</h6>
+			<!-- Bouton Ajouter au panier -->
+			<button type="submit" class="btn btn-panier">Ajouter au panier</button><br>
+
+			
+			
+			</div>					
 			</div>
 
-				<div class="row">
-				  <div class="col-md-12 ">
-				    <div class="row ">
-				      <div class="col-md-7">
-				        	
-							{# Affichage le detail #}
-							<p><a href="{{ path('bdloc_app_book_details', {id: book.id}) }}" class="texte-noir" >Afficher plus de détails !</a></p>
-							{# Affichage du stock #}
-							<h6>Plus que {{ book.stock }} en stock !</h6>
-
-							
-				      </div>
-				      <div class="col-md-5">
-						{# Bouton Ajouter au panier #}
-							<button type="submit" class="btn btn-panier">Ajouter au panier</button><br>
-							
-				      </div>
-				    </div>
-				  </div>
-				</div>
-			</div>
+			{% endfor %}
 		</div>
-</div>
-		{# fin Affichage des BDs #}
-		{% endfor %}
-</div>
-
-
-
-
-
-	<div class="row">		
-		<div class="col-xs-12"> 
-	    	<div id="icon-position" class="btn-group pagination">
-	          	
-	          	 {# J'affiche page précédente, sauf si on se trouve sur la première page #}
-	          	{% if page > 1 %}
-	          	<button class="btn btn-default pagination" value="left" type="button">
-	          	<span class="glyphicon glyphicon-arrow-left"></span>
-			    <a class="pagination" href="{{ path('bdloc_app_book_allbooks', {page: page-1, 'nombreParPage': nombreParPage, 'direction': direction, 'entity': entity}) }}">Page précédente</a> 
-				{% endif %}
-				</button>
-
-	          	{# J'affiche page suivante, sauf si on se trouve sur la dernière page #}
-	          	{% if page < nombrePage %}
-	          	<button class="btn btn-default pagination" value="right" type="button">
-				<a class="pagination" href="{{ path('bdloc_app_book_allbooks', {page: page+1, 'nombreParPage': nombreParPage, 'direction': direction, 'entity': entity}) }}">Page suivante</a>
-				<span class="glyphicon glyphicon-arrow-right"></span>
-				{% endif %}
-				
-				</button>
-			</div>
-	    </div> 
 	</div>
+	<!--fin Affichage des BDs -->
+
+
+
+	<!--Pagination -->
+	<div class="col-md-12"> 
+
+		    	<div id="icon-position" class="position-r">
+		          	
+		          	 <!-- J'affiche page précédente, sauf si on se trouve sur la première page -->
+		          	{% if page > 1 %}
+				    <a class="pagination" href="{{ path('bdloc_app_book_allbooks', {'page': page-1, 'nombreParPage': nombreParPage, 'direction': direction, 'entity': entity}) }}"><span class="glyphicon glyphicon-chevron-left"></span>Page précédente </a> 
+					{% endif %}
+
+		          	<!-- J'affiche page suivante, sauf si on se trouve sur la dernière page -->
+		          	{% if page < nombrePage %}
+		          	
+					<a class="pagination" href="{{ path('bdloc_app_book_allbooks', {'page': page+1, 'nombreParPage': nombreParPage, 'direction': direction, 'entity': entity}) }}"> Page suivante<span class="glyphicon glyphicon-chevron-right"></span></a>
+					{% endif %}
+				</div>
+	</div> 
+	<!--Fin de Pagination -->
+
+
 </div>
 <!-- /.container -->
 {% endblock %}
