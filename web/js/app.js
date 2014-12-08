@@ -73,11 +73,8 @@ app = {
 
         // Affiche ma BD
        	$(".thumbnail").on("click", "a", this.maBd)
+       	$(".thumbnail").on("click", this.maBd)
 
-       	// pagination
-       	$('.pagination').on("click", this.maPagination)
-
-       	
 	},
 
 	myCriteres: function(event) {
@@ -131,21 +128,7 @@ app = {
 		return false
 	},
 
-
-	maPagination: function(event) {
-		console.log("pagination ok")
-
-		event.preventDefault()
-
-
-	}
-
-	
-
-	
-
-
-
+}
 /************************
  * 	Chargement du DOM 	*
  ************************/
