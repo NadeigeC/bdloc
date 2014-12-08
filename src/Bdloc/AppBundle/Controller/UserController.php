@@ -23,6 +23,7 @@
     use Bdloc\AppBundle\Form\UpdateProfileType;
     use Bdloc\AppBundle\Form\UpdatePasswordType;
     use Bdloc\AppBundle\Form\UpdateDropSpotType;
+    use Bdloc\AppBundle\Form\QuitBdlocType;
 
 
     class UserController extends Controller {
@@ -153,7 +154,7 @@
                 'Vous êtes désormais abonné à BDLOC !'
                 );
 
-                return $this->redirect($this->generateUrl("bdloc_app_book_allbooks"));
+                return $this->redirect($this->generateUrl("bdloc_app_book_allbooks", array('page'=>1, 'nombreParPage'=> 12, 'direction'=> 'ASC', 'entity'=> 'dateCreated')));
         }
 
             $params['creditCardForm'] = $creditCardForm->createView();
@@ -163,15 +164,11 @@
         }
 
     /**
-    *@Route("/profile/{id}")
+    *@Route("/profile")
     */
-    public function viewProfileAction(Request $request, $id){
+    public function viewProfileAction(Request $request){
 
-        //select
-        $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
-
-        //la méthode find() du repository s'attend à recevoir la clef primaire en paramètre
-        $user = $userRepo->find($id);
+        $user = $this->getUser();
 
         $params = array(
             "user" => $user);
@@ -333,7 +330,7 @@
     /**
     * @Route("/desabonnement")
     */
-    /*    public function quitBdlocAction(Request $request){
+    public function quitBdlocAction(Request $request){
 
         $params = array();
 
@@ -347,35 +344,36 @@
             if ($quitBdlocForm->isValid()){
                 $user->setDateModified( new \DateTime());
                 $user->setDateCreated( new \DateTime());
+                $user->setIsActive(0);
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
                 $em->flush();
 
-                return $this->redirect( $this->generateUrl("bdloc_app_user_creditcard"));
-
-            //envoyer un mail
+                //envoyer un mail
                 $message = \Swift_Message::newInstance()
-                ->setSubject("Reinitialisez votre mot de passe")
+                ->setSubject("Désonnement de BDLOC")
                 ->setFrom('site@bdloc.com')
-                ->setTo('nadeige.pirot@gmail.com')
+                ->setTo('nadeige.pirot@gmail.com', $user->getEmail())
                 ->setContentType('text/html')
                 ->setBody(
-                    $this->renderView('emails/desabonnement.html.twig', array('user'=>$current_user))
+                    $this->renderView('emails/desabonnement.html.twig', array('user'=>$user, 'raisons'=>$quitBdlocForm->get('raisons')->getData()))
                     )
                 ;
                 $this->get('mailer')->send($message);
 
-                $request->getSession()->getFlashBag()->add(
-                'notice',
-                'Le message a bien été envoyé !'
-                );
+
+                return $this->redirect($this->generateUrl("logout"));
+
+
+
+
 
 
         }
+                $params['quitBdlocForm'] = $quitBdlocForm->createView();
+                return $this->render("user/quit_bdloc.html.twig", $params);
 
-return $this->render("user/quit_bdloc.html.twig");
-
-}*/
+}
 
 }
