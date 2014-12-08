@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use \Bdloc\AppBundle\Entity\Cart;
 use \Bdloc\AppBundle\Entity\CartItem;
+use Symfony\Component\HttpFoundation\Request;
+
 
 class CartController extends Controller
 {
@@ -18,10 +20,6 @@ class CartController extends Controller
     {
         $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
         $user = $this->getUser();
-
-        /*print_r($user);
-        die();*/
-
 
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
 
@@ -37,26 +35,7 @@ class CartController extends Controller
 
         return $this->render("cart/cart.html.twig",$params);
 
-
-
-
-
-        /*$params = array();
-
-        $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
-
-
-        $cart = $cartRepo->findBy(
-            array('id'=>$id,'status'=>"")
-         );
-        $params = array (
-            "cart" => $cart,
-
-        );
-        /*print_r($cart);
-        die();
-
-        return $this->render("cart/cart.html.twig",$params);*/
+       
     }
 
      /**
@@ -87,8 +66,7 @@ class CartController extends Controller
      public function validCartAction($id){
 
         // Pénalités
-        /*$userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
-        $user = $userRepo->find($user);*/
+        
         $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
         $user = $this->getUser();
 
@@ -107,9 +85,6 @@ class CartController extends Controller
             "id"    => $id,
         );
 
-
-       /*print_r($cart);
-        die();*/
 
         if ($fines){
 
@@ -139,7 +114,7 @@ class CartController extends Controller
             );
 
 
-        return $this->render("cart/fine.html.twig",$params);
+            return $this->render("cart/fine.html.twig",$params);
 
          }
 
@@ -151,16 +126,9 @@ class CartController extends Controller
 
 
         $cart = $cartRepo->find($id);
-        //$cart->setStatus("valide");
-
-
-        //$em = $this->getDoctrine()->getManager();
-        //$em->flush();
-
-        /*print_r($cart);
-         die();*/
-
-         //Calcul date de livraison
+       
+       
+        //Calcul date de livraison
          $dateCreated=$cart->getDateCreated();
 
         /*$dateDelivery = date('Y-m-d', strtotime($dateCreated.' +15 days'));
@@ -244,10 +212,7 @@ class CartController extends Controller
         $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
         $user = $this->getUser();
 
-        /*print_r($user);
-        die();*/
-
-
+       
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
 
         $cart = $cartRepo->findBy(
@@ -266,16 +231,11 @@ class CartController extends Controller
         );
 
         $num=count($cartItems);
-        /*echo($num);
-        die();*/
+       
 
         $params = array (
-            //"cart"     => $cart,
             "num"   =>$num,
-            //'cartItem' => $cartItems,
-            //'user'=>$user,
-
-
+          
         );
 
 
@@ -290,7 +250,7 @@ class CartController extends Controller
      * @Route("/commande/validation/{id}")
      */
 
-     public function validOrderAction($id){
+     public function validOrderAction(Request $request, $id){
 
         $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
         $user = $this->getUser();
@@ -303,9 +263,36 @@ class CartController extends Controller
 
         );
 
+  $cartItemRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:CartItem");
+
+        $cartItems = $cartItemRepo->findBy(
+             array('cart'=>$cart)
+
+);      
+
         for ($i=0;$i<count($cart);$i++){
             $cart[$i]->setStatus("valide");
-        }
+        };
+
+
+          $em = $this->getDoctrine()->getManager();
+        $em->flush();
+
+
+
+for ($i=0;$i<count($cartItems);$i++){
+
+            $book=$cartItems[$i]->getBook();
+
+            //for ($i=0;$i<count($book);$i++){
+            $book->setStock("50");
+            //}
+
+
+};
+
+
+
 
 
         $em = $this->getDoctrine()->getManager();
@@ -314,6 +301,8 @@ class CartController extends Controller
         return $this->render("cart/validOrder.html.twig");
 
     }
+
+
 
     /**
      * @Route("/panier/ajouter/{id}")
@@ -344,6 +333,27 @@ class CartController extends Controller
         $book = $bookRepo->findOneBy(
              array('id'=>$id)
         );
+        $cartItemRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:CartItem");
+
+        $cartItems = $cartItemRepo->findBy(
+             array('cart'=>$cart)
+
+        );
+
+        $num=count($cartItems);
+
+       
+        if($num==10){
+
+            $request = $this->getRequest(); 
+            $request->getSession()->getFlashBag()->add(
+                'notice',
+                'Vous ne pouvez commander que 10 bds au maximum !'
+            );
+
+            return $this->redirect($this->generateUrl('bdloc_app_book_allbooks', array('page'=>1, 'nombreParPage'=> 12, 'direction'=> 'ASC', 'entity'=> 'dateCreated') ));
+        }
+
 
         $cartItem = new CartItem();
 
@@ -360,8 +370,7 @@ class CartController extends Controller
             'id'=>$id
         );
 
-       //return $this->render("cart/addCart.html.twig");
-
+       
        return $this->redirect($this->generateUrl('bdloc_app_book_allbooks', array('page'=>1, 'nombreParPage'=> 12, 'direction'=> 'ASC', 'entity'=> 'dateCreated') ));
 
     }
