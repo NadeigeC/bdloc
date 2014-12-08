@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use \Bdloc\AppBundle\Entity\Cart;
 use \Bdloc\AppBundle\Entity\CartItem;
+use \Bdloc\AppBundle\Form\DropSpotType;
 
 class CartController extends Controller
 {
@@ -176,7 +177,6 @@ class CartController extends Controller
          $params = array (
             "cart" => $cart,
             "user" => $user,
-
         );
 
 

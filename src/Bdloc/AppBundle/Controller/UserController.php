@@ -163,15 +163,12 @@
         }
 
     /**
-    *@Route("/profile/{id}")
+    *@Route("/profile/")
     */
-    public function viewProfileAction(Request $request, $id){
-
-        //select
-        $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
+    public function viewProfileAction(Request $request){
 
         //la méthode find() du repository s'attend à recevoir la clef primaire en paramètre
-        $user = $userRepo->find($id);
+        $user = $this->getUser();
 
         $params = array(
             "user" => $user);
@@ -333,7 +330,7 @@
     /**
     * @Route("/desabonnement")
     */
-    /*    public function quitBdlocAction(Request $request){
+    public function quitBdlocAction(Request $request){
 
         $params = array();
 
@@ -347,6 +344,7 @@
             if ($quitBdlocForm->isValid()){
                 $user->setDateModified( new \DateTime());
                 $user->setDateCreated( new \DateTime());
+                $user->setIsActive(0);
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
@@ -376,6 +374,6 @@
 
 return $this->render("user/quit_bdloc.html.twig");
 
-}*/
+}
 
 }
