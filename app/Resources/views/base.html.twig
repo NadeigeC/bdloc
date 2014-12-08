@@ -14,12 +14,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
 
 
-         {% block javascripts %}
-            <script src="{{ asset('js/jquery.js') }}"></script>
-            <script src="{{ asset('js/app.js') }}"></script>
-            <script src="{{ asset('js/jquery.event.move.js') }}"></script>
-            <script src="{{ asset('js/responsive-slider.js') }}"></script>
-        {% endblock %}
+
 
     </head>
 
@@ -57,7 +52,9 @@
                         </li>
                         <li>
                         {% if app.user %}
-                            <a href="{{ path('bdloc_app_cart_findcart', {'id':app.user.id}) }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Mon panier ( {{render (controller('BdlocAppBundle:Cart:countItem'))}})</a>
+
+                            <a href="{{ path('bdloc_app_cart_findcart', {'id':app.user.id}) }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Mon panier ({{ render(controller('BdlocAppBundle:Cart:countItem')) }} )</a>
+
                         {% endif %}
                         </li>
                     </ul>
@@ -124,6 +121,11 @@
         </footer>
     <!-- END FOOTER -->
 </div>
-    
+{% block javascripts %}
+            <script src="{{ asset('js/jquery.js') }}"></script>
+            <script src="{{ asset('js/app.js') }}"></script>
+            <script src="{{ asset('js/jquery.event.move.js') }}"></script>
+            <script src="{{ asset('js/responsive-slider.js') }}"></script>
+{% endblock %}
     </body>
 </html>

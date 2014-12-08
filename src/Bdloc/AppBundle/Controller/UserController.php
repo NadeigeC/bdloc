@@ -333,7 +333,7 @@
     /**
     * @Route("/desabonnement")
     */
-/*    public function quitBdlocAction(Request $request){
+    /*    public function quitBdlocAction(Request $request){
 
         $params = array();
 
