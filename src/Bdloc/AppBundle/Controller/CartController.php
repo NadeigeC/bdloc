@@ -227,9 +227,6 @@ class CartController extends Controller
 
         );
 
-
-
-
         return $this->render("cart/list.html.twig",$params);
 
     }
