@@ -52,7 +52,7 @@ popup = {
 
 	addBack: function() {
 
-		this.overlay.append($('<a id="retour">X</a>'))
+		this.overlay.append($('<a id="retour" class="glyphicon glyphicon-remove"></a>'))
 	}
 }
 
