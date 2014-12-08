@@ -401,7 +401,9 @@ form h6 a:hover {
 	color: #fff;
 	background-color: #AA161A;
 	border-color: #AA161A;
+
 }
+
 
 .btn-default-red:hover{
 	color: #333;
@@ -436,6 +438,7 @@ form h6 a:hover {
 	margin-left: 20px;
 }
 
+<<<<<<< HEAD
 
 #formfilter{
 	margin-bottom:20px;
@@ -479,7 +482,7 @@ padding-right:50px;
 	border-color: #adadad;
 }
 
-
+#map { height: 180px; }
 
 /****************************************************
 *													*

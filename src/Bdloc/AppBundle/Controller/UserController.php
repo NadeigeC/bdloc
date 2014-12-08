@@ -23,6 +23,7 @@
     use Bdloc\AppBundle\Form\UpdateProfileType;
     use Bdloc\AppBundle\Form\UpdatePasswordType;
     use Bdloc\AppBundle\Form\UpdateDropSpotType;
+    use Bdloc\AppBundle\Form\QuitBdlocType;
 
 
     class UserController extends Controller {
@@ -48,7 +49,8 @@
             //salt, token, roles
             //dates directement dans l'entité avec les lifecyclecallbaks
                 $user->setRoles( array("ROLE_USER"));
-                $user->setIsActive(1);
+                $user->isEnabled()->setIsActive(1);
+
                 $user->setDateModified( new \DateTime());
                 $user->setDateCreated( new \DateTime());
 
@@ -82,6 +84,7 @@
         }
 
             $params['registerForm'] = $registerForm->createView();
+
 
             return $this->render("user/register.html.twig", $params);
 
@@ -152,7 +155,7 @@
                 'Vous êtes désormais abonné à BDLOC !'
                 );
 
-                return $this->redirect($this->generateUrl("bdloc_app_default_home"));
+                return $this->redirect($this->generateUrl("bdloc_app_book_allbooks", array('page'=>1, 'nombreParPage'=> 12, 'direction'=> 'ASC', 'entity'=> 'dateCreated')));
         }
 
             $params['creditCardForm'] = $creditCardForm->createView();
@@ -162,15 +165,11 @@
         }
 
     /**
-    *@Route("/profile/{id}")
+    *@Route("/profile")
     */
-    public function viewProfileAction(Request $request, $id){
+    public function viewProfileAction(Request $request){
 
-        //select
-        $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
-
-        //la méthode find() du repository s'attend à recevoir la clef primaire en paramètre
-        $user = $userRepo->find($id);
+        $user = $this->getUser();
 
         $params = array(
             "user" => $user);
@@ -330,14 +329,52 @@
         }
 
     /**
-    * @Route("/désabonnement")
+    * @Route("/desabonnement")
     */
     public function quitBdlocAction(Request $request){
 
+        $params = array();
 
-            return $this->render("user/quit_bdloc.html.twig");
+            $user = $this->getUser();
+            $quitBdlocForm = $this->createForm(new QuitBdlocType(), $user, array('validation_groups' => array('registration', 'Default')));
+
+         //gère la soumission du form
+            $request = $this->getRequest();
+            $quitBdlocForm->handleRequest($request);
+
+            if ($quitBdlocForm->isValid()){
+                $user->setDateModified( new \DateTime());
+                $user->setDateCreated( new \DateTime());
+                $user->setIsActive(0);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+                $em->flush();
+
+                //envoyer un mail
+                $message = \Swift_Message::newInstance()
+                ->setSubject("Désonnement de BDLOC")
+                ->setFrom('site@bdloc.com')
+                ->setTo('nadeige.pirot@gmail.com', $user->getEmail())
+                ->setContentType('text/html')
+                ->setBody(
+                    $this->renderView('emails/desabonnement.html.twig', array('user'=>$user, 'raisons'=>$quitBdlocForm->get('raisons')->getData()))
+                    )
+                ;
+                $this->get('mailer')->send($message);
+
+
+                return $this->redirect($this->generateUrl("logout"));
+
+
+
+
+
 
         }
+                $params['quitBdlocForm'] = $quitBdlocForm->createView();
+                return $this->render("user/quit_bdloc.html.twig", $params);
 
+}
 
 }

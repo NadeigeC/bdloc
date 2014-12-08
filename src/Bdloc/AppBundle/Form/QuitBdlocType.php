@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class DropSpotType extends AbstractType
+class QuitBdlocType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,22 +16,17 @@ class DropSpotType extends AbstractType
     {
         $builder
 
+            ->add('raisons', 'textarea', array(
+                'attr' => array('class' => 'form-control','rows' => '10'),
+                'mapped'=>false,
+                'label' => false))
 
-            ->add('dropSpot', 'entity', array(
-                "label" => "Les points relais",
-                    'class'=>'Bdloc\AppBundle\Entity\DropSpot',
-                   'property'=>'fullAdress',
-                   'empty_value' => 'Choisissez un point relais'))
+            ->add('submit', 'submit', array(
+                "label" => "Quitter BDLOC !",
+                'attr' => array(
+                'class' => 'btn red-button btn-default-red')
+                    ))
 
-
-            ->add('nextStep','submit', array(
-                "label" =>"Confirmation",
-                'attr' => array('class'=>'btn btn-primary')
-                ))
-
-             /*->add('previousStep', 'submit', array(
-                    'validation_groups' => false,
-                ))*/
         ;
     }
 
@@ -50,6 +45,6 @@ class DropSpotType extends AbstractType
      */
     public function getName()
     {
-        return 'bdloc_appbundle_register';
+        return 'bdloc_appbundle_user';
     }
 }

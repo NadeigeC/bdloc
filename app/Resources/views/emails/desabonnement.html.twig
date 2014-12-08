@@ -1,0 +1,16 @@
+<html>
+    <head>
+    </head>
+        <body>
+
+            {% block content %}
+            <h1>BDLOC ! désabonnement</h1>
+            <hr>
+            <h2>Confirmation de votre désabonnement</h2>
+            <p>Vous êtes désormais officiellement désabonné de Bdloc. Les raisons que vous nous avez indiquées sont les suivantes :</p>
+            <p>{{raisons}}</p>
+            <a href="{{ url('bdloc_app_default_home')  }}" title="Bdloc, premier de Bd en ligne">Un regret ? Retourner sur BDLOC</a>
+            {% endblock %}
+
+        </body>
+</html>

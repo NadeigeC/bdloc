@@ -73,10 +73,7 @@ app = {
 
         // Affiche ma BD
        	$(".thumbnail").on("click", "a", this.maBd)
-
-       	// pagination
-       	$('.pagination').on("click", this.maPagination)
-
+       	$(".thumbnail").on("click", this.maBd)
 
 	},
 
@@ -132,8 +129,6 @@ app = {
 	},
 
 }
-
-
 /************************
  * 	Chargement du DOM 	*
  ************************/
