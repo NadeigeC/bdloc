@@ -328,7 +328,7 @@ class CartController extends Controller
              array('user'=>$user, 'status'=>'courant')
         );
 
-        if(count($cart)==0){git status
+        if(count($cart)==0){
              $cart = new Cart();
              $cart -> setUser($user);
              $cart -> setStatus('courant');
@@ -361,7 +361,7 @@ class CartController extends Controller
         );
 
        //return $this->render("cart/addCart.html.twig");
-       return $this->redirect($this->generateUrl("bdloc_app_book_allbooks") );
+       return $this->redirect($this->generateUrl("bdloc_app_book_allbooks"));
         
 
 
