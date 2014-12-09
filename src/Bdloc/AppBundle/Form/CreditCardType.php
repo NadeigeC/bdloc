@@ -16,28 +16,49 @@ class CreditCardType extends AbstractType
     {
         $builder
             ->add('paypalId', 'text', array(
-                'label'=>'Identifiant Paypal'))
+                    'label'=>'Identifiant Paypal :',
+                    'attr' => array(
+                    'class' => 'form-control')
+                ))
+
             ->add('validUntil', 'date', array(
-                    'label'=>'Date d\'Expiration',
+                    'label'=>false,
                     'format' =>'MMM-yyyy  d',
                     'years' => range(date('Y'), date('Y')+12),
                     'days' => array(1),
-                    'empty_value' => array('year' => 'Année', 'month' => 'Mois', 'day' => false)))
+                    'empty_value' => array(
+                    'year' => 'Année',
+                    'month' => 'Mois',
+                    'day' => false),
+                ))
+
             ->add('creditCardType','choice', array(
-                'choices'   => array(
-                'empty_value' => 'Type de carte',
-                'mastercard' => 'MasterCard',
-                 'visa' => 'Visa',
-                 'american_express' => 'Amex',
-                 'eurocard' => 'Eurocard',
-                 )))
+                    'label'=>'Type de carte',
+                    'attr' => array(
+                    'class' => 'form-control'),
+                    'choices'   => array( 
+                    'empty_value' => 'Type de carte',
+                    'mastercard' => 'MasterCard',
+                    'visa' => 'Visa',
+                    'american_express' => 'Amex',
+                    'eurocard' => 'Eurocard')
+                 ))
+
             ->add('cryptoCard', 'text', array(
-                'label'=>'Cryptogramme'))
+                    'label'=>'Cryptogramme',
+                    'attr' => array(
+                    'class' => 'form-control')
+                ))
+
             ->add('ownerIdentity','text', array(
-                'label'=>'Nom du propriétaire de la carte'))
+                    'label'=>'Nom du propriétaire de la carte',
+                    'attr' => array(
+                    'class' => 'form-control')
+                ))
+
             ->add('submit','submit', array(
-                "label" =>"Confirmation",
-                'attr' => array('class'=>'btn btn-primary')
+                    'label' =>"Confirmation",
+                    'attr' => array('class'=>'btn red-button btn-default-red')
                 ))
         ;
     }

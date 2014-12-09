@@ -15,14 +15,55 @@ class UpdateProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username')
-            ->add('email')
-            ->add('firstName')
-            ->add('lastName')
-            ->add('adress')
-            ->add('phone')
-            ->add('submit','submit', array(
-                "label" =>"Modifier"
+            ->add('username', 'text', array(
+                 "label" => "Pseudo",
+                 'attr' => array(
+                    'placeholder' => 'Votre pseudo',
+                    'class' => 'form-control')
+
+               ))
+
+            ->add('email', 'email', array(
+                "label" => "Email",
+                'attr' => array(
+                    'placeholder' => 'Votre email',
+                    'class' => 'form-control')
+
+                ))
+
+            ->add('firstName','text', array(
+                "label" => "Prénom",
+                'attr' => array(
+                    'placeholder' => 'Votre prénom',
+                    'class' => 'form-control')
+
+                ))
+
+            ->add('lastName','text', array(
+                "label" => "Nom",
+                'attr' => array(
+                    'placeholder' => 'Votre nom',
+                    'class' => 'form-control')
+
+                ))
+
+            ->add('adress','text', array(
+                    'label' => 'Adresse',
+                    'attr' => array(
+                    'class' => 'form-control')
+                 ))
+
+            ->add('phone', 'text', array(
+                    'label' => 'Téléphone',
+                    'attr' => array(
+                    'placeholder' => 'Ex : 01 45 21 23 40',
+                    'class' => 'form-control')
+                ))
+
+            ->add('submit', 'submit', array(
+                    'label' => 'Modifier',
+                    'attr' => array(
+                    'class' => 'btn red-button btn-default-red')
                 ))
             ;
     }

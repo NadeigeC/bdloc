@@ -49,7 +49,7 @@
             //salt, token, roles
             //dates directement dans l'entité avec les lifecyclecallbaks
                 $user->setRoles( array("ROLE_USER"));
-                $user->isEnabled()->setIsActive(1);
+                $user->setIsActive(1);
 
                 $user->setDateModified( new \DateTime());
                 $user->setDateCreated( new \DateTime());

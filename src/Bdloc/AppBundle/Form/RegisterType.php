@@ -52,17 +52,17 @@ class RegisterType extends AbstractType
                     'type' => 'password',
                     'invalid_message' => 'Les mots de passe doivent correspondre',
                     'options' => array(
-                        'required' => true),
+                    'required' => true),
 
-                    'first_options'  => array(
-                        'label' => 'Mot de passe',
-                        'attr' => array(
+                'first_options'  => array(
+                    'label' => 'Mot de passe',
+                    'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Votre mot de passe')),
 
-                    'second_options' => array(
-                        'label' => 'Confirmez votre mot de passe',
-                        'attr' => array(
+                'second_options' => array(
+                    'label' => 'Confirmez votre mot de passe',
+                    'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Confirmez votre mot de passe')),
 
@@ -72,20 +72,21 @@ class RegisterType extends AbstractType
                     'label' => 'Adresse',
                     'attr' => array(
                     'class' => 'form-control')
-                 ))
+                ))
 
             ->add('phone', 'text', array(
                     'label' => 'Téléphone',
                     'attr' => array(
                     'placeholder' => 'Ex : 01 45 21 23 40',
-                    'class' => 'form-control')))
+                    'class' => 'form-control')
+                ))
 
 
             ->add('nextStep', 'submit', array(
                     'label' => 'Etape suivante',
                     'attr' => array(
                     'class' => 'btn red-button btn-default-red')
-                    ))
+                ))
 
         ;
     }

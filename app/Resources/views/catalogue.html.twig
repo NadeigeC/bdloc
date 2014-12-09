@@ -6,8 +6,8 @@
 
 
 
-	<!--J'affiche les formulaires de recherche & de filtre-->
-	<div class="row">
+<!--J'affiche les formulaires de recherche & de filtre-->
+<div class="row">
   		
 
 	<!--Pagination -->
@@ -58,26 +58,27 @@
 			</a>
 			
 
-			<div class="caption">
-			<!-- Affichage le titre -->
-			<h1><a href="{{ path('bdloc_app_book_details', {id: book.id}) }}">{{ book.title }}</a></h1>
-			
-			<!-- Affichage l'auteur -->
-			<p class="texte-rouge">{{ book.illustrator.firstName }} {{ book.illustrator.lastName }}</p>
+				<div class="caption">
+					<!-- Affichage le titre -->
+					<h1><a href="{{ path('bdloc_app_book_details', {id: book.id}) }}">{{ book.title }}</a></h1>
+					
+					<!-- Affichage l'auteur -->
+					<p class="texte-rouge">{{ book.illustrator.firstName }} {{ book.illustrator.lastName }}</p>
 
 
-			<div class="pointiller"></div>
-			
-			<!-- Affichage le detail -->
-			<p><a href="{{ path('bdloc_app_book_details', {id: book.id}) }}" class="texte-noir" >Afficher plus de détails !</a></p>
-			<!-- Affichage du stock -->
-			<h6 class="texte-rouge">Plus que {{ book.stock }} en stock !</h6>
-			<!-- Bouton Ajouter au panier -->
-			<button type="submit" class="btn btn-panier">Ajouter au panier</button><br>
-
-			
-			
-			</div>					
+					<div class="pointiller"></div>
+					
+					<!-- Affichage le detail -->
+					<p><a href="{{ path('bdloc_app_book_details', {id: book.id}) }}" class="texte-noir" >Afficher plus de détails !</a></p>
+					<!-- Affichage du stock -->
+					<h6 class="texte-rouge">Plus que {{ book.stock }} en stock !</h6>
+					
+					<!-- Bouton Ajouter au panier -->
+					<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
+						<button type="submit" class="btn btn-panier">Ajouter au panier</button>
+					</form>
+					
+				</div>					
 
 			</div>
 
