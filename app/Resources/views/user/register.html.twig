@@ -24,6 +24,7 @@
 {% block javascripts %}
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+<script type="text/javascript" src="https://www.googleapis.com/geolocation/v1/geolocate?key=API_KEY"></script>
 <script>
 
         // On choppe notre input
@@ -37,9 +38,11 @@
             }
         }
 
+
         // On ajoute l'autocomplete
         var autocomplete = new google.maps.places.Autocomplete(input, options);
 
 
 </script>
 {% endblock %}
+

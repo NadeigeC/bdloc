@@ -438,11 +438,11 @@ form h6 a:hover {
 	margin-left: 20px;
 }
 
-<<<<<<< HEAD
-
 #formfilter{
 	margin-bottom:20px;
 }
+
+#map-container { height: 400px; width: 800px; }
 
 /****************************************************
 *													*
@@ -482,7 +482,7 @@ padding-right:50px;
 	border-color: #adadad;
 }
 
-#map { height: 180px; }
+
 
 /****************************************************
 *													*

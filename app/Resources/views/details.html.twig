@@ -10,7 +10,7 @@
 	<div class="row">
 
 	  	<div class="col-xs-12 col-md-12">
-		
+
 		<div class="row">
 			<div class="col-xs-12 col-md-3">
 		<img src="{{ asset('img/Couvertures/' ~ book.cover ~ '') }}" alt="{{ book.title }}" class="img-responsive">
@@ -21,18 +21,20 @@
 		<p>Nombre de page : {{ book.pages }}</p>
 
 		<div class="pointiller"></div>
-		
+
 		<p>Illutrateur : {{ book.illustrator.firstName }} {{ book.illustrator.lastName }}</p>
 		<p>scénariste : {{ book.scenarist.firstName }} {{ book.scenarist.lastName }}</p>
 		<p>coloriste : {{ book.colorist.firstName }} {{ book.colorist.lastName }}</p>
 		<p>Publiée par : {{ book.publisher }}</p>
 
 		<div class="pointiller"></div>
-		
-			
+
+
 		<h3 class="texte-rouge">Plus que {{ book.stock }} en stock !</h3>
 		<!-- Bouton Ajouter au panier -->
+		<form method="POST" action="{{path ('bdloc_app_cart_add', {id:book.id}) }}">
 		<button type="submit" class="btn btn-panier-detail">Ajouter au panier</button>
+		</form>
 		</div>
 		</div>
 	</div>
