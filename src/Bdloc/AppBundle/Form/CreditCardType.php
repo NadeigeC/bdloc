@@ -38,7 +38,7 @@ class CreditCardType extends AbstractType
                     'label'=>'Type de carte',
                     'attr' => array(
                     'class' => 'form-control'),
-                    'choices'   => array( 
+                    'choices'   => array(
                     'empty_value' => 'Type de carte',
                     'mastercard' => 'MasterCard',
                     'visa' => 'Visa',
@@ -49,7 +49,8 @@ class CreditCardType extends AbstractType
             ->add('cryptoCard', 'text', array(
                     'label'=>'Cryptogramme',
                     'attr' => array(
-                    'class' => 'form-control')
+                    'class' => 'form-control',
+                    'maxlength'=>3)
                 ))
 
             ->add('ownerIdentity','text', array(

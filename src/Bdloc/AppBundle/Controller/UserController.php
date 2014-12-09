@@ -368,12 +368,6 @@
 
 
                 return $this->redirect($this->generateUrl("logout"));
-
-
-
-
-
-
         }
                 $params['quitBdlocForm'] = $quitBdlocForm->createView();
                 return $this->render("user/quit_bdloc.html.twig", $params);
