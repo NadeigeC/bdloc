@@ -52,8 +52,7 @@
 
         }
 
-
-         /**
+        /**
         * @Route("/oubli-du-mot-de-passe")
         */
 

@@ -17,12 +17,14 @@ class CreditCardType extends AbstractType
         $builder
             ->add('paypalId', 'text', array(
                 'label'=>'Identifiant Paypal'))
+
             ->add('validUntil', 'date', array(
                     'label'=>'Date d\'Expiration',
                     'format' =>'MMM-yyyy  d',
                     'years' => range(date('Y'), date('Y')+12),
                     'days' => array(1),
                     'empty_value' => array('year' => 'Année', 'month' => 'Mois', 'day' => false)))
+
             ->add('creditCardType','choice', array(
                 'choices'   => array(
                 'empty_value' => 'Type de carte',
@@ -31,10 +33,15 @@ class CreditCardType extends AbstractType
                  'american_express' => 'Amex',
                  'eurocard' => 'Eurocard',
                  )))
+
             ->add('cryptoCard', 'text', array(
-                'label'=>'Cryptogramme'))
+                'label'=>'Cryptogramme',
+                'attr'=>array(
+                'maxlength'=> 3)))
+
             ->add('ownerIdentity','text', array(
                 'label'=>'Nom du propriétaire de la carte'))
+
             ->add('submit','submit', array(
                 "label" =>"Confirmation",
                 'attr' => array('class'=>'btn btn-primary')

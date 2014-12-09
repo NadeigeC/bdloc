@@ -41,7 +41,7 @@ $nb=count($nb);
 
         return $this->render("cart/cart.html.twig",$params);
 
-       
+
     }
 
      /**
@@ -76,7 +76,7 @@ $em->flush();
      public function validCartAction($id){
 
         // Pénalités
-        
+
         $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
         $user = $this->getUser();
 
@@ -128,16 +128,12 @@ $em->flush();
 
          }
 
-
-
-
         //Validation
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
 
-
         $cart = $cartRepo->find($id);
-       
-       
+
+
         //Calcul date de livraison
          $dateCreated=$cart->getDateCreated();
 
@@ -222,7 +218,7 @@ $em->flush();
         $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
         $user = $this->getUser();
 
-       
+
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
 
         $cart = $cartRepo->findBy(
@@ -241,11 +237,11 @@ $em->flush();
         );
 
         $num=count($cartItems);
-       
+
 
         $params = array (
             "num"   =>$num,
-          
+
         );
   
      
@@ -276,7 +272,10 @@ $em->flush();
         $cartItems = $cartItemRepo->findBy(
              array('cart'=>$cart)
 
+
         );      
+
+
 
         /*for ($i=0;$i<count($cart);$i++){
             $cart[$i]->setStatus("valide");
@@ -361,10 +360,10 @@ $dateReturn=$dateReturn->add(new DateInterval('P14D'));
 
         $num=count($cartItems);
 
-       
+
         if($num==10){
 
-            $request = $this->getRequest(); 
+            $request = $this->getRequest();
             $request->getSession()->getFlashBag()->add(
                 'notice',
                 'Vous ne pouvez commander que 10 bds au maximum !'
@@ -390,6 +389,7 @@ $dateReturn=$dateReturn->add(new DateInterval('P14D'));
             'id'=>$id
         );
 
+
 /*for ($i=0;$i<count($cartItems);$i++){
 
             $book=$cartItems[$i]->getBook();
@@ -408,6 +408,9 @@ $em->flush();
 
 }
        
+
+
+
        return $this->redirect($this->generateUrl('bdloc_app_book_allbooks', array('page'=>1, 'nombreParPage'=> 12, 'direction'=> 'ASC', 'entity'=> 'dateCreated') ));
 
     }

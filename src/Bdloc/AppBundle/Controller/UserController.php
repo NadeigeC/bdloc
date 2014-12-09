@@ -10,6 +10,8 @@
     use Symfony\Component\EventDispatcher\EventDispatcher;
     use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
     use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+    use Symfony\Component\HttpFoundation\RedirectResponse; // N'oubliez pas ce use
+    use Symfony\Component\HttpFoundation\Response;
 
     use Bdloc\AppBundle\Entity\User;
     use Bdloc\AppBundle\Entity\DropSpot;
@@ -50,6 +52,7 @@
             //dates directement dans l'entité avec les lifecyclecallbaks
                 $user->setRoles( array("ROLE_USER"));
                 $user->setIsActive(1);
+
                 $user->setDateModified( new \DateTime());
                 $user->setDateCreated( new \DateTime());
 
@@ -103,6 +106,7 @@
            //gère la soumission du form
             $request = $this->getRequest();
             $dropSpotForm->handleRequest($request);
+            //$map = $this->get('ivory_google_map.map');
 
             if ($dropSpotForm->isValid()){
                 $user->setDateModified( new \DateTime());
