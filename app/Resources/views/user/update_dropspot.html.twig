@@ -3,6 +3,10 @@
 
 {% block main_content %}
 
+{% if app.request.get('_route') != app.request.headers.get('referer') %}
+    <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
+{% endif %}
+
 <fieldset>
 <legend>Modifier votre point relais favori</legend>
 </fieldset>
