@@ -36,6 +36,6 @@
 
      <a href="{{ path('bdloc_app_cart_payfines',{id:cart.id ,user:user.id})}}" title="Payer une amende">Payer !</a><br/><br/><br/>
 
-     <a href="" title="Retour au catalogue">Retour au catalogue</a>
+     <a href="{{ path('bdloc_app_book_allbooks', {'page':1, 'nombreParPage': 12, 'direction': 'ASC', 'entity': 'dateCreated'}) }}" title="Retour au catalogue">Retour au catalogue</a>
 
 {% endblock %}

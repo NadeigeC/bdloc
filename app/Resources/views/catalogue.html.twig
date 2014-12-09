@@ -67,11 +67,16 @@
 					<!-- Affichage le detail -->
 					<p><a href="{{ path('bdloc_app_book_details', {id: book.id}) }}" class="texte-noir" >Afficher plus de détails !</a></p>
 					<!-- Affichage du stock -->
-					<h6 class="texte-rouge">Plus que {{ book.stock }} en stock !</h6>
+
+					<h6>{{ render(controller('BdlocAppBundle:Cart:stock', {id:book.id}))}}</h6>
 					
 					<!-- Bouton Ajouter au panier -->
 					<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
-						<button type="submit" class="btn btn-panier">Ajouter au panier</button>
+						<button type="submit" class="btn {{ render(controller('BdlocAppBundle:Cart:inactiveButton', {id:book.id}))}}" id="ajouter">{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}</button>
+
+					
+					
+					
 					</form>
 					
 				</div>					

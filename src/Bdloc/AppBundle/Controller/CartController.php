@@ -6,7 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use \Bdloc\AppBundle\Entity\Cart;
 use \Bdloc\AppBundle\Entity\CartItem;
-
+use \DateTime;
+use \DateInterval;
 
 
 
@@ -30,9 +31,12 @@ class CartController extends Controller
 
         );
 
+$nb=$cart->getCartItems();
+$nb=count($nb);
+
          $params = array (
             "cart" => $cart,
-
+            "nb" =>$nb,
         );
 
         return $this->render("cart/cart.html.twig",$params);
@@ -48,13 +52,17 @@ class CartController extends Controller
      public function deleteItemAction($id){
 
         $cartItemrepo = $this->getDoctrine()->getRepository("BdlocAppBundle:CartItem");
-
         $cartItem = $cartItemrepo->find($id);
-
-
         $em = $this->getDoctrine()->getManager();
         $em -> remove( $cartItem );
         $em->flush();
+
+$book = $cartItem->getBook();
+$book->setStock("1");
+$em = $this->getDoctrine()->getManager();
+$em->persist($book);
+$em->flush();
+
 
         return $this->redirect($this->generateUrl("bdloc_app_cart_findcart",array('id' => $cartItem->getCart()->getId())) );
 
@@ -139,9 +147,13 @@ class CartController extends Controller
 
         //Chercher le nombre d'de bd dans le panier.
 
+//$dateDelivery = new DateTime('2000-01-01');
+//$dateDelivery->add(new DateInterval('P10D'));
+//echo $date->format('Y-m-d') . "\n"; 
          $params = array (
             "cart" => $cart,
             "user" => $user,
+           
         );
 
 
@@ -231,12 +243,10 @@ class CartController extends Controller
             "num"   =>$num,
 
         );
-
-
-
-
-       return $this->render("cart/countItem.html.twig",$params);
-
+  
+     
+        return $this->render("cart/countItem.html.twig",$params);
+      
 
      }
 
@@ -244,7 +254,7 @@ class CartController extends Controller
      * @Route("/commande/validation/{id}")
      */
 
-     public function validOrderAction(Request $request, $id){
+     public function validOrderAction($id){
 
         $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
         $user = $this->getUser();
@@ -252,47 +262,53 @@ class CartController extends Controller
 
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
 
-        $cart = $cartRepo->findBy(
-             array('user'=>$user)
+        $cart = $cartRepo->findOneBy(
+             array('user'=>$user, 'status'=>'courant')
 
         );
 
-  $cartItemRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:CartItem");
+        $cartItemRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:CartItem");
 
         $cartItems = $cartItemRepo->findBy(
              array('cart'=>$cart)
 
-);
 
-        for ($i=0;$i<count($cart);$i++){
+        );      
+
+
+
+        /*for ($i=0;$i<count($cart);$i++){
             $cart[$i]->setStatus("valide");
-        };
+        };*/
 
-
-          $em = $this->getDoctrine()->getManager();
+ $cart->setStatus("valide");
+        $em = $this->getDoctrine()->getManager();
         $em->flush();
 
 
 
-for ($i=0;$i<count($cartItems);$i++){
+        /*for ($i=0;$i<count($cartItems);$i++){
 
             $book=$cartItems[$i]->getBook();
-
-            //for ($i=0;$i<count($book);$i++){
-            $book->setStock("50");
-            //}
-
-
-};
-
-
-
-
+          
+            $book->setStock("0");
+            
+        };*/
 
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
-        return $this->render("cart/validOrder.html.twig");
+//$date = new DateTime('2000-01-01');
+//$date->add(new DateInterval('P10D'));
+//echo $date->format('Y-m-d') . "\n";        
+
+         $params = array (
+            'cart'=>$cart,
+            
+        );
+
+
+        return $this->render("cart/validOrder.html.twig",$params);
 
     }
 
@@ -312,12 +328,17 @@ for ($i=0;$i<count($cartItems);$i++){
         );
 
         if(count($cart)==0){
+$dateDelivery = new DateTime();
+$dateDelivery=$dateDelivery->add(new DateInterval('P3D'));  
+$dateReturn = new DateTime();
+$dateReturn=$dateReturn->add(new DateInterval('P14D'));           
              $cart = new Cart();
              $cart -> setUser($user);
              $cart -> setStatus('courant');
              $cart ->setDateModified(new \DateTime());
              $cart ->setDateCreated(new \DateTime());
-             $cart ->setDateDelivery(new \DateTime());
+             $cart ->setDateDelivery($dateDelivery);
+             $cart ->setDateReturn($dateReturn);
              $em = $this->getDoctrine()->getManager();
              $em->persist($cart);
              $em->flush();
@@ -325,8 +346,11 @@ for ($i=0;$i<count($cartItems);$i++){
 
         $bookRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Book");
         $book = $bookRepo->findOneBy(
-             array('id'=>$id)
+             array('id'=>$id, 'stock'=>'1')
         );
+
+
+
         $cartItemRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:CartItem");
 
         $cartItems = $cartItemRepo->findBy(
@@ -349,8 +373,9 @@ for ($i=0;$i<count($cartItems);$i++){
         }
 
 
-        $cartItem = new CartItem();
 
+    if(count($book)>0){
+        $cartItem = new CartItem();
         $cartItem -> setCart($cart);
         $cartItem -> setBook($book);
         $cartItem ->setDateModified(new \DateTime());
@@ -365,8 +390,78 @@ for ($i=0;$i<count($cartItems);$i++){
         );
 
 
+/*for ($i=0;$i<count($cartItems);$i++){
+
+            $book=$cartItems[$i]->getBook();
+          
+            $book->setStock("0");
+            $em = $this->getDoctrine()->getManager();
+        $em->persist($book);
+        $em->flush();
+  };*/           
+
+$book = $cartItem->getBook();
+$book->setStock("0");
+$em = $this->getDoctrine()->getManager();
+$em->persist($book);
+$em->flush();
+
+}
+       
+
+
+
        return $this->redirect($this->generateUrl('bdloc_app_book_allbooks', array('page'=>1, 'nombreParPage'=> 12, 'direction'=> 'ASC', 'entity'=> 'dateCreated') ));
 
     }
+
+    /**
+     * @Route("/livre/bouton/{id}")
+     */
+
+     public function inactiveButtonAction($id){
+     
+        $bookRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Book");
+        $book = $bookRepo->find($id);
+
+        $params = array(
+            "book" => $book
+        );
+
+        return $this->render("cart/button.html.twig", $params);
+    }
+
+    /**
+     * @Route("/livre/stock/{id}")
+     */
+
+     public function stockAction($id){
+     
+        $bookRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Book");
+        $book = $bookRepo->find($id);
+
+        $params = array(
+            "book" => $book
+        );
+
+        return $this->render("cart/stock.html.twig", $params);
+    }
+
+    /**
+     * @Route("/livre/texte/{id}")
+     */
+
+     public function textButtonAction($id){
+     
+        $bookRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Book");
+        $book = $bookRepo->find($id);
+
+        $params = array(
+            "book" => $book
+        );
+
+        return $this->render("cart/textButton.html.twig", $params);
+    }
+
  }
 

@@ -375,6 +375,22 @@ padding: 10px;
 	border-color: #adadad;
 }
 
+.btn-panier0{
+	padding: 0;
+	font-size: 12px;
+	width: 100px;
+	height: 25px;
+	color: #fff;
+	background-color: #AA161A;
+	border-color: #AA161A;
+	float: right;
+}
+
+.btn-panier0:hover{
+	color:#fff ;
+	background-color: #fff;
+	border-color: #fff;
+}
 
 /****************************************************
 *													*
