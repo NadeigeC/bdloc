@@ -19,14 +19,17 @@ class DropSpotType extends AbstractType
 
             ->add('dropSpot', 'entity', array(
                 "label" => "Les points relais",
-                    'class'=>'Bdloc\AppBundle\Entity\DropSpot',
-                   'property'=>'fullAdress',
-                   'empty_value' => 'Choisissez un point relais'))
+                'class'=>'Bdloc\AppBundle\Entity\DropSpot',
+                'property'=>'fullAdress',
+                'empty_value' => 'Choisissez un point relais',
+                    'attr' => array(
+                    'class' => 'form-control')
+                ))
 
 
             ->add('nextStep','submit', array(
                 "label" =>"Confirmation",
-                'attr' => array('class'=>'btn btn-primary')
+                'attr' => array('class'=>'btn red-button btn-default-red')
                 ))
 
              /*->add('previousStep', 'submit', array(

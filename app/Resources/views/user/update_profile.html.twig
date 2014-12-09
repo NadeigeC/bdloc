@@ -3,9 +3,22 @@
 
 {% block main_content %}
 
-<h1>Modifier vos informations personnelles</h1>
+	<fieldset>
+    <legend>Modifier vos informations personnelles</legend>
+    </fieldset>
 
-{{ form (updateProfileForm, {'attr':{'novalidate': 'novalidate'}}) }}
+<div class="col-md-6">
+	<div class="form-group">
+	    <div class="col-md-12 ">
+			{{ form (updateProfileForm, {'attr':{'novalidate': 'novalidate'}}) }}
+		</div>
+	</div>
+</div>
 
+<div class="col-md-6 ">
+     <div class="col-md-6 col-md-offset-2">
+        <img alt="Sandgirl" src="{{ asset('img/bd-perso/sandgirl.jpg') }}"></a>
+     </div>
+ </div>
 
 {% endblock %}

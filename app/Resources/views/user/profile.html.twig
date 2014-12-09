@@ -4,37 +4,49 @@
 {% block main_content %}
 
 <fieldset>
-    <legend>Mon compte utilisateur BDLOC !</legend>
+<legend>Mon compte utilisateur BDLOC !</legend>
 </fieldset>
 
+<div class="col-md-6">
+    <div class="form-group">
+        <div class="col-md-12 ">
+            <p>Compte créé le : {{ user.dateCreated|date('d-m-Y') }}</p>
+            <p>Dernière modification le : {{ user.dateModified|date('d-m-Y' ~ ' à ' ~ 'H:m:s') }}</p>
 
-<p>Compte créé le : {{ user.dateCreated|date('d-m-Y') }}</p>
-<p>Dernière modification le : {{ user.dateModified|date('d-m-Y' ~ ' à ' ~ 'H:m:s') }}</p>
+            <fieldset>
+                <legend>Informations personnelles</legend>
+            </fieldset>
+            <h3>Pseudo : {{ user.username }}</h3>
 
-<h2>Informations personnelles</h2>
-<hr>
-<h3>Pseudo : {{ user.username }}</h3>
+                <p>Prenom : {{ user.firstName }}</p>
+                <p>Nom : {{ user.lastName }}</p>
+                <p>Adresse postale : {{ user.adress }}</p>
+                <p>Adresse mail : {{ user.email }}</p>
+                <p>Telephone : {{ user.phone }}</p>
+                <p>Point relais favori : {{ user.dropSpot.fullAdress }}</p>
 
-        <p>Prenom :  {{ user.firstName }}</p>
-        <p>Nom : {{ user.lastName }}</p>
-        <p>Adresse postale : {{ user.adress }}</p>
-        <p>Adresse mail :{{ user.email }}</p>
-        <p>Telephone : {{ user.phone }}</p>
-        <p>Point relais favori : {{ user.dropSpot.fullAdress }}</p>
-
-<a href="{{ path('bdloc_app_user_updateprofile', {'id':app.user.id}) }}">Modifier mes informations personnelles</a><br>
-<a href="{{ path('bdloc_app_user_updatepassword', {'id':app.user.id}) }}">Modifier mon mot de passe</a><br>
-<a href="{{ path('bdloc_app_user_updatedropspot', {'id':app.user.id}) }}">Modifier mon point relais</a><br>
+            <a href="{{ path('bdloc_app_user_updateprofile', {'id':app.user.id}) }}">Modifier mes informations personnelles</a><br>
+            <a href="{{ path('bdloc_app_user_updatepassword', {'id':app.user.id}) }}">Modifier mon mot de passe</a><br>
+            <a href="{{ path('bdloc_app_user_updatedropspot', {'id':app.user.id}) }}">Modifier mon point relais</a><br>
 
 
-<br>
-<h2>Informations de paiement</h2>
-<hr>
-<a href="{{ path('bdloc_app_user_updatecreditcard', {'id':app.user.id}) }}">Modifier mes informations de paiment</a><br>
-<a href="#">Consulter mon historique de location</a><br>
-<a href="#">Payer une amende</a><br>
-<form action="{{ path('bdloc_app_user_quitbdloc') }}">
-    <input type="submit" value="Me désabonner" class="btn red-button btn-default-red">
-</form>
+            <br>
+            </fieldset>
+                <legend>Informations de paiement</legend>
+            </fieldset>
+            <a href="{{ path('bdloc_app_user_updatecreditcard', {'id':app.user.id}) }}">Modifier mes informations de paiment</a><br>
+            <a href="#">Consulter mon historique de location</a><br>
+            <a href="#">Payer une amende</a><br>
 
+            <form action="{{ path('bdloc_app_user_quitbdloc') }}">
+                <input type="submit" value="Me désabonner" class="btn red-button btn-default-red">
+            </form>
+        </div>
+    </div>
+</div>
+<div class="col-md-6 ">
+     <div class="col-md-6 col-md-offset-2">
+        <img alt="marvel comics" src="{{ asset('img/bd-perso/marvel_comics.jpg') }}"></a>
+     </div>
+ </div>
 {% endblock %}

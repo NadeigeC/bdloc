@@ -3,15 +3,30 @@
 
 {% block main_content %}
 
+<fieldset>
+<legend>Modifier votre point relais favori</legend>
+</fieldset>
 
-<h1>Modifier votre point relais favori</h1>
+<div class="col-md-6">
+    <div class="form-group">
+        <div class="col-md-12 ">
+			<p>Point relais favori : </p>
+			<p>{{ app.user.dropSpot.fullAdress }}</p>
 
-<p>Point relais favori : {{ app.user.dropSpot.fullAdress }}</p>
+			{{ form(dropSpotForm, {'attr':{'novalidate': 'novalidate'}}) }}
+ 		</div>
+    </div>
+</div>
 
-{{ form(dropSpotForm, {'attr':{'novalidate': 'novalidate'}}) }}
-<br>
+<div class="col-md-6 ">
+     <div class="col-md-6 col-md-offset-2">
+        <img alt="tintin" src="{{ asset('img/bd-perso/tintin.jpg') }}"></a>
+     </div>
+ </div>
 
-<div id="map-container" class="col-md-6"><input type="hidden" value={{app.user.dropSpot.adress}}></div>
+<div class="col-md-12 ">
+<div id="map-container"></div>
+</div>
 
 {% endblock %}
 

@@ -16,6 +16,17 @@ h1{
 	color:#000;
 }
 
+h2, h3, h4, h5, h6{
+	color:#fff;
+}
+
+.form-control:focus {
+	border-color: #AA161A;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
 
 #retour {
 	padding: 6px;
@@ -45,6 +56,24 @@ h1{
 .position-l{
 	float:left;
 }
+
+p{
+	color:#fff;
+	font-weight:300;
+	font-size:16px;
+}
+
+a{
+	color: #AA161A;
+	font-size:16px;
+}
+
+a:hover, a:focus {
+color: #fff;
+text-decoration: underline;
+}
+
+
 /****************************************************
 *													*
 *													*
@@ -59,8 +88,8 @@ h1{
 }
 
 .navbar-inverse {
-background-color: #222;
-border-color: #3F3F3F;
+	background-color: #222;
+	border-color: #3F3F3F;
 }
 
 #navbar-left{
@@ -458,6 +487,47 @@ form h6 a:hover {
 	margin-bottom:20px;
 }
 
+.table-hover{
+	background-color:#fff;
+}
+.table-hover a{
+	color:#AA161A;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th,
+.table > tfoot > tr > th, .table > thead > tr > td,
+.table > tbody > tr > td, .table > tfoot > tr > td {
+	padding: 8px;
+	line-height: 1.42857143;
+	vertical-align: middle;
+	border-bottom: 1px solid #ddd;
+}
+
+.textbouq{ 
+	margin-right:20px;
+	color:#fff;
+}
+
+.textbouq:hover{ 
+	color:#fff;
+}
+
+
+.widgetpose{
+	width: 100px;
+	margin: 10px 10px 10px 0;
+}
+
+
+
+.crypto{
+	width:50px;
+}
+
+.carte{
+	width:150px;
+}
+
 #map-container { height: 400px; width: 800px; }
 
 /****************************************************
@@ -478,8 +548,8 @@ form h6 a:hover {
 }
 
 .detail-txt{
-float:left;
-padding-right:50px;
+	float:left;
+	padding-right:50px;
 
 }
 
