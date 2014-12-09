@@ -1,4 +1,5 @@
 {% extends '::base.html.twig' %}
 {% block main_content %}
-    Votre commande est validée !
+    Votre commande est validée !<br/><br/>
+    Date limite de retour des bds : {{cart.dateReturn|date('d/m/Y')}}<br/><br/>
 {% endblock %}

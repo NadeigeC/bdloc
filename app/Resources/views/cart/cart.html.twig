@@ -16,11 +16,14 @@
 
     {% endfor %}
     </table>
-              <a href="{{ path('bdloc_app_cart_validcart',{id:cart.id}) }}" title="Valider ce panier">Valider ce panier !</a><br/><br/><br/>
-
-
+        {% if nb == 0 %}
+              {{ 'Votre panier est vide !' }}<br/><br/>
+        {% endif %}
+         {% if nb > 0 %}
+            <a href="{{ path('bdloc_app_cart_validcart',{id:cart.id}) }}" title="Valider ce panier">Valider ce panier !</a><br/><br/><br/>
+         {% endif %}   
             <a href="{{ path('bdloc_app_book_allbooks', {'page':1, 'nombreParPage': 12, 'direction': 'ASC', 'entity': 'dateCreated'}) }}" title="Retour au catalogue">Continuer à bouquiner</a>
-
+        
 
 {% endblock %}
 

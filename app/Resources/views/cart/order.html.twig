@@ -7,7 +7,7 @@
 
     <a href="{{ path('bdloc_app_cart_seelist',{id:cart.id}) }}" title="Voir la liste">Voir la liste</a><br/><br/>
 
-    Date de livraison estimée : {{cart.dateCreated|date()}}<br/><br/>
+    Date de livraison estimée : {{cart.dateDelivery|date('d/m/Y' )}}<br/><br/>
 
     Au point-relais : {{user.dropSpot.name}} , {{user.dropSpot.adress}}
 
