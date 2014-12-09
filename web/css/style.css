@@ -471,7 +471,6 @@ form h6 a:hover {
 	margin-bottom:20px;
 }
 
-
 .table-hover{
 	background-color:#fff;
 }
@@ -513,6 +512,8 @@ form h6 a:hover {
 	width:150px;
 }
 
+#map-container { height: 400px; width: 800px; }
+
 /****************************************************
 *													*
 *													*
@@ -551,7 +552,7 @@ form h6 a:hover {
 	border-color: #adadad;
 }
 
-#map { height: 180px; }
+
 
 /****************************************************
 *													*

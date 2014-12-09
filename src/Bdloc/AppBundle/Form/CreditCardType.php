@@ -16,6 +16,7 @@ class CreditCardType extends AbstractType
     {
         $builder
             ->add('paypalId', 'text', array(
+
                     'label'=>'Identifiant Paypal :',
                     'attr' => array(
                     'class' => 'form-control')
@@ -26,6 +27,7 @@ class CreditCardType extends AbstractType
                     'format' =>'MMM-yyyy  d',
                     'years' => range(date('Y'), date('Y')+12),
                     'days' => array(1),
+
                     'empty_value' => array(
                     'year' => 'Année',
                     'month' => 'Mois',
@@ -55,6 +57,7 @@ class CreditCardType extends AbstractType
                     'attr' => array(
                     'class' => 'form-control')
                 ))
+
 
             ->add('submit','submit', array(
                     'label' =>"Confirmation",

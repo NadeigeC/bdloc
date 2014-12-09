@@ -18,11 +18,13 @@
         "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
-        "willdurand/geocoder-bundle": "@stable"
+        "willdurand/geocoder-bundle": "@stable",
+        "egeloen/google-map-bundle": "dev-master"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "~2.2",
-        "sensio/generator-bundle": "~2.3"
+        "sensio/generator-bundle": "~2.3",
+        "tchwork/debug-bundle": "dev-master"
     },
     "scripts": {
         "post-root-package-install": [

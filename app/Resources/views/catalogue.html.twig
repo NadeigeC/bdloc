@@ -4,29 +4,26 @@
 
 {% block main_content %}
 
-
-
 <!--J'affiche les formulaires de recherche & de filtre-->
 <div class="row">
   		
-
 	<!--Pagination -->
-	<div class="col-md-12"> 
+	<div class="col-md-12">
 
 		    	<div id="icon-position" class="position-r">
-		          	
+
 		          	 <!-- J'affiche page précédente, sauf si on se trouve sur la première page -->
 		          	{% if page > 1 %}
-				    <a class="pagination" href="{{ path('bdloc_app_book_allbooks', {'page': page-1, 'nombreParPage': nombreParPage, 'direction': direction, 'entity': entity}) }}"><span class="glyphicon glyphicon-chevron-left"></span>Page précédente </a> 
+				    <a class="pagination" href="{{ path('bdloc_app_book_allbooks', {'page': page-1, 'nombreParPage': nombreParPage, 'direction': direction, 'entity': entity}) }}"><span class="glyphicon glyphicon-chevron-left"></span>Page précédente </a>
 					{% endif %}
 
 		          	<!-- J'affiche page suivante, sauf si on se trouve sur la dernière page -->
 		          	{% if page < nombrePage %}
-		          	
+
 					<a class="pagination" href="{{ path('bdloc_app_book_allbooks', {'page': page+1, 'nombreParPage': nombreParPage, 'direction': direction, 'entity': entity}) }}"> Page suivante<span class="glyphicon glyphicon-chevron-right"></span></a>
 					{% endif %}
 				</div>
-	</div> 
+	</div>
 	<!--Fin de Pagination -->
 
 
@@ -35,28 +32,27 @@
 			<div id="formsearch">
 				{{ form(bookSearchForm) }}
 			</div>
-			
+
 			<!--Filtre categories-->
 			<div id="formfilter">
 				{{ form(bookFilterForm) }}
 			</div>
 		</div>
 
-	
+
 
 		<div class="col-md-9">
-		
+
 			<!-- Affichage des BDs -->
 			{% for book in books %}
-			
-			
-			
+
+
+
 			<div class="thumbnail">
 			<!-- Affichage l'image -->
 			<a href="{{ path('bdloc_app_book_details', {id: book.id}) }}">
 				<img src="{{ asset('img/Couvertures/Couvertures/' ~ book.cover ~ '') }}" alt="{{ book.title }}" class="catalogue_img" />
 			</a>
-			
 
 				<div class="caption">
 					<!-- Affichage le titre -->
@@ -90,22 +86,22 @@
 
 
 	<!--Pagination -->
-	<div class="col-md-12"> 
+	<div class="col-md-12">
 
 		    	<div id="icon-position" class="position-r">
-		          	
+
 		          	 <!-- J'affiche page précédente, sauf si on se trouve sur la première page -->
 		          	{% if page > 1 %}
-				    <a class="pagination" href="{{ path('bdloc_app_book_allbooks', {'page': page-1, 'nombreParPage': nombreParPage, 'direction': direction, 'entity': entity}) }}"><span class="glyphicon glyphicon-chevron-left"></span>Page précédente </a> 
+				    <a class="pagination" href="{{ path('bdloc_app_book_allbooks', {'page': page-1, 'nombreParPage': nombreParPage, 'direction': direction, 'entity': entity}) }}"><span class="glyphicon glyphicon-chevron-left"></span>Page précédente </a>
 					{% endif %}
 
 		          	<!-- J'affiche page suivante, sauf si on se trouve sur la dernière page -->
 		          	{% if page < nombrePage %}
-		          	
+
 					<a class="pagination" href="{{ path('bdloc_app_book_allbooks', {'page': page+1, 'nombreParPage': nombreParPage, 'direction': direction, 'entity': entity}) }}"> Page suivante<span class="glyphicon glyphicon-chevron-right"></span></a>
 					{% endif %}
 				</div>
-	</div> 
+	</div>
 	<!--Fin de Pagination -->
 
 

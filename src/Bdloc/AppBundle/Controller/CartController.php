@@ -37,7 +37,7 @@ class CartController extends Controller
 
         return $this->render("cart/cart.html.twig",$params);
 
-       
+
     }
 
      /**
@@ -68,7 +68,7 @@ class CartController extends Controller
      public function validCartAction($id){
 
         // Pénalités
-        
+
         $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
         $user = $this->getUser();
 
@@ -120,16 +120,12 @@ class CartController extends Controller
 
          }
 
-
-
-
         //Validation
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
 
-
         $cart = $cartRepo->find($id);
-       
-       
+
+
         //Calcul date de livraison
          $dateCreated=$cart->getDateCreated();
 
@@ -210,7 +206,7 @@ class CartController extends Controller
         $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
         $user = $this->getUser();
 
-       
+
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
 
         $cart = $cartRepo->findBy(
@@ -229,11 +225,11 @@ class CartController extends Controller
         );
 
         $num=count($cartItems);
-       
+
 
         $params = array (
             "num"   =>$num,
-          
+
         );
 
 
@@ -266,7 +262,7 @@ class CartController extends Controller
         $cartItems = $cartItemRepo->findBy(
              array('cart'=>$cart)
 
-);      
+);
 
         for ($i=0;$i<count($cart);$i++){
             $cart[$i]->setStatus("valide");
@@ -340,10 +336,10 @@ for ($i=0;$i<count($cartItems);$i++){
 
         $num=count($cartItems);
 
-       
+
         if($num==10){
 
-            $request = $this->getRequest(); 
+            $request = $this->getRequest();
             $request->getSession()->getFlashBag()->add(
                 'notice',
                 'Vous ne pouvez commander que 10 bds au maximum !'
@@ -368,7 +364,7 @@ for ($i=0;$i<count($cartItems);$i++){
             'id'=>$id
         );
 
-       
+
        return $this->redirect($this->generateUrl('bdloc_app_book_allbooks', array('page'=>1, 'nombreParPage'=> 12, 'direction'=> 'ASC', 'entity'=> 'dateCreated') ));
 
     }
