@@ -22,7 +22,7 @@
 
 		<div class="pointiller"></div>
 
-		<p>Illutrateur : {{ book.illustrator.firstName }} {{ book.illustrator.lastName }}</p>
+		<p>Illustrateur : {{ book.illustrator.firstName }} {{ book.illustrator.lastName }}</p>
 		<p>scénariste : {{ book.scenarist.firstName }} {{ book.scenarist.lastName }}</p>
 		<p>coloriste : {{ book.colorist.firstName }} {{ book.colorist.lastName }}</p>
 		<p>Publiée par : {{ book.publisher }}</p>
@@ -35,7 +35,7 @@
 
 		<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
 
-		<button type="submit" class="btn btn-panier-detail">Ajouter au panier</button>
+		<button type="submit" class="btn btn-panier-detail">{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}</button>
 		</form>
 		</div>
 		</div>

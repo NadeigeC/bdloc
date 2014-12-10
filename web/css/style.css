@@ -356,8 +356,7 @@ padding: 10px;
 
 
 
-.btn-panier,
-.btn-panier0 {
+.btn-panier {
 	position: relative;
 	left: 130px;
 	top: -50px;
@@ -370,8 +369,7 @@ padding: 10px;
 	border-color: #AA161A;
 }
 
-.btn-panier:hover,
-.btn-panier0:hover{
+.btn-panier:hover{
 	color: #333;
 	background-color: #e6e6e6;
 	border-color: #adadad;

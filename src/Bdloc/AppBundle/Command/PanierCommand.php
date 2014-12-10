@@ -27,7 +27,17 @@ class PanierCommand extends ContainerAwareCommand
         $carts = $cartRepo->findBy(
              array('status'=>'courant')
         );
-       
+        
+ 
+        $dateNow=new \DateTime();  
+        $intervalMax=new \DateTime('00:03:00');
+
+        for ($i=0;$i<count($carts);$i++){ 
+                    $carts[$i]->getDateCreated();
+                    $interval[$i] = $dateCreated->diff($dateNow);
+                    $output->writeln($interval[$i]);
+        }
+
 
         $nb=count($carts);
       
@@ -36,7 +46,8 @@ class PanierCommand extends ContainerAwareCommand
         for ($i=0;$i<count($carts);$i++){ 
             $carts[$i]->setStatus("abandon");
         }
- $em = $doctrine->getManager();
+
+        $em = $doctrine->getManager();
         $em->flush();
 
         for ($i=0;$i<count($carts);$i++){
