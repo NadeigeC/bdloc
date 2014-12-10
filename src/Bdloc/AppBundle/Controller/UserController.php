@@ -268,6 +268,8 @@
             $params = array();
             $user = $this->getUser();
             $dropSpotForm = $this->createForm(new DropSpotType(), $user, array('validation_groups' => array('dropSpot', 'Default')));
+            $referer = $request->headers->get('referer');
+            $dropSpotForm->get('redirect')->setData($referer);
 
             //gère la soumission du form
             $request = $this->getRequest();
@@ -283,7 +285,7 @@
                 'notice',
                 'Nouveau point relais sauvegardé !');
 
-                return $this->redirect($this->generateUrl("bdloc_app_user_viewprofile"));
+                return $this->redirect($dropSpotForm->get('redirect')->getData());
             }
 
                 $params['dropSpotForm'] = $dropSpotForm->createView();
