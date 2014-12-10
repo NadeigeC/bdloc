@@ -43,7 +43,7 @@ class CreditCard
      * @Assert\Regex(
      *           pattern= "/^[0-9]{3,3}$/",
      *           message= "Entrez un cryptogramme valide (3 chiffres sans espaces)",
-     *           groups={"registration"}, groups={"updateProfile"})
+     *           groups={"registration","updateProfile"})
      * @Assert\NotBlank(message="Veuillez entrer votre identifiant Paypal", groups={"creditCard","updateCreditCard"})
      * @ORM\Column(name="cryptoCard", type="string", length=3)
      */

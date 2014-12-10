@@ -9,34 +9,42 @@
 
 <div class="col-md-6">
     <div class="form-group">
-        <div class="col-md-12 ">
+        <div class="col-md-12 profile">
             <p>Compte créé le : {{ user.dateCreated|date('d-m-Y') }}</p>
             <p>Dernière modification le : {{ user.dateModified|date('d-m-Y' ~ ' à ' ~ 'H:m:s') }}</p>
 
             <fieldset>
                 <legend>Informations personnelles</legend>
             </fieldset>
-            <h3>Pseudo : {{ user.username }}</h3>
 
+                <p>Pseudo : {{ user.username }}</p>
                 <p>Prenom : {{ user.firstName }}</p>
                 <p>Nom : {{ user.lastName }}</p>
                 <p>Adresse postale : {{ user.adress }}</p>
                 <p>Adresse mail : {{ user.email }}</p>
                 <p>Telephone : {{ user.phone }}</p>
-                <p>Point relais favori : {{ user.dropSpot.fullAdress }}</p>
+
 
             <a href="{{ path('bdloc_app_user_updateprofile', {'id':app.user.id}) }}">Modifier mes informations personnelles</a><br>
-            <a href="{{ path('bdloc_app_user_updatepassword', {'id':app.user.id}) }}">Modifier mon mot de passe</a><br>
+            <a href="{{ path('bdloc_app_user_updatepassword', {'id':app.user.id}) }}">Modifier mon mot de passe</a><br><br>
+
+                 <p>Votre point relais favori : {{ user.dropSpot.fullAdress }}</p>
             <a href="{{ path('bdloc_app_user_updatedropspot', {'id':app.user.id}) }}">Modifier mon point relais</a><br>
 
 
             <br>
-            </fieldset>
+            <fieldset>
                 <legend>Informations de paiement</legend>
             </fieldset>
-            <a href="{{ path('bdloc_app_user_updatecreditcard', {'id':app.user.id}) }}">Modifier mes informations de paiment</a><br>
-            <a href="#">Consulter mon historique de location</a><br>
-            <a href="#">Payer une amende</a><br>
+            <a href="{{ path('bdloc_app_user_updatecreditcard', {'id':app.user.id}) }}">Modifier mes informations de paiment</a><br><br>
+            <fieldset>
+                <legend>Mes commandes</legend>
+            </fieldset>
+            <a href="{{ path('bdloc_app_user_rentalhistory', {'id':app.user.id}) }}">Consulter mon historique de location</a><br><br>
+            <fieldset>
+                <legend>Mes amendes en cours</legend>
+            </fieldset>
+            <a href="#">Payer une amende</a><br><br>
 
             <form action="{{ path('bdloc_app_user_quitbdloc') }}">
                 <input type="submit" value="Me désabonner" class="btn red-button btn-default-red">
@@ -46,7 +54,7 @@
 </div>
 <div class="col-md-6 ">
      <div class="col-md-6 col-md-offset-2">
-        <img alt="marvel comics" src="{{ asset('img/bd-perso/marvel_comics.jpg') }}"></a>
+        <img alt="batman" src="{{ asset('img/bd-perso/batman2.jpg') }}"></a>
      </div>
  </div>
 {% endblock %}

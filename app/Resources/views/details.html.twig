@@ -30,7 +30,7 @@
 		<div class="pointiller"></div>
 
 
-		<h3 class="texte-rouge">Plus que {{ book.stock }} en stock !</h3>
+		<h3 class="texte-rouge">{{ book.stock }} en stock !</h3>
 		<!-- Bouton Ajouter au panier -->
 
 		<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">

@@ -25,9 +25,7 @@ class QuitBdlocType extends AbstractType
                 "label" => "Quitter BDLOC !",
                 'attr' => array(
                 'class' => 'btn red-button btn-default-red')
-                    ))
-
-        ;
+                    ));
     }
 
     /**
