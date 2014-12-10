@@ -363,7 +363,7 @@
         $params = array();
 
             $user = $this->getUser();
-            $quitBdlocForm = $this->createForm(new QuitBdlocType(), $user, array('validation_groups' => array('registration', 'Default')));
+            $quitBdlocForm = $this->createForm(new QuitBdlocType(), $user);
 
          //gère la soumission du form
             $request = $this->getRequest();
@@ -380,7 +380,7 @@
 
                 //envoyer un mail
                 $message = \Swift_Message::newInstance()
-                ->setSubject("Désonnement de BDLOC")
+                ->setSubject("Désabonnement de BDLOC")
                 ->setFrom('site@bdloc.com')
                 ->setTo('nadeige.pirot@gmail.com', $user->getEmail())
                 ->setContentType('text/html')
