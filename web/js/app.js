@@ -73,7 +73,7 @@ app = {
 
         // Affiche ma BD
        	$(".thumbnail").on("click", "a", this.maBd)
-       	$(".thumbnail").on("click", this.maBd)
+       	//$(".thumbnail").on("click", this.maBd)
 
 	},
 

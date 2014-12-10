@@ -16,7 +16,7 @@ h1{
 	color:#000;
 }
 
-h2, h3, h4, h5, h6{
+h2, h3, h4, h5,{
 	color:#fff;
 }
 
@@ -58,7 +58,7 @@ h2, h3, h4, h5, h6{
 }
 
 p{
-	color:#fff;
+	color:#000;
 	font-weight:300;
 	font-size:16px;
 }
@@ -387,7 +387,7 @@ padding: 10px;
 ****************************************************/
 
 label {
-	padding: 15px 0 15px 0;
+	padding: 15px 0 5px 0;
 	font-weight: 300;
 	color: #fff;
 }
@@ -452,8 +452,8 @@ form h6 a:hover {
 
 
 .formsearch {
-	margin-top: -25px;
-	margin-bottom: -75px;
+	margin-top: -30px;
+	margin-bottom: 30px;
 }
 
 .filtre label{
@@ -498,13 +498,14 @@ form h6 a:hover {
 	color:#fff;
 }
 
+.profile p{
+	color:#fff;
+}
 
 .widgetpose{
 	width: 100px;
 	margin: 10px 10px 10px 0;
 }
-
-
 
 .crypto{
 	width:50px;
@@ -514,7 +515,22 @@ form h6 a:hover {
 	width:150px;
 }
 
-#map-container { height: 400px; width: 800px; }
+#map-container { height: 400px; width: 100%; }
+
+
+.flash-notice{
+	text-transform:uppercase;
+	color:#B8D561;
+	font-size:14px;
+	font-weight:400;
+}
+
+.flash-error{
+	text-transform:uppercase;
+	color:#AA161A;
+	font-size:14px;
+	font-weight:400;
+}
 
 /****************************************************
 *													*
@@ -576,9 +592,10 @@ footer{
 	padding:0;
 }
 
-#copy p{
- 	margin-top:20px;
- }
+#copy p {
+	color: #fff;
+	margin-top: 20px;
+}
 
  #copy p a{
  	color: #AA161A;

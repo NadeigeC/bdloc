@@ -17,32 +17,32 @@ class RegisterType extends AbstractType
         $builder
 
             ->add('username', 'text', array(
-                 "label" => "Pseudo",
-                 'attr' => array(
+                    'label'=> "Pseudo",
+                    'attr' => array(
                     'placeholder' => 'Votre pseudo',
                     'class' => 'form-control')
 
                ))
 
             ->add('firstName','text', array(
-                "label" => "Prénom",
-                'attr' => array(
+                    'label'=> "Prénom",
+                    'attr' => array(
                     'placeholder' => 'Votre prénom',
                     'class' => 'form-control')
 
                 ))
 
             ->add('lastName','text', array(
-                "label" => "Nom",
-                'attr' => array(
+                    'label'=> "Nom",
+                    'attr' => array(
                     'placeholder' => 'Votre nom',
                     'class' => 'form-control')
 
                 ))
 
             ->add('email', 'email', array(
-                "label" => "Email",
-                'attr' => array(
+                    'label'=> "Email",
+                    'attr' => array(
                     'placeholder' => 'Votre email',
                     'class' => 'form-control')
 
