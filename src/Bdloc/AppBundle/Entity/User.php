@@ -40,6 +40,10 @@ class User implements AdvancedUserInterface
     /**
      * @var string
      * @Assert\NotBlank(message="Veuillez entrer un email", groups={"registration","forgotPassword","updateProfile"}  )
+     * @Assert\Email(
+     *     message = "'{{ value }}' n'est pas un email valide.",
+     *     checkMX = true
+     *)
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
