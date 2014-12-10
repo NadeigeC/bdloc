@@ -62,7 +62,7 @@ popup = {
  ************************/
 
 app = {
-	
+
 	init: function() {
 
 		// Gestion du formulaire en Ajax
@@ -73,7 +73,7 @@ app = {
 
         // Affiche ma BD
        	$(".thumbnail").on("click", "a", this.maBd)
-       	$(".thumbnail").on("click", this.maBd)
+       	//$(".thumbnail").on("click", this.maBd)
 
 	},
 
@@ -116,7 +116,7 @@ app = {
 		$.ajax({
 			url: bd.href,
 			success: function(html) {
-		
+
 				var details = $(html).find("#details")
 
 				popup.affiche( details )
