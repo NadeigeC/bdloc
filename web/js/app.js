@@ -62,7 +62,7 @@ popup = {
  ************************/
 
 app = {
-	
+
 	init: function() {
 
 		// Gestion du formulaire en Ajax
@@ -116,7 +116,7 @@ app = {
 		$.ajax({
 			url: bd.href,
 			success: function(html) {
-		
+
 				var details = $(html).find("#details")
 
 				popup.affiche( details )

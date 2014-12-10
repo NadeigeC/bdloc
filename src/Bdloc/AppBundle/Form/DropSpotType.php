@@ -32,6 +32,8 @@ class DropSpotType extends AbstractType
                 'attr' => array('class'=>'btn red-button btn-default-red')
                 ))
 
+            ->add('redirect', 'hidden', array('mapped' => false ))
+
              /*->add('previousStep', 'submit', array(
                     'validation_groups' => false,
                 ))*/
