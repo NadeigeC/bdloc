@@ -356,7 +356,8 @@ padding: 10px;
 
 
 
-.btn-panier {
+.btn-panier,
+.btn-panier0 {
 	position: relative;
 	left: 130px;
 	top: -50px;
@@ -369,28 +370,13 @@ padding: 10px;
 	border-color: #AA161A;
 }
 
-.btn-panier:hover{
+.btn-panier:hover,
+.btn-panier0:hover{
 	color: #333;
 	background-color: #e6e6e6;
 	border-color: #adadad;
 }
 
-.btn-panier0{
-	padding: 0;
-	font-size: 12px;
-	width: 100px;
-	height: 25px;
-	color: #fff;
-	background-color: #AA161A;
-	border-color: #AA161A;
-	float: right;
-}
-
-.btn-panier0:hover{
-	color:#fff ;
-	background-color: #fff;
-	border-color: #fff;
-}
 
 /****************************************************
 *													*
@@ -503,12 +489,12 @@ form h6 a:hover {
 	border-bottom: 1px solid #ddd;
 }
 
-.textbouq{ 
+.textbouq{
 	margin-right:20px;
 	color:#fff;
 }
 
-.textbouq:hover{ 
+.textbouq:hover{
 	color:#fff;
 }
 
