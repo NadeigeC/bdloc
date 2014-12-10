@@ -333,6 +333,21 @@
 
         }
 
+
+    /**
+    *@Route("/historique-de-location")
+    */
+    public function rentalHistoryAction(Request $request){
+
+        $user = $this->getUser();
+
+        $params = array(
+            "user" => $user);
+       return $this->render("user/rental_history.html.twig", $params);
+
+        }
+
+
     /**
     * @Route("/desabonnement")
     */
