@@ -16,6 +16,7 @@
     use Bdloc\AppBundle\Entity\User;
     use Bdloc\AppBundle\Entity\DropSpot;
     use Bdloc\AppBundle\Entity\CreditCard;
+    use Bdloc\AppBundle\Entity\Cart;
     use Bdloc\AppBundle\Form\RegisterType;
     use Bdloc\AppBundle\Form\DropSpotType;
     use Bdloc\AppBundle\Form\CreditCardType;
@@ -337,13 +338,19 @@
     /**
     *@Route("/historique-de-location")
     */
-    public function rentalHistoryAction(Request $request){
+    public function rentalHistoryAction(){
 
+        $params = array();
         $user = $this->getUser();
 
-        $params = array(
+        $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
+        $cart = $cartRepo->findBy(array('user'=>$user),array('dateModified'=>'DESC'),5);
+
+        $params = array (
+            "carts" => $cart,
             "user" => $user);
-       return $this->render("user/rental_history.html.twig", $params);
+
+        return $this->render("user/rental_history.html.twig", $params);
 
         }
 

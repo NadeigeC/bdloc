@@ -3,13 +3,13 @@
 {% block main_content %}
 
 <fieldset>
-<legend>Mon historique de location BDLOC !</legend>
+<legend>Mon historique de location. Mes 5 dernières commandes sur BDLOC !</legend>
 </fieldset>
 
 <div class="col-md-6">
     <div class="form-group">
         <div class="col-md-12 profile">
-{% for cart  in user.carts %}
+{% for cart  in carts %}
             <fieldset>
                 <legend> Commande N° {{ cart.id }} du {{ cart.dateModified|date('d-m-Y' ~ ' à ' ~ 'H:m:s') }}</legend>
             </fieldset>
