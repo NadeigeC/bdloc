@@ -344,7 +344,8 @@
         $user = $this->getUser();
 
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
-        $cart = $cartRepo->findBy(array('user'=>$user),array('dateModified'=>'DESC'),5);
+        $cart = $cartRepo->findBy(array('user'=>$user, 'status'=>'valide'),array('dateModified'=>'DESC'),5);
+
 
         $params = array (
             "carts" => $cart,

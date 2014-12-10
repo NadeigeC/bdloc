@@ -644,6 +644,7 @@ class User implements AdvancedUserInterface
      */
     public function isEnabled()
     {
+
         return $this->isActive;
     }
 }
