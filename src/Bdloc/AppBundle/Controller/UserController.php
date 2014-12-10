@@ -16,6 +16,7 @@
     use Bdloc\AppBundle\Entity\User;
     use Bdloc\AppBundle\Entity\DropSpot;
     use Bdloc\AppBundle\Entity\CreditCard;
+    use Bdloc\AppBundle\Entity\Cart;
     use Bdloc\AppBundle\Form\RegisterType;
     use Bdloc\AppBundle\Form\DropSpotType;
     use Bdloc\AppBundle\Form\CreditCardType;
@@ -333,6 +334,27 @@
 
         }
 
+
+    /**
+    *@Route("/historique-de-location")
+    */
+    public function rentalHistoryAction(){
+
+        $params = array();
+        $user = $this->getUser();
+
+        $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
+        $cart = $cartRepo->findBy(array('user'=>$user),array('dateModified'=>'DESC'),5);
+
+        $params = array (
+            "carts" => $cart,
+            "user" => $user);
+
+        return $this->render("user/rental_history.html.twig", $params);
+
+        }
+
+
     /**
     * @Route("/desabonnement")
     */
@@ -341,7 +363,7 @@
         $params = array();
 
             $user = $this->getUser();
-            $quitBdlocForm = $this->createForm(new QuitBdlocType(), $user, array('validation_groups' => array('registration', 'Default')));
+            $quitBdlocForm = $this->createForm(new QuitBdlocType(), $user);
 
          //gère la soumission du form
             $request = $this->getRequest();
@@ -358,7 +380,7 @@
 
                 //envoyer un mail
                 $message = \Swift_Message::newInstance()
-                ->setSubject("Désonnement de BDLOC")
+                ->setSubject("Désabonnement de BDLOC")
                 ->setFrom('site@bdloc.com')
                 ->setTo('nadeige.pirot@gmail.com', $user->getEmail())
                 ->setContentType('text/html')
