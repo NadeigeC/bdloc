@@ -7,17 +7,26 @@
     <legend>Me désabonner de BDLOC !</legend>
 </fieldset>
 
-
+<div class="col-md-6">
+	<div class="form-group">
+	    <div class="col-md-12 ">
 <p>Membre de Bdloc depuis le : {{ app.user.dateCreated|date('d-m-Y') }}</p>
 <p>Formule :</p>
 
 <p>Cher {{ app.user.username }},</p>
 
-<p>vous avez décidé ajourd'hui de vous désabonner de BDLOC. Nous sommes désolés que notre concept n'ait pas réussi à vous séduire plus longtemps. Pouvez-vous nous indiquer ci-dessous les raisons qui motivent votre désabonnement ? Ces informations sont précieuses car elles nous permettront d'adapter notre offre au besoin du public. Merci pour votre aide et nous espèrons vous revoir bientôt sur Bdloc.</p>
+<p class="justfy-txt">vous avez décidé ajourd'hui de vous désabonner de BDLOC. Nous sommes désolés que notre concept n'ait pas réussi à vous séduire plus longtemps. Pouvez-vous nous indiquer ci-dessous les raisons qui motivent votre désabonnement ? Ces informations sont précieuses car elles nous permettront d'adapter notre offre au besoin du public. Merci pour votre aide et nous espèrons vous revoir bientôt sur Bdloc.</p>
 
 {{ form(quitBdlocForm, {'attr':{'novalidate': 'novalidate'}}) }}
 
+		</div>
+	</div>
+</div>
 
-
+<div class="col-md-6 ">
+     <div class="col-md-6 col-md-offset-2">
+        <img alt="mickey" src="{{ asset('img/bd-perso/mickey.jpg') }}"></a>
+     </div>
+ </div>
 
 {% endblock %}
