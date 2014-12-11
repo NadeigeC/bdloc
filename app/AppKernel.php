@@ -18,11 +18,9 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Bdloc\AppBundle\BdlocAppBundle(),
-<<<<<<< HEAD
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
-=======
-            new KMJ\PayPalBridgeBundle\KMJPayPalBridgeBundle(),
->>>>>>> 2ddf0a1780a19d1c9ae8da9e0eac520fd4dbe542
+            new KMJ\PayPalBridgeBundle\KMJPayPalBridgeBundle()
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

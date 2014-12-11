@@ -20,12 +20,10 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "willdurand/geocoder-bundle": "@stable",
         "egeloen/google-map-bundle": "dev-master",
-<<<<<<< HEAD
         "gregwar/captcha-bundle": "dev-master"
-=======
         "paypal/merchant-sdk-php":"dev-master",
         "kmj/paypalbridgebundle": "dev-master"
->>>>>>> 2ddf0a1780a19d1c9ae8da9e0eac520fd4dbe542
+
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "~2.2",
