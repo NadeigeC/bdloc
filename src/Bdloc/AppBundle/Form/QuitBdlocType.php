@@ -5,6 +5,8 @@ namespace Bdloc\AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class QuitBdlocType extends AbstractType
 {
@@ -19,12 +21,17 @@ class QuitBdlocType extends AbstractType
             ->add('raisons', 'textarea', array(
                 'attr' => array('class' => 'form-control','rows' => '10'),
                 'mapped'=>false,
-                'label' => false))
+                'label' => false,
+                'constraints' => array(
+                   new NotBlank(array('message'=>'Entrez un message')),
+                   new Length(array('min' => 3))
+                    )))
 
             ->add('captcha', 'captcha', array(
                         'width' => 200,
                         'height' => 50,
-                        'length' => 6,
+                        'length' => 8,
+                        'invalid_message' => 'Mauvais code',
                     ))
 
             ->add('submit', 'submit', array(
