@@ -108,7 +108,6 @@
            //gère la soumission du form
             $request = $this->getRequest();
             $dropSpotForm->handleRequest($request);
-            //$map = $this->get('ivory_google_map.map');
 
             if ($dropSpotForm->isValid()){
                 $user->setDateModified( new \DateTime());

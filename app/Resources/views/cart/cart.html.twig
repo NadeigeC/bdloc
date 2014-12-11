@@ -29,7 +29,7 @@
 
 		    <div class="position-r">
 
-		        <a href="{{ path('bdloc_app_book_allbooks', {'page':1, 'nombreParPage': 12, 'direction': 'ASC', 'entity': 'dateCreated'}) }}" title="Retour au catalogue" class="textbouq" ><span class="glyphicon glyphicon-chevron-left"></span>Continuer à bouquiner</a>
+    		        <a href="{{ app.request.headers.get('referer') }}" title="Retour au catalogue" class="textbouq" ><span class="glyphicon glyphicon-chevron-left"></span>Retour</a>
 
 		        {% if nb == 0 %}
 
@@ -42,15 +42,15 @@
 		            <a href="{{ path('bdloc_app_cart_validcart',{id:cart.id}) }}" title="Valider ce panier" class="btn btn-default-red ">Valider ce panier !</a><br/><br/><br/>
 
 		        {% endif %}
-		        
+
 		    </div>
 
         </div>
 
-		<div class="col-md-4 imagebd">  
+		<div class="col-md-4 imagebd">
 	    <img alt="black cat" src="{{ asset('img/bd-perso/black_cat.jpg') }}"></a>
 	    </div>
-  </div> 
+  </div>
 {% endblock %}
 
 
