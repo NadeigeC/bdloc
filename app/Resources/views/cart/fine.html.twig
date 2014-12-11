@@ -19,7 +19,7 @@
                 <td><img src="{{ asset('img/Couvertures/'~fine.book.cover) }}" alt="{{ fine.book.title}}" title="{{ fine.book.title}}" width=70px height=100px/><br/><td>
 
                 <td>{{ fine.book.title}}</td>
-                <td>{{ fine.cart.dateCreated|date()}}</td>
+                <td>{{ fine.cart.dateCreated|date('d/m/Y')}}</td>
                 <td>{{ fine.reason}}</td>
                 <td>{{ fine.montant}}</td>
             </tr>
