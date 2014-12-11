@@ -2,10 +2,36 @@
 
 {% block main_content %}
 
-            <fieldset>
-            <legend>Votre panier</legend>
-            </fieldset>
+    <fieldset>
+    <legend>Votre panier</legend>
+    </fieldset>
+	<div class="col-md-8">
+                <div class="table-responsive">
+				<table class="table table-hover">
+					{% for cartItem in cart.cartItems %}
+					<tr>
 
+<<<<<<< HEAD
+					<td><img src="{{ asset('img/Couvertures/'~cartItem.book.cover) }}" alt="{{ cartItem.book.title}}" title="{{ cartItem.book.title}}" width=70px height=100px/></td>
+
+					<td>{{ cartItem.book.title}}</td>
+
+
+					<td><a href="{{ path('bdloc_app_cart_deleteitem',{id: cartItem.id})}}" title="retirer du panier"><span class="glyphicon glyphicon-remove-circle"></span> Retirer du panier</a></td>
+					</tr>
+
+					{% endfor %}
+				</table>
+			
+
+		<div class="position-r">
+
+		<a href="{{ path('bdloc_app_book_allbooks', {'page':1, 'nombreParPage': 12, 'direction': 'ASC', 'entity': 'dateCreated'}) }}" title="Retour au catalogue" class="textbouq" ><span class="glyphicon glyphicon-chevron-left"></span>Continuer à bouquiner</a>
+
+		{% if nb == 0 %}
+			{{ 'Votre panier est vide !' }}<br/><br/>
+		{% endif %}
+=======
             <div class="table-responsive">
                 <table class="table table-hover">
 
@@ -44,8 +70,19 @@
         {% endif %}
         
     </div>
+>>>>>>> e7b8c3b229001673dc32bbc9f1e3ac5281342bb6
 
+		{% if nb > 0 %}
+			<a href="{{ path('bdloc_app_cart_validcart',{id:cart.id}) }}" title="Valider ce panier" class="btn btn-default-red ">Valider ce panier !</a><br/><br/><br/>
+		{% endif %}
+		</div>
+        </div>
+        </div>
 
+	<div class="col-md-4 imagebd">  
+    <img alt="black cat" src="{{ asset('img/bd-perso/black_cat.jpg') }}"></a>
+    </div>
+  </div> 
 {% endblock %}
 
 

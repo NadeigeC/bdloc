@@ -44,7 +44,7 @@ class User implements AdvancedUserInterface
      *     message = "'{{ value }}' n'est pas un email valide.",
      *     checkMX = true
      *)
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255,)
      */
     private $email;
 

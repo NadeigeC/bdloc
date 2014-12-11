@@ -5,9 +5,8 @@
 
             {% block content %}
 
-            <fieldset>
-                <legend>Réinitialistaion du mot de passe BDLOC!!! </legend>
-            </fieldset>
+         
+             <h1>Réinitialistaion du mot de passe BDLOC!!! </h1>
 
             <h2>Cliquez sur le lien ci-dessous pour réinitialiser votre mot de passe</h2>
             <a href="{{ url('bdloc_app_security_newpassword', {token: user.token, email: user.email})  }}" title="nouveau mot de passe">Changer votre mot de passe</a>
