@@ -99,7 +99,7 @@
                     'notice',
                     'Votre compte est désactivé ! Un regret ? Vous souhaitez vous réinscrire ?');
 
-                    return $this->redirect($this->generateUrl("bdloc_app_default_home"));
+                    return $this->redirect($this->generateUrl("bdloc_app_user_register"));
 
                      }
         }
