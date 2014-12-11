@@ -16,6 +16,6 @@
             
     {% endfor %}
 
-     <a href="{{ path('bdloc_app_cart_validcart',{id:cart.id,user:cart.user.id})}}" title="Confirmation commande">Retour à la page confirmation de ma commande !</a><br/><br/><br/>
+     <a href="{{ path('bdloc_app_cart_validcart',{id:cart.id,user:cart.user.id})}}" title="Confirmation commande"><span class="glyphicon glyphicon-chevron-left"></span>Retour à la page confirmation de ma commande !</a><br/><br/><br/>
 
 {% endblock %}

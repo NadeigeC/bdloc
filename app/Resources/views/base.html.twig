@@ -48,8 +48,9 @@
                         </li>
                         <li>
                         {% if app.user %}
-                            
-                            <a href="{{ path('bdloc_app_cart_findcart') }}" ><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Mon panier {{ render(controller('BdlocAppBundle:Cart:countItem')) }} </a>
+
+
+                            {{ render(controller('BdlocAppBundle:Cart:countItem')) }}
 
                         {% endif %}
                         </li>

@@ -66,7 +66,9 @@ app = {
 	init: function() {
 
 		// Gestion du formulaire en Ajax
-       // $("#formfilter").on("submit", "form", this.myCriteres)
+
+        //$("#formfilter").on("submit", "form", this.myCriteres)
+
 
         // init pop up
         popup.init()
@@ -118,7 +120,7 @@ app = {
 		$.ajax({
 			url: bd.href,
 			success: function(html) {
-			
+
 				var details = $(html).find("#details")
 
 				popup.affiche( details )
