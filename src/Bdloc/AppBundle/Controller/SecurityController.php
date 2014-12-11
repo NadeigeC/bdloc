@@ -40,7 +40,7 @@
         }
 
         // last username entered by the user
-        $lastUsername = (null === $session) ? '' : $session->get(SecurityContextInterface::LAST_USERNAME);
+            $lastUsername = (null === $session) ? '' : $session->get(SecurityContextInterface::LAST_USERNAME);
 
         return $this->render(
             'security/login.html.twig',
@@ -49,10 +49,10 @@
                 'last_username' => $lastUsername,
                 'error'         => $error,)
                 );
+
         }
 
-
-         /**
+        /**
         * @Route("/oubli-du-mot-de-passe")
         */
 

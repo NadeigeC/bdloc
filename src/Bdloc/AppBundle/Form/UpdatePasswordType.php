@@ -20,11 +20,27 @@ class UpdatePasswordType extends AbstractType
             ->add('password', 'repeated', array(
                     'type' => 'password',
                     'invalid_message' => 'Les mots de passe doivent correspondre',
-                    'options' => array('required' => true),
-                    'first_options'  => array('label' => 'Mot de passe'),
-                    'second_options' => array('label' => 'Mot de passe (confirmation)'),))
+                    'options' => array(
+                    'required' => true),
+
+                    'first_options'  => array(
+                    'label' => 'Mot de passe',
+                    'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Votre mot de passe')),
+
+                    'second_options' => array(
+                    'label' => 'Confirmez votre mot de passe',
+                    'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Confirmez votre mot de passe')),
+
+                ))
+
             ->add('submit','submit', array(
-                "label" =>"Modifier le mot de passe"
+                    "label" =>"Modifier le mot de passe",
+                    'attr' => array(
+                    'class' => 'btn red-button btn-default-red')
                 ))
 
         ;

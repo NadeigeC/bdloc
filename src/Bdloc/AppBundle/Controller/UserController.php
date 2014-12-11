@@ -10,10 +10,13 @@
     use Symfony\Component\EventDispatcher\EventDispatcher;
     use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
     use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+    use Symfony\Component\HttpFoundation\RedirectResponse; // N'oubliez pas ce use
+    use Symfony\Component\HttpFoundation\Response;
 
     use Bdloc\AppBundle\Entity\User;
     use Bdloc\AppBundle\Entity\DropSpot;
     use Bdloc\AppBundle\Entity\CreditCard;
+    use Bdloc\AppBundle\Entity\Cart;
     use Bdloc\AppBundle\Form\RegisterType;
     use Bdloc\AppBundle\Form\DropSpotType;
     use Bdloc\AppBundle\Form\CreditCardType;
@@ -23,6 +26,7 @@
     use Bdloc\AppBundle\Form\UpdateProfileType;
     use Bdloc\AppBundle\Form\UpdatePasswordType;
     use Bdloc\AppBundle\Form\UpdateDropSpotType;
+    use Bdloc\AppBundle\Form\QuitBdlocType;
 
 
     class UserController extends Controller {
@@ -49,6 +53,7 @@
             //dates directement dans l'entité avec les lifecyclecallbaks
                 $user->setRoles( array("ROLE_USER"));
                 $user->setIsActive(1);
+
                 $user->setDateModified( new \DateTime());
                 $user->setDateCreated( new \DateTime());
 
@@ -102,6 +107,7 @@
            //gère la soumission du form
             $request = $this->getRequest();
             $dropSpotForm->handleRequest($request);
+            //$map = $this->get('ivory_google_map.map');
 
             if ($dropSpotForm->isValid()){
                 $user->setDateModified( new \DateTime());
@@ -153,7 +159,7 @@
                 'Vous êtes désormais abonné à BDLOC !'
                 );
 
-                return $this->redirect($this->generateUrl("bdloc_app_book_allbooks"));
+                return $this->redirect($this->generateUrl("bdloc_app_book_allbooks", array('page'=>1, 'nombreParPage'=> 12, 'direction'=> 'ASC', 'entity'=> 'dateCreated')));
         }
 
             $params['creditCardForm'] = $creditCardForm->createView();
@@ -163,15 +169,11 @@
         }
 
     /**
-    *@Route("/profile/{id}")
+    *@Route("/profile")
     */
-    public function viewProfileAction(Request $request, $id){
+    public function viewProfileAction(Request $request){
 
-        //select
-        $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
-
-        //la méthode find() du repository s'attend à recevoir la clef primaire en paramètre
-        $user = $userRepo->find($id);
+        $user = $this->getUser();
 
         $params = array(
             "user" => $user);
@@ -267,6 +269,8 @@
             $params = array();
             $user = $this->getUser();
             $dropSpotForm = $this->createForm(new DropSpotType(), $user, array('validation_groups' => array('dropSpot', 'Default')));
+            $referer = $request->headers->get('referer');
+            $dropSpotForm->get('redirect')->setData($referer);
 
             //gère la soumission du form
             $request = $this->getRequest();
@@ -282,7 +286,7 @@
                 'notice',
                 'Nouveau point relais sauvegardé !');
 
-                return $this->redirect($this->generateUrl("bdloc_app_user_viewprofile"));
+                return $this->redirect($dropSpotForm->get('redirect')->getData());
             }
 
                 $params['dropSpotForm'] = $dropSpotForm->createView();
@@ -330,15 +334,69 @@
 
         }
 
+
+    /**
+    *@Route("/historique-de-location")
+    */
+    public function rentalHistoryAction(){
+
+        $params = array();
+        $user = $this->getUser();
+
+        $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
+        $cart = $cartRepo->findBy(array('user'=>$user, 'status'=>'valide'),array('dateModified'=>'DESC'),5);
+
+
+        $params = array (
+            "carts" => $cart,
+            "user" => $user);
+
+        return $this->render("user/rental_history.html.twig", $params);
+
+        }
+
+
     /**
     * @Route("/desabonnement")
     */
     public function quitBdlocAction(Request $request){
 
+        $params = array();
 
-            return $this->render("user/quit_bdloc.html.twig");
+            $user = $this->getUser();
+            $quitBdlocForm = $this->createForm(new QuitBdlocType(), $user);
 
+         //gère la soumission du form
+            $request = $this->getRequest();
+            $quitBdlocForm->handleRequest($request);
+
+            if ($quitBdlocForm->isValid()){
+                $user->setDateModified( new \DateTime());
+                $user->setDateCreated( new \DateTime());
+                $user->setIsActive(0);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+                $em->flush();
+
+                //envoyer un mail
+                $message = \Swift_Message::newInstance()
+                ->setSubject("Désabonnement de BDLOC")
+                ->setFrom('site@bdloc.com')
+                ->setTo('nadeige.pirot@gmail.com', $user->getEmail())
+                ->setContentType('text/html')
+                ->setBody(
+                    $this->renderView('emails/desabonnement.html.twig', array('user'=>$user, 'raisons'=>$quitBdlocForm->get('raisons')->getData()))
+                    )
+                ;
+                $this->get('mailer')->send($message);
+
+
+                return $this->redirect($this->generateUrl("logout"));
         }
+                $params['quitBdlocForm'] = $quitBdlocForm->createView();
+                return $this->render("user/quit_bdloc.html.twig", $params);
 
+}
 
 }

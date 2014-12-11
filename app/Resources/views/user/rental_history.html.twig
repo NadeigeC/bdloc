@@ -1,0 +1,39 @@
+{% extends "::base.html.twig" %}
+
+{% block main_content %}
+
+<fieldset>
+<legend>Mon historique de location. Mes 5 dernières commandes sur BDLOC !</legend>
+</fieldset>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <div class="col-md-12 profile">
+{% for cart  in carts %}
+            <fieldset>
+                <legend> Commande N° {{ cart.id }} du {{ cart.dateModified|date('d-m-Y' ~ ' à ' ~ 'H:m:s') }}</legend>
+            </fieldset>
+            <p> Nombre de bds commandées : {{cart.cartItems|length}}</p>
+<div class="table-responsive">
+            <table class="table table-hover">
+{% for cartItem in cart.cartItems %}
+            <tr>
+
+            <td><img src="{{ asset('img/Couvertures/'~cartItem.book.cover) }}" alt="{{ cartItem.book.title}}" title="{{ cartItem.book.title}}" width=70px height=100px/></td>
+
+             <td>{{ cartItem.book.title}}</td>
+{% endfor %}
+</table>
+</div>
+
+{% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 ">
+     <div class="col-md-6 col-md-offset-2">
+        <img alt="marvel comics" src="{{ asset('img/bd-perso/marvel_comics.jpg') }}"></a>
+     </div>
+ </div>
+{% endblock %}

@@ -1,15 +1,46 @@
 {% extends "::base.html.twig" %}
 
-
 {% block main_content %}
 
+<fieldset>
+	<legend>Entrez vos informations de paiement</legend>
+</fieldset>
 
-<h1>Entrez vos informations de paiement</h1>
+<div class="col-md-6">
+	<div class="form-group">
+        <div class="col-md-12 ">
+			
+			{{ form_start(creditCardForm) }}
 
+				{{ form_label(creditCardForm.paypalId) }}
+				{{ form_widget(creditCardForm.paypalId, {'attr':{'class': 'form-control'}}) }}
 
-{{ form(creditCardForm, {'attr':{'novalidate': 'novalidate'}}) }}
+				{{ form_label(creditCardForm.ownerIdentity) }}
+				{{ form_widget(creditCardForm.ownerIdentity, {'attr':{'class': 'form-control '}}) }}
 
+				<label>Date d'Expiration</label>
+				{{ form_widget(creditCardForm.validUntil.month, {'attr':{'class': 'form-control widgetpose '}}) }}
+				{{ form_widget(creditCardForm.validUntil.year, {'attr':{'class': 'form-control widgetpose'}}) }}
+				
+				{{ form_label(creditCardForm.creditCardType) }}
+				{{ form_widget(creditCardForm.creditCardType, {'attr':{'class': 'form-control carte'}}) }}
+		
+				{{ form_label(creditCardForm.cryptoCard) }}
+				{{ form_widget(creditCardForm.cryptoCard, {'attr':{'class': 'form-control crypto'}}) }}
 
+				{{ form_widget(creditCardForm.submit, {'attr':{'class': 'btn red-button btn-default-red'}}) }}
+
+			{{ form_end(creditCardForm) }}
+			
+		</div>
+	</div>
+</div>
+
+<div class="col-md-6 ">
+     <div class="col-md-6 col-md-offset-2">
+        <img alt="mistery" src="{{ asset('img/bd-perso/mistery.jpg') }}"></a>
+     </div>
+ </div>
 
 {% endblock %}
 {% block javascripts %}{% endblock %}

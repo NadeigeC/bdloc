@@ -60,7 +60,9 @@ class BookFilterType extends AbstractType
                     },
                 ))
             ->add('submit', 'submit', array(
-                "label" => "Trier"
+                    "label" => "Trier",
+                    'attr' => array(
+                    'class' => 'btn red-button btn-default-red')
                 ))
         ;
     }

@@ -49,7 +49,12 @@ class Cart
      */
     private $dateDelivery;
 
-   
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateReturn", type="datetime")
+     */
+    private $dateReturn;
 
      /**
     *
@@ -270,5 +275,28 @@ class Cart
     public function getFines()
     {
         return $this->fines;
+    }
+
+    /**
+     * Set dateReturn
+     *
+     * @param \DateTime $dateReturn
+     * @return Cart
+     */
+    public function setDateReturn($dateReturn)
+    {
+        $this->dateReturn = $dateReturn;
+
+        return $this;
+    }
+
+    /**
+     * Get dateReturn
+     *
+     * @return \DateTime 
+     */
+    public function getDateReturn()
+    {
+        return $this->dateReturn;
     }
 }

@@ -3,11 +3,54 @@
 
 {% block main_content %}
 
+{% if app.request.get('_route') != app.request.headers.get('referer') %}
+    <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
+{% endif %}
 
-<h1>Modifier votre point relais favori</h1>
+<fieldset>
+<legend>Modifier votre point relais favori</legend>
+</fieldset>
 
-<p>Point relais favori : {{ app.user.dropSpot.fullAdress }}</p>
+<div class="col-md-6">
+    <div class="form-group">
+        <div class="col-md-12 ">
+			<p>Point relais favori : </p>
+			<p>{{ app.user.dropSpot.fullAdress }}</p>
 
-{{ form(dropSpotForm, {'attr':{'novalidate': 'novalidate'}}) }}
+			{{ form(dropSpotForm, {'attr':{'novalidate': 'novalidate'}}) }}
+
+    </div>
+
+    </div>
+</div>
+
+<div class="col-md-6 ">
+     <div class="col-md-6 col-md-offset-2">
+        <img alt="tintin" src="{{ asset('img/bd-perso/tintin.jpg') }}"></a>
+     </div>
+ </div>
+
+<div class="col-md-12 ">
+<div id="map-container"></div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="https://www.googleapis.com/geolocation/v1/geolocate?key=API_KEY"></script>
+    
+    <!-- affiche la map -->
+    <script type="text/javascript"> 
+
+    {% if app.user.dropSpot %}
+      var userLat={{app.user.dropSpot.latitude}}
+      var userLon={{app.user.dropSpot.longitude}} 
+      {% else %}
+        var userLat= 48.8534100
+        var userLon=2.3488000
+    {% endif %}
+    </script>
+    <script type="text/javascript" src="{{ asset('js/map.js') }}"> </script>
 
 {% endblock %}

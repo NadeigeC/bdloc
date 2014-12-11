@@ -2,23 +2,45 @@
 
 {% block title %}Details | Bdloc{% endblock %}
 
+
 {% block main_content %}
 
-<div id="details">
 
-	<img src="{{ asset('img/Couvertures/' ~ book.cover ~ '') }}" alt="{{ book.title }}">
+<div id="details" class="detail">
+	<div class="row">
 
-	Titre : {{ book.title }}
-	Illutrateur : {{ book.illustrator.firstName }} {{ book.illustrator.lastName }}
-	Nombre de page : {{ book.pages }}
-	scénarist : {{ book.scenarist.firstName }} {{ book.scenarist.lastName }}
-	coloriste : {{ book.colorist.firstName }} {{ book.colorist.lastName }}
-	Publiée par : {{ book.publisher }}
+	  	<div class="col-xs-12 col-md-12">
 
-	en stock : {{ book.stock }}
+		<div class="row">
+			<div class="col-xs-12 col-md-3">
+		<img src="{{ asset('img/Couvertures/' ~ book.cover ~ '') }}" alt="{{ book.title }}" class="img-responsive">
+			</div>
+		<div class="col-xs-12 col-md-9 detail-txt">
+		<h1>{{ book.title }}</h1>
+		<p>Catégorie : {{ book.serie.style }}</p>
+		<p>Nombre de page : {{ book.pages }}</p>
+
+		<div class="pointiller"></div>
+
+		<p>Illustrateur : {{ book.illustrator.firstName }} {{ book.illustrator.lastName }}</p>
+		<p>scénariste : {{ book.scenarist.firstName }} {{ book.scenarist.lastName }}</p>
+		<p>coloriste : {{ book.colorist.firstName }} {{ book.colorist.lastName }}</p>
+		<p>Publiée par : {{ book.publisher }}</p>
+
+		<div class="pointiller"></div>
 
 
-	Catégorie : {{ book.serie.style }}
+		<h3 class="texte-rouge">{{ book.stock }} en stock !</h3>
+		<!-- Bouton Ajouter au panier -->
+
+		<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
+
+		<button type="submit" class="btn btn-panier-detail">{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}</button>
+		</form>
+		</div>
+		</div>
+	</div>
 </div>
+
 
 {% endblock %}

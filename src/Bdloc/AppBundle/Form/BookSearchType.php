@@ -18,7 +18,7 @@ class BookSearchType extends AbstractType
             ->add('title','text', array(
                     "label" => " ",
                     'attr' => array(
-                    'placeholder' => 'Rechercher un titre, un auteur...',
+                    'placeholder' => 'Rechercher...',
                     'class' => 'form-control')
 
                ))

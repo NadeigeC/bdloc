@@ -1,7 +1,8 @@
 {% extends '::base.html.twig' %}
 
 {% block main_content %}
-    <h1>Page paiement des amendes</h1>
+
+    <h1>Paiement des amendes</h1>
 
     <table>
         <tr>
@@ -12,30 +13,31 @@
             <th>Montant</th>
          </tr>
          
-    {% for fine in fines %}
-        
-        <tr>
-            <td><img src="{{ asset('img/Couvertures/'~fine.book.cover) }}" alt="{{ fine.book.title}}" title="{{ fine.book.title}}" width=70px height=100px/><br/><td>
+        {% for fine in fines %}
+            
+            <tr>
+                <td><img src="{{ asset('img/Couvertures/'~fine.book.cover) }}" alt="{{ fine.book.title}}" title="{{ fine.book.title}}" width=70px height=100px/><br/><td>
 
-            <td>{{ fine.book.title}}</td>
-            <td>{{ fine.cart.dateCreated|date()}}</td>
-            <td>{{ fine.reason}}</td>
-            <td>{{ fine.montant}}</td>
-        </tr>
+                <td>{{ fine.book.title}}</td>
+                <td>{{ fine.cart.dateCreated|date()}}</td>
+                <td>{{ fine.reason}}</td>
+                <td>{{ fine.montant}}</td>
+            </tr>
 
-    {% endfor %}
-        <tr>
-            <th>TOTAL</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>{{ total}}</th>
+        {% endfor %}
+            <tr>
+                <th>TOTAL</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>{{ total}}</th>
  
         </tr>
+        
     </table>
 
      <a href="{{ path('bdloc_app_cart_payfines',{id:cart.id ,user:user.id})}}" title="Payer une amende">Payer !</a><br/><br/><br/>
 
-     <a href="" title="Retour au catalogue">Retour au catalogue</a>
+     <a href="{{ path('bdloc_app_book_allbooks', {'page':1, 'nombreParPage': 12, 'direction': 'ASC', 'entity': 'dateCreated'}) }}" title="Retour au catalogue">Retour au catalogue</a>
 
 {% endblock %}

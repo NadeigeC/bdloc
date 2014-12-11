@@ -2,11 +2,18 @@
 
 {% block main_content %}
    
-    <h1>Liste des bds</h1>
+
+  	<fieldset>
+        <legend>Liste des bds</legend>
+    </fieldset>
+
+
     {% for cartItem in cart.cartItems %}
+
             {{ cartItem.book.title}}<br/>
           
             <img src="{{ asset('img/Couvertures/'~cartItem.book.cover) }}" alt="{{ cartItem.book.title}}" title="{{ cartItem.book.title}}" width=70px height=100px/><br/>
+            
     {% endfor %}
 
      <a href="{{ path('bdloc_app_cart_validcart',{id:cart.id,user:cart.user.id})}}" title="Confirmation commande">Retour à la page confirmation de ma commande !</a><br/><br/><br/>

@@ -52,7 +52,7 @@ popup = {
 
 	addBack: function() {
 
-		this.overlay.append($('<a id="retour">X</a>'))
+		this.overlay.append($('<a id="retour" class="glyphicon glyphicon-remove"></a>'))
 	}
 }
 
@@ -62,7 +62,7 @@ popup = {
  ************************/
 
 app = {
-	
+
 	init: function() {
 
 		// Gestion du formulaire en Ajax
@@ -73,6 +73,10 @@ app = {
 
         // Affiche ma BD
        	$(".thumbnail").on("click", "a", this.maBd)
+
+       	//$(".thumbnail").on("click", this.maBd)
+
+
 	},
 
 	myCriteres: function(event) {
@@ -114,7 +118,7 @@ app = {
 		$.ajax({
 			url: bd.href,
 			success: function(html) {
-		
+
 				var details = $(html).find("#details")
 
 				popup.affiche( details )
@@ -127,8 +131,6 @@ app = {
 	},
 
 }
-
-
 /************************
  * 	Chargement du DOM 	*
  ************************/
