@@ -116,7 +116,7 @@ app = {
 		$.ajax({
 			url: bd.href,
 			success: function(html) {
-
+			
 				var details = $(html).find("#details")
 
 				popup.affiche( details )

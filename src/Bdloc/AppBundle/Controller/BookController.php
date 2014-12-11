@@ -79,6 +79,14 @@ class BookController extends Controller
      	$params['nombrePage'] = "";
 
 		}
+$userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
+        $user = $this->getUser();
+
+        $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
+        $cart = $cartRepo->findOneBy(
+             array('user'=>$user,'status'=>"courant")
+);
+ 
 
         // Paramètres pour la vue
 		$params['books'] = $books;
@@ -88,6 +96,9 @@ class BookController extends Controller
 		$params['entity'] = $entity;
 		$params['bookSearchForm'] = $bookSearchForm->createView();
 		$params['bookFilterForm'] = $bookFilterForm->createView();
+  
+$params['cart'] = $cart;
+
 
       // j'envoie à la vue
       return $this->render("catalogue.html.twig", $params);
@@ -102,8 +113,18 @@ class BookController extends Controller
     	$bookRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Book");
         $book = $bookRepo->find($id);
 
+$userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
+        $user = $this->getUser();
+
+        $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
+        $cart = $cartRepo->findOneBy(
+             array('user'=>$user,'status'=>"courant")
+);
+
+
         $params = array(
-            "book" => $book
+            "book" => $book,
+"cart" => $cart           
         );
 
         return $this->render("details.html.twig", $params);
