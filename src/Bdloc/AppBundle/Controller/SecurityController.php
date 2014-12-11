@@ -70,28 +70,38 @@
 
                 $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
 
+
                 $current_user = $userRepo->findOneByEmail($user->getEmail());
+                if ($current_user->isEnabled()){
+                    $link = $this->generateUrl("bdloc_app_security_newpassword", array('token'=>$current_user->getToken(),'email'=>$current_user->getEmail()));
 
-                $link = $this->generateUrl("bdloc_app_security_newpassword", array('token'=>$current_user->getToken(),'email'=>$current_user->getEmail()));
+                    //envoyer un mail
+                    $message = \Swift_Message::newInstance()
+                    ->setSubject("Reinitialisez votre mot de passe")
+                    ->setFrom('site@bdloc.com')
+                    ->setTo($current_user->getEmail())
+                    ->setContentType('text/html')
+                    ->setBody(
+                        $this->renderView('emails/reinitialistaion_mot_de_passe.html.twig', array('user'=>$current_user))
+                        )
+                    ;
+                    $this->get('mailer')->send($message);
 
-                //envoyer un mail
-                $message = \Swift_Message::newInstance()
-                ->setSubject("Reinitialisez votre mot de passe")
-                ->setFrom('site@bdloc.com')
-                ->setTo($current_user->getEmail())
-                ->setContentType('text/html')
-                ->setBody(
-                    $this->renderView('emails/reinitialistaion_mot_de_passe.html.twig', array('user'=>$current_user))
-                    )
-                ;
-                $this->get('mailer')->send($message);
+                    $request->getSession()->getFlashBag()->add(
+                    'notice',
+                    'Le message a bien été envoyé !'
+                    );
 
-                $request->getSession()->getFlashBag()->add(
-                'notice',
-                'Le message a bien été envoyé !'
-                );
+                    return $this->redirect($this->generateUrl("bdloc_app_default_home"));
+                    }
+                else {
+                    $request->getSession()->getFlashBag()->add(
+                    'notice',
+                    'Votre compte est désactivé ! Un regret ? Vous souhaitez vous réinscrire ?');
 
-                return $this->redirect($this->generateUrl("bdloc_app_default_home"));
+                    return $this->redirect($this->generateUrl("bdloc_app_user_register"));
+
+                     }
         }
 
             $params['forgotPasswordForm'] = $forgotPasswordForm->createView();

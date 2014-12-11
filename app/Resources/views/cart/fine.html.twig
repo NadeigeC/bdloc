@@ -1,6 +1,7 @@
-{% extends '::base.html.twig' %}
+ {% extends '::base.html.twig' %}
 
 {% block main_content %}
+
     <fieldset>
         <legend>Paiement des amendes</legend>
     </fieldset>
@@ -43,7 +44,6 @@
 
                 <a href="{{ path('bdloc_app_cart_payfines',{id:cart.id ,user:user.id})}}" title="Payer une amende" class="btn btn-panier-detail">Payer</a>
             </div>
-            
 
             </div>
 

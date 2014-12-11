@@ -1,6 +1,16 @@
 {% if book.stock == 1 %}
 
     {{ 'Ajouter au panier' }}
+
+{% elseif cartItem == 1 %}
+
+    {{ 'Dans votre panier' }}
+
 {% else %}
-{{ 'Dans votre panier'}}
+
+    {{ 'Bd indisponible' }}
+
+
 {% endif %}
+
+
