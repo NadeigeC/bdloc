@@ -31,9 +31,9 @@ class CartController extends Controller {
 
         if (! $cart){
             $dateDelivery = new DateTime();
-            $dateDelivery=$dateDelivery->add(new DateInterval('P3D'));  
+            $dateDelivery=$dateDelivery->add(new DateInterval('P3D'));
             $dateReturn = new DateTime();
-            $dateReturn=$dateReturn->add(new DateInterval('P14D'));      
+            $dateReturn=$dateReturn->add(new DateInterval('P14D'));
 
              $cart = new Cart();
              $cart -> setUser($user);
@@ -46,11 +46,11 @@ class CartController extends Controller {
              $em->persist($cart);
              $em->flush();
         };
-       
+
         $nb=$cart->getCartItems();
 
         $nb=count($nb);
-      
+
         $params = array (
             "cart" => $cart,
             "nb" =>$nb,
@@ -106,13 +106,11 @@ class CartController extends Controller {
 
         );
 
-
         $params = array (
             "fines" => $fines,
             "user"  => $user,
             "id"    => $id,
         );
-
 
         if ($fines){
 
@@ -146,10 +144,10 @@ class CartController extends Controller {
 
         }
 
-       
+
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
         $cart = $cartRepo->find($id);
-       
+
         $params = array (
             "cart" => $cart,
             "user" => $user,
@@ -190,7 +188,7 @@ class CartController extends Controller {
      * @Route("/panier/list/{id}")
      */
      public function seeListAction($id){
-        
+
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
         $cart = $cartRepo->findOneBy(
                 array('id'=>$id,'status'=>"courant")
@@ -232,10 +230,10 @@ class CartController extends Controller {
         $params = array (
             "num"   =>$num,
         );
-  
-     
+
+
         return $this->render("cart/countItem.html.twig",$params);
-      
+
 
      }
 
@@ -256,9 +254,9 @@ class CartController extends Controller {
         $cartItemRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:CartItem");
         $cartItems = $cartItemRepo->findBy(
              array('cart'=>$cart)
-        );      
+        );
 
-     
+
         $cart->setStatus("valide");
         $em = $this->getDoctrine()->getManager();
         $em->flush();
@@ -290,9 +288,9 @@ class CartController extends Controller {
         if(count($cart)==0){
 
             $dateDelivery = new DateTime();
-            $dateDelivery=$dateDelivery->add(new DateInterval('P3D'));  
+            $dateDelivery=$dateDelivery->add(new DateInterval('P3D'));
             $dateReturn = new DateTime();
-            $dateReturn=$dateReturn->add(new DateInterval('P14D'));      
+            $dateReturn=$dateReturn->add(new DateInterval('P14D'));
 
              $cart = new Cart();
              $cart -> setUser($user);
@@ -361,20 +359,20 @@ class CartController extends Controller {
         $em->flush();
 
         }
-       
+
        //return $this->redirect($this->generateUrl('bdloc_app_book_allbooks', array('page'=>1, 'nombreParPage'=> 12, 'direction'=> 'ASC', 'entity'=> 'dateCreated') ));
         $referer = $this->getRequest()->headers->get('referer');
 
         return $this->redirect($referer);
     }
 
-   
+
     /**
      * @Route("/livre/stock/{id}")
      */
 
      public function stockAction($id){
-     
+
         $bookRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Book");
         $book = $bookRepo->find($id);
 
@@ -403,7 +401,7 @@ class CartController extends Controller {
         $cart = $cartRepo->findOneBy(
              array('user'=>$user, 'status'=>'courant', )
         );
-   
+
         $cartItemRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:CartItem");
 
         $cartItem = $cartItemRepo->findOneBy(
