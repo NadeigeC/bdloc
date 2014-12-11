@@ -388,6 +388,19 @@ padding: 10px;
 	border-color: #adadad;
 }
 
+.btn-panier-in {
+	position: relative;
+	left: 130px;
+	top: -50px;
+	padding: 0;
+	font-size: 14px;
+	width: 115px;
+	height: 40px;
+	color: #fff;
+	background-color: gray;
+	border-color: gray;
+}
+
 
 /****************************************************
 *													*
@@ -583,6 +596,15 @@ form h6 a:hover {
 	color: #333;
 	background-color: #e6e6e6;
 	border-color: #adadad;
+}
+
+.btn-panier-detail-in {
+	font-size: 14px;
+	width: 115px;
+	height: 40px;
+	color: #fff;
+	/*background-color: #AA161A;
+	border-color: #AA161A;*/
 }
 
 

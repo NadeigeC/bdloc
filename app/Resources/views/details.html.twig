@@ -33,10 +33,33 @@
 		<h3 class="texte-rouge">{{ book.stock }} en stock !</h3>
 		<!-- Bouton Ajouter au panier -->
 
-		<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
+		{% if(book.stock == 1) %}
+			<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
 
-		<button type="submit" class="btn btn-panier-detail">{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}</button>
-		</form>
+				<button type="submit" class="btn btn-panier-detail">{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}</button>
+
+			</form>
+
+		{% else %}
+
+			{% if(cart) %}
+
+	  			{% for cartItem in cart.cartItems %}
+
+					{% if(cartItem.book.id == book.id) %} 
+						<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
+						
+							<button type="submit" class="btn btn-panier-detail- in" id="dansvotrepanier" disabled="disabled" >{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}</button>
+						</form>						
+					{% endif %}
+
+				{% endfor %}
+
+			{% endif %}
+			
+		{% endif %}
+
+
 		</div>
 		</div>
 	</div>
