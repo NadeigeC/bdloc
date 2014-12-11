@@ -22,13 +22,24 @@ class NewPasswordType extends AbstractType
                     'required' => true),
 
                     'first_options'  => array(
-                    'label' => 'Mot de passe'),
+                    'label' => 'Nouveau mot de passe',
+                    'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Nouveau mot de passe')),
+
 
                     'second_options' => array(
-                    'label' => 'Mot de passe (confirmation)'),))
+                    'label' => 'Confirmez votre nouveau mot de passe',
+                    'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Confirmez votre nouveau mot de passe')),
+                    ))
 
             ->add('submit','submit', array(
-                    "label" =>"Enregistrer"))
+                    "label" =>"Enregistrer",
+                    'attr' => array(
+                    'class' => 'btn red-button btn-default-red')
+                ))
         ;
     }
 
