@@ -17,6 +17,7 @@
     use Bdloc\AppBundle\Entity\DropSpot;
     use Bdloc\AppBundle\Entity\CreditCard;
     use Bdloc\AppBundle\Entity\Cart;
+    use Bdloc\AppBundle\Entity\Fine;
     use Bdloc\AppBundle\Form\RegisterType;
     use Bdloc\AppBundle\Form\DropSpotType;
     use Bdloc\AppBundle\Form\CreditCardType;
@@ -175,8 +176,14 @@
 
         $user = $this->getUser();
 
+        $fineRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Fine");
+        $fines = $fineRepo->findBy(
+            array('user'=>$user,'status'=>'a payer'));
+
         $params = array(
-            "user" => $user);
+            "user" => $user,
+            "fines" => $fines);
+
        return $this->render("user/profile.html.twig", $params);
 
         }
@@ -344,7 +351,8 @@
         $user = $this->getUser();
 
         $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
-        $cart = $cartRepo->findBy(array('user'=>$user),array('dateModified'=>'DESC'),5);
+        $cart = $cartRepo->findBy(array('user'=>$user, 'status'=>'valide'),array('dateModified'=>'DESC'),5);
+
 
         $params = array (
             "carts" => $cart,
@@ -353,6 +361,76 @@
         return $this->render("user/rental_history.html.twig", $params);
 
         }
+
+    /**
+     * @Route("/voir-mes-amendes")
+     */
+     public function viewFinesAction(){
+
+        // Pénalités
+        $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
+        $user = $this->getUser();
+
+        $params = array();
+        $fineRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Fine");
+
+        $fines = $fineRepo->findBy(
+            array('user'=>$user,'status'=>'a payer'));
+
+        $params = array (
+            "fines" => $fines,
+            "user"  => $user,
+        );
+
+        if ($fines){
+
+            $params = array();
+            $total=0;
+
+            for ($i=0;$i<count($fines);$i++){
+
+            $montant=$fines[$i]->getMontant();
+            $total=$total+$montant;
+            }
+
+             $params = array (
+                "fines" =>$fines,
+                "user" =>$user,
+                "total"=>$total);
+
+        }
+
+            return $this->render("user/view_fines.html.twig",$params);
+    }
+
+
+     /**
+     * @Route("/payer-mes-amendes")
+     */
+
+      public function payFinesAction(Request $request){
+
+        $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
+        $user = $this->getUser();
+
+        $fineRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Fine");
+        $fines = $fineRepo->findByUser($user);
+
+
+        for ($i=0;$i<count($fines);$i++){
+            $fines[$i]->setStatus("paye");
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+
+        $request->getSession()->getFlashBag()->add(
+        'notice',
+        'Vous avez bien payé vos amendes !'
+        );
+
+        return $this->redirect($this->generateUrl("bdloc_app_user_viewprofile",array('user'=>$user)) );
+     }
 
 
     /**

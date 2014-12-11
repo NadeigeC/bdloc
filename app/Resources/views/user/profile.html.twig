@@ -44,7 +44,11 @@
             <fieldset>
                 <legend>Mes amendes en cours</legend>
             </fieldset>
-            <a href="#">Payer une amende</a><br><br>
+             {% if fines %}
+            <a href="{{ path('bdloc_app_user_viewfines') }}">Payer une amende</a><br><br>
+
+            {% else %} <p>Vous n'avez aucune amende à payer</p>
+             {% endif %}
 
             <form action="{{ path('bdloc_app_user_quitbdloc') }}">
                 <input type="submit" value="Me désabonner" class="btn red-button btn-default-red">
