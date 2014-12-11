@@ -75,7 +75,12 @@
 					<!-- Bouton Ajouter au panier -->
 					<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
 
+					{% if app.user %}
+						{% if book.stock == 1 %}
 						<button type="submit" class="btn btn-panier" id="ajouter">{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}</button>
+						{% endif %}
+					{% endif %}
+
 					</form>
 
 				</div>
