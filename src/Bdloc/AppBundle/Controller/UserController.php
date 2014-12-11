@@ -159,7 +159,8 @@
                 'Vous êtes désormais abonné à BDLOC !'
                 );
 
-                return $this->redirect($this->generateUrl("bdloc_app_book_allbooks", array('page'=>1, 'nombreParPage'=> 12, 'direction'=> 'ASC', 'entity'=> 'dateCreated')));
+                return $this->redirect( $this->generateUrl("bdloc_app_paypal_takesubscriptionpayment"));
+                // return $this->redirect($this->generateUrl("bdloc_app_book_allbooks", array('page'=>1, 'nombreParPage'=> 12, 'direction'=> 'ASC', 'entity'=> 'dateCreated')));
         }
 
             $params['creditCardForm'] = $creditCardForm->createView();
