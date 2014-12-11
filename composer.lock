@@ -4,11 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "hash": "5bf1b0235d47f96c4592ee121a31c392",
-=======
-    "hash": "85621e89c0677c6cb9c4d2d2609b37ed",
->>>>>>> 2ddf0a1780a19d1c9ae8da9e0eac520fd4dbe542
+    "hash": "564282e15c1ccb1998922afc5274b7ca",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2459,12 +2455,9 @@
     "stability-flags": {
         "willdurand/geocoder-bundle": 0,
         "egeloen/google-map-bundle": 20,
-<<<<<<< HEAD
         "gregwar/captcha-bundle": 20,
-=======
         "paypal/merchant-sdk-php": 20,
         "kmj/paypalbridgebundle": 20,
->>>>>>> 2ddf0a1780a19d1c9ae8da9e0eac520fd4dbe542
         "tchwork/debug-bundle": 20
     },
     "platform": {
