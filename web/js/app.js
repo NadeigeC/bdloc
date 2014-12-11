@@ -66,18 +66,13 @@ app = {
 	init: function() {
 
 		// Gestion du formulaire en Ajax
-        //$("#formfilter").on("submit", "form", this.myCriteres)
+        $("#formfilter").on("submit", "form", this.myCriteres)
 
         // init pop up
         popup.init()
 
         // Affiche ma BD
        	$(".thumbnail").on("click", "a", this.maBd)
-
-       	// pagination
-       	$('.pagination').on("click", this.maPagination)
-
-
 	},
 
 	myCriteres: function(event) {
@@ -87,15 +82,15 @@ app = {
 
 		// Mes variables
 		var form = this
+		var lien = window.location.href
+
+		console.log(lien)
 
 			//Ma requête Ajax
 			$.ajax({
 	            url: form.action,
 				data: $(form).serialize(),
 	            success : function(html){
-
-	            	var dataz = $(form).serialize()
-	            	console.log(dataz)
 
 	            	var details = $(html).find(".catalogue").hide()
 
