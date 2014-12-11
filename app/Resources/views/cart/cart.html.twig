@@ -27,23 +27,23 @@
 
             </div>
 
-<div class="position-r">
+    <div class="position-r">
 
-    <a href="{{ path('bdloc_app_book_allbooks', {'page':1, 'nombreParPage': 12, 'direction': 'ASC', 'entity': 'dateCreated'}) }}" title="Retour au catalogue" class="textbouq" ><span class="glyphicon glyphicon-chevron-left"></span>Continuer à bouquiner</a>
+        <a href="{{ path('bdloc_app_book_allbooks', {'page':1, 'nombreParPage': 12, 'direction': 'ASC', 'entity': 'dateCreated'}) }}" title="Retour au catalogue" class="textbouq" ><span class="glyphicon glyphicon-chevron-left"></span>Continuer à bouquiner</a>
 
-    {% if nb == 0 %}
+        {% if nb == 0 %}
 
-        {{ 'Votre panier est vide !' }}<br/><br/>
+            {{ 'Votre panier est vide !' }}<br/><br/>
 
-    {% endif %}
+        {% endif %}
 
-    {% if nb > 0 %}
+        {% if nb > 0 %}
 
-        <a href="{{ path('bdloc_app_cart_validcart',{id:cart.id}) }}" title="Valider ce panier" class="btn btn-default-red ">Valider ce panier !</a><br/><br/><br/>
+            <a href="{{ path('bdloc_app_cart_validcart',{id:cart.id}) }}" title="Valider ce panier" class="btn btn-default-red ">Valider ce panier !</a><br/><br/><br/>
 
-    {% endif %}
-    
-</div>
+        {% endif %}
+        
+    </div>
 
 
 {% endblock %}
