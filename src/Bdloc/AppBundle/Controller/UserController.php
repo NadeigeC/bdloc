@@ -337,7 +337,7 @@
 
             $params['creditCardForm'] = $creditCardForm->createView();
 
-            return $this->render("user/credit_card.html.twig", $params);
+            return $this->render("user/update_credit_card.html.twig", $params);
 
         }
 
@@ -468,7 +468,10 @@
                 ;
                 $this->get('mailer')->send($message);
 
-
+                // $request->getSession()->getFlashBag()->add(
+                // 'notice',
+                // 'Désabonnement effectif !'
+                // );
                 return $this->redirect($this->generateUrl("logout"));
         }
                 $params['quitBdlocForm'] = $quitBdlocForm->createView();

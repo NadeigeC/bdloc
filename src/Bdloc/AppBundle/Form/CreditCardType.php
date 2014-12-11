@@ -17,7 +17,7 @@ class CreditCardType extends AbstractType
         $builder
             ->add('paypalId', 'text', array(
 
-                    'label'=>'Identifiant Paypal :',
+                    'label'=>'Identifiant Paypal',
                     'attr' => array(
                     'class' => 'form-control')
                 ))

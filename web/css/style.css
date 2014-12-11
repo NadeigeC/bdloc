@@ -244,7 +244,7 @@ padding: 10px;
 	left: 38%;
 	color:#000;
 	}
-	.responsive-slider .slides ul li .slide-body .caption.header h1 {
+.responsive-slider .slides ul li .slide-body .caption.header h1 {
 	text-transform:uppercase;
 	font-size: 45px;
 	font-weight:700;
@@ -558,6 +558,7 @@ form h6 a:hover {
 	color:#B8D561;
 	font-size:14px;
 	font-weight:400;
+	padding-bottom:10px;
 }
 
 .flash-error{
@@ -565,6 +566,7 @@ form h6 a:hover {
 	color:#AA161A;
 	font-size:14px;
 	font-weight:400;
+	padding-bottom:10px;
 }
 
 .etape{
@@ -614,6 +616,28 @@ form h6 a:hover {
 #etape{
 	margin-bottom:25px;
 }
+
+ label #bdloc_appbundle_user_captcha{
+	margin-right: 10px;
+}
+
+#bdloc_appbundle_user_raisons{
+	margin-bottom: 10px;
+}
+
+#bdloc_appbundle_user_captcha{
+	margin-left: 40px;
+	margin-top: 10px;
+	height: 50px;
+	width: 200px;
+	/*border-radius: 5px;*/
+	display: block;
+	text-align: center;
+	font-size: 1.5em;
+	letter-spacing: 10px;
+}
+
+
 /****************************************************
 *													*
 *													*
