@@ -21,7 +21,11 @@ class QuitBdlocType extends AbstractType
                 'mapped'=>false,
                 'label' => false))
 
-            ->add('captcha', 'captcha')
+            ->add('captcha', 'captcha', array(
+                        'width' => 200,
+                        'height' => 50,
+                        'length' => 6,
+                    ))
 
             ->add('submit', 'submit', array(
                 "label" => "Quitter BDLOC !",
