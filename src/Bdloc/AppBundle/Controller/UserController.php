@@ -185,16 +185,14 @@
         $carts = $cartRepo->findBy(
             array('user'=>$user,'status'=>'valide'));
 
-/*        $creditCardRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:CreditCard");
-        $creditCard = $creditCardRepo->findBy(
-            array('user'=>$user,'subscription'=>$subscription));*/
+        $subscription = $user->getCreditCard()->getSubscription();
 
 
         $params = array(
             "user" => $user,
             "fines" => $fines,
-            "carts" => $carts,);
-        /*"creditCard"=>$creditCard*/
+            "carts" => $carts,
+            "subscription"=> $subscription);
 
        return $this->render("user/profile.html.twig", $params);
 
