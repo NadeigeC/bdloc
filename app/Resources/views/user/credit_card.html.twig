@@ -5,17 +5,17 @@
 
 	<div id="etape" class="row">
 	<div class="col-md-12 col-md-offset-1 col-lg-10 col-lg-offset-2">
-	  
+
 	  <div class="col-sm-4 col-md-3">
 	    <div class="etape-active">COORDONNEES</div>
 	    <div class="parallelogram-active"></div>
 	  </div>
-	  
+
 	  <div class="col-sm-4 col-md-3">
 	    <div class="etape-active">LIVRAISON</div>
 	    <div class="parallelogram-active"></div>
 	  </div>
-	  
+
 	  <div class="col-sm-4 col-md-3">
 	    <div class="etape-active">PAIEMENT</div>
 	    <div class="parallelogram-active"></div>
@@ -31,8 +31,11 @@
 <div class="col-md-6">
 	<div class="form-group">
         <div class="col-md-12 ">
-			
+
 			{{ form_start(creditCardForm) }}
+
+				{{ form_label(creditCardForm.subscription) }}
+				{{ form_widget(creditCardForm.subscription, {'attr':{'class': 'form-control'}}) }}
 
 				{{ form_label(creditCardForm.paypalId) }}
 				{{ form_widget(creditCardForm.paypalId, {'attr':{'class': 'form-control'}}) }}
@@ -43,17 +46,17 @@
 				<label>Date d'Expiration</label>
 				{{ form_widget(creditCardForm.validUntil.month, {'attr':{'class': 'form-control widgetpose '}}) }}
 				{{ form_widget(creditCardForm.validUntil.year, {'attr':{'class': 'form-control widgetpose'}}) }}
-				
+
 				{{ form_label(creditCardForm.creditCardType) }}
 				{{ form_widget(creditCardForm.creditCardType, {'attr':{'class': 'form-control carte'}}) }}
-		
+
 				{{ form_label(creditCardForm.cryptoCard) }}
 				{{ form_widget(creditCardForm.cryptoCard, {'attr':{'class': 'form-control crypto'}}) }}
 
 				{{ form_widget(creditCardForm.submit, {'attr':{'class': 'btn red-button btn-default-red'}}) }}
 
 			{{ form_end(creditCardForm) }}
-			
+
 		</div>
 	</div>
 </div>

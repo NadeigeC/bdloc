@@ -24,6 +24,15 @@ class CreditCard
      */
     private $id;
 
+
+    /**
+     * @var string
+     * @Assert\NotBlank(message="Veuillez choisir un type d'abonnement", groups={"creditCard","updateCreditCard"})
+     * @ORM\Column(name="subscription", type="string", length=255)
+     */
+    private $subscription;
+
+
     /**
      * @var string
      * @Assert\NotBlank(message="Veuillez entrer numero de carte de crédit", groups={"creditCard","updateCreditCard"})
@@ -279,5 +288,28 @@ class CreditCard
     public function getOwnerIdentity()
     {
         return $this->ownerIdentity;
+    }
+
+    /**
+     * Set subscription
+     *
+     * @param string $subscription
+     * @return CreditCard
+     */
+    public function setSubscription($subscription)
+    {
+        $this->subscription = $subscription;
+
+        return $this;
+    }
+
+    /**
+     * Get subscription
+     *
+     * @return string 
+     */
+    public function getSubscription()
+    {
+        return $this->subscription;
     }
 }

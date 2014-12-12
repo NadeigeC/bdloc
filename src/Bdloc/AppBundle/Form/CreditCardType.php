@@ -15,8 +15,16 @@ class CreditCardType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('paypalId', 'text', array(
+            ->add('subscription', 'choice', array(
+                    'label'=>'Abonnement à BDLOC !',
+                    'choices'   => array('mensuel' => 'Abonnement mensuel : 12 euros par mois', 'annuel' => 'Abonnement annuel : 120 euros par an'),
+                    'empty_value' => 'Choisissez une formule d\'abonnement',
+                    'required'  => true,
+                    'attr' => array(
+                    'class' => 'form-control')
+                ))
 
+            ->add('paypalId', 'text', array(
                     'label'=>'Identifiant Paypal',
                     'attr' => array(
                     'class' => 'form-control')
