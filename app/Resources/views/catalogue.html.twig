@@ -17,6 +17,8 @@
 				    <a class="pagination" href="{{ path('bdloc_app_book_allbooks', {'page': page-1, 'nombreParPage': nombreParPage, 'direction': direction, 'entity': entity}) }}"><span class="glyphicon glyphicon-chevron-left"></span>Page précédente </a>
 					{% endif %}
 
+					<span class="pagina">Page {{ page }} sur {{ nombrePage }}</span>
+
 		          	<!-- J'affiche page suivante, sauf si on se trouve sur la dernière page -->
 		          	{% if page < nombrePage %}
 
@@ -86,8 +88,7 @@
 					  			{% for cartItem in cart.cartItems %}
 									{% if(cartItem.book.id == book.id) %}
 										<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
-
-										{<button type="submit" class="btn btn-panier-in" id="dansvotrepanier" disabled="disabled" >{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}</button>
+											<button type="submit" class="btn btn-panier-in" id="dansvotrepanier" disabled="disabled" >{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}</button>
 										</form>
 									{% endif %}
 
@@ -95,11 +96,11 @@
 
 							{% endif %}
 
-
 						{# {% endfor %}#}
 					{% endif %}
 
 					{% endif %}
+
 
 				</div>
 			</div>
@@ -121,6 +122,8 @@
 		          	{% if page > 1 %}
 				    <a class="pagination" href="{{ path('bdloc_app_book_allbooks', {'page': page-1, 'nombreParPage': nombreParPage, 'direction': direction, 'entity': entity}) }}"><span class="glyphicon glyphicon-chevron-left"></span>Page précédente </a>
 					{% endif %}
+
+					<span class="pagina">Page {{ page }} sur {{ nombrePage }}</span>
 
 		          	<!-- J'affiche page suivante, sauf si on se trouve sur la dernière page -->
 		          	{% if page < nombrePage %}

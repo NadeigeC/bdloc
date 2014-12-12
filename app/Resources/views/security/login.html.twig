@@ -5,10 +5,10 @@
 {% if error %}
     <div>
         {% if error.message == "Bad credentials" %}
-            {{"Veuillez vérifier vos identifiants !"}}
+            <div class="texte-rouge">{{"Veuillez vérifier vos identifiants !"}}</div>
             {% else %}
                 {% if error.message == "User account is disabled." %}
-                {{"Votre compte est désactivé ! Un regret ? Vous souhaitez vous réinscrire ? "}}<a href="{{ path('bdloc_app_user_register') }}">C'est par ici</a>
+                <p>{{"Votre compte est désactivé ! Un regret ? Vous souhaitez vous réinscrire ? "}}<a href="{{ path('bdloc_app_user_register') }}">C'est par ici</a></p>
             {% endif %}
         {% endif %}
     </div>

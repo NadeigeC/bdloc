@@ -27,6 +27,12 @@ h2, h3, h4, h5,{
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 }
 
+.pagina {
+	color: rgb(170, 22, 26);
+	font-weight: 300;
+	font-size: 12px;
+	text-transform: uppercase;
+}
 
 #retour {
 	padding: 6px;
@@ -358,7 +364,7 @@ padding: 10px;
 
 .pagination {
 	text-transform:uppercase;
-	margin: 0px 15px 20px 5px;
+	margin: 0px 5px 20px 5px;
 	font-size:12px;
 	font-weight:300;
 	color:#fff;
@@ -684,13 +690,16 @@ form h6 a:hover {
 	font-size: 14px;
 	width: 115px;
 	height: 40px;
-	color: #fff;
-	/*background-color: #AA161A;
-	border-color: #AA161A;*/
+	color: #454545;
+	background-color: #818181;
+	border-color: #818181;
 }
 
-
-
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+	background-color: #818181;
+	color: #FFFFFF;
+	border-color: #818181;
+}
 /****************************************************
 *													*
 *													*
