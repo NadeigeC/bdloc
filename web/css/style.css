@@ -232,11 +232,26 @@ padding: 10px;
 
 .btn-success:hover, .btn-success:focus, .btn-success.focus, .btn-success:active, .btn-success.active, .open > .dropdown-toggle.btn-success {
 	color: #fff;
-	
 	background-color: #449d44;
 	border-color: #398439;
 }
 
+
+.responsive-slider .slides ul li .slide-body .caption.header h1.slide2 {
+	text-transform: uppercase;
+	font-size: 65px;
+	font-weight: 700;
+	height: 250px;
+	top: 35%;
+	left: 5%;
+	color:#fff;
+}
+
+.slide3{
+	color:#fff;
+	font-size:42px;
+	font-weight:700;
+}
 /****************************************************
 *													*
 *													*
@@ -477,7 +492,9 @@ form h6 a:hover {
 
 }
 
-
+.btn {
+	padding: 8px 12px;
+}
 .btn-default-red:hover{
 	color: #333;
 	background-color: #e6e6e6;
@@ -562,7 +579,7 @@ form h6 a:hover {
 
 .flash-notice{
 	text-transform:uppercase;
-	color:#B8D561;
+	color:#BFFF00;
 	font-size:14px;
 	font-weight:400;
 	padding-bottom:10px;

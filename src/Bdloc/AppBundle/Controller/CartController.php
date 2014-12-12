@@ -80,9 +80,7 @@ class CartController extends Controller {
         $em->persist($book);
         $em->flush();
 
-
         return $this->redirect($this->generateUrl("bdloc_app_cart_findcart",array('id' => $cartItem->getCart()->getId())) );
-
 
      }
 
@@ -401,7 +399,7 @@ class CartController extends Controller {
                 'Vous ne pouvez commander que 10 bds au maximum !'
             );
 
-         
+
             $referer = $this->getRequest()->headers->get('referer');
 
             return $this->redirect($referer);
@@ -493,7 +491,7 @@ class CartController extends Controller {
         return $this->render("cart/textButton.html.twig", $params);
     }
 
-     
+
 
 
 
