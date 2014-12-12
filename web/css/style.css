@@ -623,7 +623,7 @@ form h6 a:hover {
 	margin-bottom:25px;
 }
 
- label #bdloc_appbundle_user_captcha{
+label #bdloc_appbundle_user_captcha{
 	margin-right: 10px;
 }
 
@@ -678,6 +678,8 @@ form h6 a:hover {
 	color: #fff;
 	background-color: #AA161A;
 	border-color: #AA161A;
+	margin-top: 50px;
+	margin-left: -132px;
 }
 
 .btn-panier-detail:hover{
@@ -691,10 +693,28 @@ form h6 a:hover {
 	width: 115px;
 	height: 40px;
 	color: #fff;
-	/*background-color: #AA161A;
-	border-color: #AA161A;*/
+	margin-top: 50px;
+	margin-left: -132px;
+	
 }
 
+#dansvotrepanierdetails {
+	font-size: 14px;
+	width: 115px;
+	height: 40px;
+	color: #fff;
+	margin-top: 50px;
+	margin-left: -132px;
+}
+
+#ajouterdetails {
+		font-size: 14px;
+	width: 115px;
+	height: 40px;
+	color: #fff;
+	margin-top: 50px;
+	margin-left: -132px;
+}
 
 
 /****************************************************

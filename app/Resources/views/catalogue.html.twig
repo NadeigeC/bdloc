@@ -70,7 +70,11 @@
 					<p><a href="{{ path('bdloc_app_book_details', {id: book.id}) }}" class="texte-noir" >Afficher plus de détails !</a></p>
 					<!-- Affichage du stock -->
 
-					<h6>{{ book.stock }}</h6>
+					{% if(book.stock >= 1) %}
+					<h6>plus que {{ book.stock }} en stock</h6>
+					{% else %}
+					<h6> Bd non disponible </h6>
+					{% endif %}
 
 					<!-- Bouton Ajouter au panier -->
 
@@ -94,20 +98,22 @@
 								{% if(cartItem.book.id == book.id) %} 
 									<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
 										
-									{<button type="submit" class="btn btn-panier-in" id="dansvotrepanier" disabled="disabled" >{% if book.stock == 1 %}
+									{<button type="submit" class="btn btn-panier-in" id="dansvotrepanier" disabled="disabled" >
+										{% if book.stock == 1 %}
 
-    {{ 'Ajouter au panier' }}
+    										{{ 'Ajouter au panier' }}
 
-{% elseif cartItem %}
+										{% elseif cartItem %}
 
-    {{ 'Dans votre panier' }}
+    										{{ 'Dans votre panier' }}
 
-{% else %}
+										{% else %}
 
-    {{ 'Bd indisponible' }}
+    										{{ 'Bd indisponible' }}
 
 
-{% endif %}</button>
+										{% endif %}
+											</button>
 										</form>						
 									{% endif %}
 
