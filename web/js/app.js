@@ -66,7 +66,7 @@ app = {
 	init: function() {
 
 		// Gestion du formulaire en Ajax
-        $("#formfilter").on("submit", "form", this.myCriteres)
+        //$("#formfilter").on("submit", "form", this.myCriteres)
 
         // init pop up
         popup.init()
