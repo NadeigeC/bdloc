@@ -1,16 +1,17 @@
 {% if num == 1 %}
 
-    ( {{num}} article )
+<a href="{{ path('bdloc_app_cart_findcart') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Mon panier ( {{num}} article )</a>
+
 
 {% endif %}
 
 {% if num > 1 %}
 
-    ( {{num}} articles )
-    
+<a href="{{ path('bdloc_app_cart_findcart') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Mon panier ( {{num}} articles )</a>
+
 {% endif %}
 
 
 
- 
- 
+
+
