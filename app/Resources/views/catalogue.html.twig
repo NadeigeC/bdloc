@@ -17,6 +17,8 @@
 				    <a class="pagination" href="{{ path('bdloc_app_book_allbooks', {'page': page-1, 'nombreParPage': nombreParPage, 'direction': direction, 'entity': entity}) }}"><span class="glyphicon glyphicon-chevron-left"></span>Page précédente </a>
 					{% endif %}
 
+					<span class="pagina">Page {{ page }} sur {{ nombrePage }}</span>
+
 		          	<!-- J'affiche page suivante, sauf si on se trouve sur la dernière page -->
 		          	{% if page < nombrePage %}
 
@@ -95,11 +97,17 @@
 
 							{% endif %}
 
+
+						{% endif %}
+
+					{% endif %}	
+
 						{# {% endfor %}#}
 					{% endif %}
 
 
 					{% endif %}
+
 
 				</div>
 			</div>
@@ -121,6 +129,8 @@
 		          	{% if page > 1 %}
 				    <a class="pagination" href="{{ path('bdloc_app_book_allbooks', {'page': page-1, 'nombreParPage': nombreParPage, 'direction': direction, 'entity': entity}) }}"><span class="glyphicon glyphicon-chevron-left"></span>Page précédente </a>
 					{% endif %}
+
+					<span class="pagina">Page {{ page }} sur {{ nombrePage }}</span>
 
 		          	<!-- J'affiche page suivante, sauf si on se trouve sur la dernière page -->
 		          	{% if page < nombrePage %}
