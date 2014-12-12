@@ -175,14 +175,20 @@
     public function viewProfileAction(Request $request){
 
         $user = $this->getUser();
+        //$carts = $user->getCarts();
 
         $fineRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Fine");
         $fines = $fineRepo->findBy(
             array('user'=>$user,'status'=>'a payer'));
 
+        $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
+        $carts = $cartRepo->findBy(
+            array('user'=>$user,'status'=>'valide'));
+
         $params = array(
             "user" => $user,
-            "fines" => $fines);
+            "fines" => $fines,
+            "carts" => $carts);
 
        return $this->render("user/profile.html.twig", $params);
 
@@ -337,7 +343,7 @@
 
             $params['creditCardForm'] = $creditCardForm->createView();
 
-            return $this->render("user/credit_card.html.twig", $params);
+            return $this->render("user/update_credit_card.html.twig", $params);
 
         }
 
@@ -373,7 +379,6 @@
 
         $params = array();
         $fineRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Fine");
-
         $fines = $fineRepo->findBy(
             array('user'=>$user,'status'=>'a payer'));
 
@@ -468,7 +473,10 @@
                 ;
                 $this->get('mailer')->send($message);
 
-
+                // $request->getSession()->getFlashBag()->add(
+                // 'notice',
+                // 'Désabonnement effectif !'
+                // );
                 return $this->redirect($this->generateUrl("logout"));
         }
                 $params['quitBdlocForm'] = $quitBdlocForm->createView();

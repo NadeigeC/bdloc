@@ -34,7 +34,7 @@ class BookRepository extends EntityRepository
         			  $qb->select(array('b', 'a', 's'))
         			  ->from('Bdloc\AppBundle\Entity\Book', 'b')
         			  ->leftJoin('b.illustrator', 'a')
-        			  ->join('b.serie', 's');
+        			  ->leftJoin('b.serie', 's');
 
         			  // Je boucle sur mes séries
         			  for( $i = 0; $i < count($series); $i++) {
@@ -58,7 +58,7 @@ class BookRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    //  "' . $serie->getStyle() . '"
+
 
 	public function findBookWithTitle($title)
     {
@@ -69,6 +69,6 @@ class BookRepository extends EntityRepository
                       ->getQuery();
 
         return $query->getResult();
-    }		
+    }	
 
 }

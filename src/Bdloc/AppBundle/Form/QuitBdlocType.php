@@ -31,7 +31,10 @@ class QuitBdlocType extends AbstractType
                         'width' => 200,
                         'height' => 50,
                         'length' => 8,
+                        'quality' => 100,
                         'invalid_message' => 'Mauvais code',
+                        'as_url' => true,
+                        'reload' => true,
                     ))
 
             ->add('submit', 'submit', array(

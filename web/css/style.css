@@ -27,6 +27,12 @@ h2, h3, h4, h5,{
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 }
 
+.pagina {
+	color: rgb(170, 22, 26);
+	font-weight: 300;
+	font-size: 12px;
+	text-transform: uppercase;
+}
 
 #retour {
 	padding: 6px;
@@ -244,7 +250,7 @@ padding: 10px;
 	left: 38%;
 	color:#000;
 	}
-	.responsive-slider .slides ul li .slide-body .caption.header h1 {
+.responsive-slider .slides ul li .slide-body .caption.header h1 {
 	text-transform:uppercase;
 	font-size: 45px;
 	font-weight:700;
@@ -357,7 +363,7 @@ padding: 10px;
 
 .pagination {
 	text-transform:uppercase;
-	margin: 0px 15px 20px 5px;
+	margin: 0px 5px 20px 5px;
 	font-size:12px;
 	font-weight:300;
 	color:#fff;
@@ -558,6 +564,7 @@ form h6 a:hover {
 	color:#B8D561;
 	font-size:14px;
 	font-weight:400;
+	padding-bottom:10px;
 }
 
 .flash-error{
@@ -565,6 +572,7 @@ form h6 a:hover {
 	color:#AA161A;
 	font-size:14px;
 	font-weight:400;
+	padding-bottom:10px;
 }
 
 .etape{
@@ -614,6 +622,28 @@ form h6 a:hover {
 #etape{
 	margin-bottom:25px;
 }
+
+label #bdloc_appbundle_user_captcha{
+	margin-right: 10px;
+}
+
+#bdloc_appbundle_user_raisons{
+	margin-bottom: 10px;
+}
+
+#bdloc_appbundle_user_captcha{
+	margin-left: 40px;
+	margin-top: 10px;
+	height: 50px;
+	width: 200px;
+	/*border-radius: 5px;*/
+	display: block;
+	text-align: center;
+	font-size: 1.5em;
+	letter-spacing: 10px;
+}
+
+
 /****************************************************
 *													*
 *													*

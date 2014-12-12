@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "564282e15c1ccb1998922afc5274b7ca",
+    "hash": "7d2f3b9ef4ff65b8c546fae9e072901e",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2448,9 +2448,7 @@
             "time": "2014-12-02 19:45:04"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "willdurand/geocoder-bundle": 0,
@@ -2460,10 +2458,9 @@
         "kmj/paypalbridgebundle": 20,
         "tchwork/debug-bundle": 20
     },
+    "prefer-stable": false,
     "platform": {
         "php": ">=5.3.3"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }
