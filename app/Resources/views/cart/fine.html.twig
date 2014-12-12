@@ -12,19 +12,19 @@
                         <th>Couverture</th>
                         <th>Titre</th>
                         <th>Emprunté le</th>
-                        <th>Motif</th>
+                        {# <th>Motif</th> #}
                         <th>Montant</th>
                      </tr>
-                     
+
                 {% for fine in fines %}
-                    
+
                     <tr>
                         <td>
                         <img src="{{ asset('img/Couvertures/'~fine.book.cover) }}" alt="{{ fine.book.title}}" title="{{ fine.book.title}}" width=70px height=100px/>
                         </td>
                         <td>{{ fine.book.title}}</td>
                         <td>{{ fine.cart.dateCreated|date()}}</td>
-                        <td>{{ fine.reason}}</td>
+                       {# <td>{{ fine.reason}}</td> #}
                         <td>{{ fine.montant}}</td>
                     </tr>
 
@@ -35,10 +35,10 @@
                         <th></th>
                         <th></th>
                         <th>{{ total}}</th>
-             
+
                     </tr>
                 </table>
-            </div> 
+            </div>
             <div class="position-r">
                 <a href="{{ path('bdloc_app_book_allbooks', {'page':1, 'nombreParPage': 12, 'direction': 'ASC', 'entity': 'dateCreated'}) }}" title="Retour au catalogue" class="textbouq"><span class="glyphicon glyphicon-chevron-left"></span>Retour au catalogue</a>
 
@@ -48,13 +48,13 @@
             </div>
 
             <div class="col-md-4 imagebd">
-               
+
                     <img alt="police" src="{{ asset('img/bd-perso/police.jpg') }}"></a>
-         
+
 
             </div>
     </div>
-    
+
 
 
 {% endblock %}

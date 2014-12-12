@@ -379,7 +379,6 @@
 
         $params = array();
         $fineRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Fine");
-
         $fines = $fineRepo->findBy(
             array('user'=>$user,'status'=>'a payer'));
 
