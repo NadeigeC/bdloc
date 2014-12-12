@@ -678,6 +678,8 @@ label #bdloc_appbundle_user_captcha{
 	color: #fff;
 	background-color: #AA161A;
 	border-color: #AA161A;
+	margin-top: 50px;
+	margin-left: -132px;
 }
 
 .btn-panier-detail:hover{
@@ -691,10 +693,28 @@ label #bdloc_appbundle_user_captcha{
 	width: 115px;
 	height: 40px;
 	color: #fff;
-	/*background-color: #AA161A;
-	border-color: #AA161A;*/
+	margin-top: 50px;
+	margin-left: -132px;
+	
 }
 
+#dansvotrepanierdetails {
+	font-size: 14px;
+	width: 115px;
+	height: 40px;
+	color: #fff;
+	margin-top: 50px;
+	margin-left: -132px;
+}
+
+#ajouterdetails {
+		font-size: 14px;
+	width: 115px;
+	height: 40px;
+	color: #fff;
+	margin-top: 50px;
+	margin-left: -132px;
+}
 
 
 /****************************************************

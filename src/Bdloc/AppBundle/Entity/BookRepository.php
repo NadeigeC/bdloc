@@ -31,10 +31,12 @@ class BookRepository extends EntityRepository
         $qb = $this->getEntityManager()->createQueryBuilder();
 
         			  // requête des BDs, auteurs & séries de BD
-        			  $qb->select(array('b', 'a', 's'))
+        			  $qb->select(array('b', 'a', 's', 'i', 'c'))
         			  ->from('Bdloc\AppBundle\Entity\Book', 'b')
         			  ->leftJoin('b.illustrator', 'a')
-        			  ->leftJoin('b.serie', 's');
+        			  ->leftJoin('b.serie', 's')
+                      ->leftJoin('b.cartItems', 'i')
+                      ->leftJoin('i.cart', 'c');
 
         			  // Je boucle sur mes séries
         			  for( $i = 0; $i < count($series); $i++) {
@@ -54,7 +56,6 @@ class BookRepository extends EntityRepository
         			  ->orderBy($entity, $direction)
                       ;
 
-
         return $qb->getQuery()->getResult();
     }
 
@@ -69,6 +70,8 @@ class BookRepository extends EntityRepository
                       ->getQuery();
 
         return $query->getResult();
-    }	
+    }
+
+
 
 }

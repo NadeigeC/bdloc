@@ -70,53 +70,68 @@
 					<p><a href="{{ path('bdloc_app_book_details', {id: book.id}) }}" class="texte-noir" >Afficher plus de détails !</a></p>
 					<!-- Affichage du stock -->
 
-					<h6>{{ render(controller('BdlocAppBundle:Cart:stock', {id:book.id}))}}</h6>
+					{% if(book.stock >= 1) %}
+					<h6>plus que {{ book.stock }} en stock</h6>
+					{% else %}
+					<h6> Bd non disponible </h6>
+					{% endif %}
 
 					<!-- Bouton Ajouter au panier -->
 
+
 					{% if app.user %}
-						{% if(book.stock == 1) %}
+						{% if(book.stock == 1) %} 
 							<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
 
-								<button type="submit" class="btn btn-panier" id="ajouter">{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}</button>
-
+								<button type="submit" class="btn btn-panier" id="ajouter">
+									{% if book.stock == 1 %} {{ 'Ajouter au panier' }}
+										{% elseif cartItems.book_id == book.id %} {{ 'Dans votre panier' }}
+										 	{% else %} {{ 'Bd indisponible' }}
+								    {% endif %}
+								</button>
+							
 							</form>
 
-						{% else %}
+					{% else %}	
+						{% if( app.user ) %}
+					  		{% for cartItem in cart.cartItems %}
+								{% if(cartItem.book.id == book.id) %} 
+									<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
+										
+									{<button type="submit" class="btn btn-panier-in" id="dansvotrepanier" disabled="disabled" >
+										{% if book.stock == 1 %}
 
-							{% if(cart) %}
-					  			{% for cartItem in cart.cartItems %}
-									{% if(cartItem.book.id == book.id) %}
-										<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
+    										{{ 'Ajouter au panier' }}
 
-										{<button type="submit" class="btn btn-panier-in" id="dansvotrepanier" disabled="disabled" >{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}</button>
-										</form>
+										{% elseif cartItem %}
+
+    										{{ 'Dans votre panier' }}
+
+										{% else %}
+
+    										{{ 'Bd indisponible' }}
+
+
+										{% endif %}
+											</button>
+										</form>						
 									{% endif %}
 
 								{% endfor %}
 
 							{% endif %}
 
+						{% endif %}
 
-
-
-						{# {% endfor %}#}
-					{% endif %}
-
-
-					{% endif %}
-
-
+					{% endif %}	
 				</div>
 			</div>
 
 			{% endfor %}
-
+			
 		</div>
 	</div>
 	<!--fin Affichage des BDs -->
-
-
 
 	<!--Pagination -->
 	<div class="col-xs-12  col-md-10 col-lg-12">
