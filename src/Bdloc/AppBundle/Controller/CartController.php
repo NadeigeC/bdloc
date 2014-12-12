@@ -280,7 +280,7 @@ class CartController extends Controller {
 
 
      /**
-     * @Route("/panier")
+     * @Route("/panier/nombre_articles")
      *
      */
 
@@ -401,7 +401,7 @@ class CartController extends Controller {
                 'Vous ne pouvez commander que 10 bds au maximum !'
             );
 
-            //return $this->redirect($this->generateUrl('bdloc_app_book_allbooks', array('page'=>1, 'nombreParPage'=> 12, 'direction'=> 'ASC', 'entity'=> 'dateCreated') ));
+         
             $referer = $this->getRequest()->headers->get('referer');
 
             return $this->redirect($referer);
@@ -492,6 +492,10 @@ class CartController extends Controller {
 
         return $this->render("cart/textButton.html.twig", $params);
     }
+
+     
+
+
 
  }
 

@@ -139,6 +139,7 @@ background-color: transparent;
 span{
 	color: #AA161A;
 }
+
 /****************************************************
 *													*
 *													*
@@ -249,7 +250,7 @@ padding: 10px;
 	left: 38%;
 	color:#000;
 	}
-	.responsive-slider .slides ul li .slide-body .caption.header h1 {
+.responsive-slider .slides ul li .slide-body .caption.header h1 {
 	text-transform:uppercase;
 	font-size: 45px;
 	font-weight:700;
@@ -372,9 +373,6 @@ padding: 10px;
 	color:#fff;
 }
 
-
-
-
 .btn-panier {
 	position: relative;
 	left: 130px;
@@ -415,11 +413,23 @@ padding: 10px;
 *													*
 *													*
 ****************************************************/
+.form-group li{
+	color:#AA161A;
+	list-style:none;
+	margin-left: -40px;
+}
 
 label {
+	position:relative;
 	padding: 15px 0 5px 0;
 	font-weight: 300;
 	color: #fff;
+}
+
+.asterix label::before {
+	content:"*";
+	position:absolute;
+	right:-8px;
 }
 
 legend{
@@ -430,7 +440,8 @@ legend{
 }
 
 form h6 a {
-	top:-65px;
+	/*top:-65px;*/
+	font-size:12px;
 	position:relative;
 	float:right;
 	font-weight:300;
@@ -553,6 +564,7 @@ form h6 a:hover {
 	color:#B8D561;
 	font-size:14px;
 	font-weight:400;
+	padding-bottom:10px;
 }
 
 .flash-error{
@@ -560,7 +572,77 @@ form h6 a:hover {
 	color:#AA161A;
 	font-size:14px;
 	font-weight:400;
+	padding-bottom:10px;
 }
+
+.etape{
+	font-weight:700;
+	position: absolute;
+	padding: 15px 75px;
+	letter-spacing:2px;
+	text-transform: uppercase;
+	color: #000;
+	font-size: 20px;
+	z-index: 999;
+}
+
+.parallelogram {
+	margin:5px 0 5px 0;
+	position: relative;
+	width: 235px;
+	height: 50px;
+	background: #fff;
+	-webkit-transform: skew(-20deg);
+    -moz-transform: skew(-20deg);
+    -o-transform: skew(-20deg);
+}
+
+.etape-active {
+	font-weight:700;
+	position: absolute;
+	padding: 15px 75px;
+	letter-spacing:2px;
+	text-transform: uppercase;
+	color: #fff;
+	font-size: 20px;
+	z-index: 999;
+}
+
+.parallelogram-active {
+	margin:5px 0 5px 0;
+	position: relative;
+	width: 235px;
+	height: 50px;
+	background: #AA161A;
+	-webkit-transform: skew(-20deg);
+    -moz-transform: skew(-20deg);
+    -o-transform: skew(-20deg);
+}
+
+#etape{
+	margin-bottom:25px;
+}
+
+ label #bdloc_appbundle_user_captcha{
+	margin-right: 10px;
+}
+
+#bdloc_appbundle_user_raisons{
+	margin-bottom: 10px;
+}
+
+#bdloc_appbundle_user_captcha{
+	margin-left: 40px;
+	margin-top: 10px;
+	height: 50px;
+	width: 200px;
+	/*border-radius: 5px;*/
+	display: block;
+	text-align: center;
+	font-size: 1.5em;
+	letter-spacing: 10px;
+}
+
 
 /****************************************************
 *													*

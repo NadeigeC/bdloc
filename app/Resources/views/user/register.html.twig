@@ -3,15 +3,35 @@
 
 {% block main_content %}
 
+<div id="etape" class="row">
+<div class="col-md-12 col-md-offset-1 col-lg-10 col-lg-offset-2">
+  
+  <div class="col-sm-4 col-md-3">
+    <div class="etape-active">COORDONNEES</div>
+    <div class="parallelogram-active"></div>
+  </div>
+  
+  <div class="col-sm-4 col-md-3">
+    <div class="etape">LIVRAISON</div>
+    <div class="parallelogram"></div>
+  </div>
+  
+  <div class="col-sm-4 col-md-3">
+    <div class="etape">PAIEMENT</div>
+    <div class="parallelogram"></div>
+  </div>
+  </div>
+</div>
+
 <legend>Enregistrez-vous !</legend>
-<div class="form-group">
+<div class="form-group asterix">
     <div class="col-md-12">
         <div class="col-md-6" id="formlog">
             <div class="form-group">
                 {{ form(registerForm, {'attr':{'novalidate': 'novalidate'}}) }}
             </div>
         </div>
-         <div class="col-md-6 ">
+    <div class="col-md-6 ">
      <div class="col-md-6 col-md-offset-2 imagebd">
         <img alt="Sandman" src="{{ asset('img/bd-perso/batman.jpg') }}"></a>
      </div>

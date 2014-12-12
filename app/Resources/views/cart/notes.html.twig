@@ -1,2 +1,53 @@
 //$interval2 = $intervalMax-$interval;
 
+ protected function execute(InputInterface $input, OutputInterface $output){
+        $doctrine = $this->getContainer()->get("doctrine");
+        
+
+        $cartRepo = $doctrine->getRepository("BdlocAppBundle:Cart");
+        $carts = $cartRepo->findBy(
+             array('status'=>'courant')
+        );
+        
+        //$nb=count($carts);
+      
+        //$output->writeln($nb);
+ 
+        $dateNow=new \DateTime();  
+        $intervalMax=new \DateTime('00:10:00');
+
+        for ($i=0;$i<count($carts);$i++){ 
+                    $carts[$i]->getDateCreated();
+                    $interval[$i] = $dateCreated->diff($dateNow);
+                    //$output->writeln($interval[$i]);
+        }
+
+
+        
+
+        for ($i=0;$i<count($carts);$i++){ 
+            $carts[$i]->setStatus("abandon");
+        }
+
+        //$em = $doctrine->getManager();
+        //$em->flush();
+
+        for ($i=0;$i<count($carts);$i++){
+
+            $cartItems=$carts[$i]->getCartItems();
+
+                for ($i=0;$i<count($cartItems);$i++){
+                    $book = $cartItems[$i]->getBook();
+                    $book->setStock("1");
+                }
+        }
+
+        $em = $doctrine->getManager();
+        $em->flush();
+
+    }
+
+$initDate = new DateTime("2010/08/24");
+
+$initDate->add(new DateInterval("PT15M"));
+echo $initDate->format("Y/m/d m:i:s");//result: 2010/08/24 08:15:00

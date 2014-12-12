@@ -6,16 +6,37 @@
   	<fieldset>
         <legend>Liste des bds</legend>
     </fieldset>
-
-
+    <div class="col-md-8">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    
     {% for cartItem in cart.cartItems %}
-
-            {{ cartItem.book.title}}<br/>
+    		<tr>
+                
+            
           
-            <img src="{{ asset('img/Couvertures/'~cartItem.book.cover) }}" alt="{{ cartItem.book.title}}" title="{{ cartItem.book.title}}" width=70px height=100px/><br/>
+            <td><img src="{{ asset('img/Couvertures/'~cartItem.book.cover) }}" alt="{{ cartItem.book.title}}" title="{{ cartItem.book.title}}" width=70px height=100px/></td>
+
+            <td>{{ cartItem.book.title}}</td>
+
+            </tr>
             
     {% endfor %}
+    				<tr>
 
-     <a href="{{ path('bdloc_app_cart_validcart',{id:cart.id,user:cart.user.id})}}" title="Confirmation commande">Retour à la page confirmation de ma commande !</a><br/><br/><br/>
+     <a href="{{ path('bdloc_app_cart_validcart',{id:cart.id,user:cart.user.id})}}" title="Confirmation commande"><span class="glyphicon glyphicon-chevron-left"></span>Retour commande</a><br/><br/><br/>
 
+     				</tr>
+                </table>
+            </div> 
+
+              </div>
+
+            <div class="col-md-4 imagebd">
+               
+                    <img alt="police" src="{{ asset('img/bd-perso/#') }}"></a>
+         
+
+            </div>
+   
 {% endblock %}
