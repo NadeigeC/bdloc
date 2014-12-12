@@ -486,9 +486,10 @@ class CartController extends Controller {
         $params = array(
             "book" => $book,
             "cartItem"=>$cartItem,
+            "cart" =>$cart,          
         );
 
-        return $this->render("cart/textButton.html.twig", $params);
+        return $this->render("cart/textButtonDetails.html.twig", $params);
     }
 
 

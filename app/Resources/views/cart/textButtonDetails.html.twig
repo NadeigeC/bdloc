@@ -4,7 +4,7 @@
 {% if book.stock == 1 %} 
     <form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
 
-        <button type="submit" class="btn btn-panier" id="ajouter">Ajouter au panier</button>
+        <button type="submit" class="btn btn-panier" id="ajouterdetails">Ajouter au panier</button>
 
     </form>
 
@@ -14,12 +14,10 @@
                 {% if(cartItem.book.id == book.id) %}
 
                     <form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
-                        <button type="submit" class="btn btn-panier-in" id="dansvotrepanier" disabled="disabled" >Dans votre panier</button>
+                        <button type="submit" class="btn btn-panier-in" id="dansvotrepanierdetails" disabled="disabled" >Dans votre panier</button>
                     </form>
 
                 {% endif %}
             {% endfor %}
      {% endif %}       
 {% endif %}
-
-   

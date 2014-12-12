@@ -22,7 +22,8 @@
         "egeloen/google-map-bundle": "dev-master",
         "gregwar/captcha-bundle": "dev-master",
         "paypal/merchant-sdk-php":"dev-master",
-        "kmj/paypalbridgebundle": "dev-master"
+        "kmj/paypalbridgebundle": "dev-master",
+        "symfony/var-dumper": "dev-master"
     },
 
     "require-dev": {

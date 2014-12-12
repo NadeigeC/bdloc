@@ -13,6 +13,8 @@
             <p>Compte créé le : {{ user.dateCreated|date('d-m-Y') }}</p>
             <p>Dernière modification le : {{ user.dateModified|date('d-m-Y' ~ ' à ' ~ 'H:m:s') }}</p>
 
+            <p>Type d'Abonnement : {{ subscription }}</p>
+
             <fieldset>
                 <legend>Informations personnelles</legend>
             </fieldset>

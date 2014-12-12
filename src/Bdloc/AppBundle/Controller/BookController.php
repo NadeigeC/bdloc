@@ -85,9 +85,7 @@ class BookController extends Controller
 
       $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
       $cart = $cartRepo->findOneBy(
-             array('user'=>$user,'status'=>"courant")
-);
- 
+             array('user'=>$user,'status'=>"courant"));
 
         // Paramètres pour la vue
   		$params['books'] = $books;
@@ -99,9 +97,10 @@ class BookController extends Controller
   		$params['bookFilterForm'] = $bookFilterForm->createView();
       $params['cart'] = $cart;
 
-
       // j'envoie à la vue
       return $this->render("catalogue.html.twig", $params);
+
+
 
     }
 

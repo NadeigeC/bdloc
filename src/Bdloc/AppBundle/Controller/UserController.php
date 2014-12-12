@@ -185,10 +185,14 @@
         $carts = $cartRepo->findBy(
             array('user'=>$user,'status'=>'valide'));
 
+        $subscription = $user->getCreditCard()->getSubscription();
+
+
         $params = array(
             "user" => $user,
             "fines" => $fines,
-            "carts" => $carts);
+            "carts" => $carts,
+            "subscription"=> $subscription);
 
        return $this->render("user/profile.html.twig", $params);
 
