@@ -219,14 +219,15 @@ padding: 10px;
 	top: 160px;
 	position: absolute;
 	color: #fff;
-	background-color: #449d44;
-	border-color: #398439;
+	background-color: #AA161A;
+	border-color: #AA161A;
 }
 
 .btn-success:hover, .btn-success:focus, .btn-success.focus, .btn-success:active, .btn-success.active, .open > .dropdown-toggle.btn-success {
 	color: #fff;
-	background-color: #AA161A;
-	border-color: #AA161A;
+	
+	background-color: #449d44;
+	border-color: #398439;
 }
 
 /****************************************************
@@ -612,6 +613,10 @@ form h6 a:hover {
 
 #etape{
 	margin-bottom:25px;
+}
+
+.captcha{
+	margin:10px 10px 10px 10px;
 }
 /****************************************************
 *													*

@@ -3,13 +3,11 @@
 
 {% block main_content %}
 
-
-<h1>Modifiez vos informations de paiement</h1>
-
+	<fieldset>
+        <legend>Modifiez vos informations de paiement</legend>
+    </fieldset>
 
 {{ form(creditCardForm, {'attr':{'novalidate': 'novalidate'}}) }}
-
-
 
 {% endblock %}
 {% block javascripts %}{% endblock %}

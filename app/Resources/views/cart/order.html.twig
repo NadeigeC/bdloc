@@ -7,18 +7,27 @@
         <legend>Confirmation de votre commande</legend>
     </fieldset>
 
+<div class="col-md-6">
+    <div class="form-group">
+            <p>Nombre de bds commandées : {{cart.cartItems|length}}</p>
+            <a href="{{ path('bdloc_app_cart_seelist',{id:cart.id}) }}" title="Voir la liste">Voir la liste</a><br/><br/>
+            
+            <div class="pointiller"></div>
 
-    Nombre de bds commandées : {{cart.cartItems|length}}
+            <p>Date de livraison estimée : {{cart.dateDelivery|date('d/m/Y' )}}</p>
 
-    <a href="{{ path('bdloc_app_cart_seelist',{id:cart.id}) }}" title="Voir la liste">Voir la liste</a><br/><br/>
+            <p>Au point-relais : {{user.dropSpot.name}} , {{user.dropSpot.adress}}</p>
 
-    Date de livraison estimée : {{cart.dateDelivery|date('d/m/Y' )}}<br/><br/>
+            <a href="{{ path('bdloc_app_user_updatedropspot', {'id':app.user.id}) }}" title="Changer de point-relais">Changer de point-relais</a><br/><br/>
+             
+            <a href="{{ path('bdloc_app_cart_validorder',{id:cart.id}) }}" title="Valider ma commande" class="btn btn-default-red ">Valider ma commande</a>
+    </div>
+</div>
 
-    Au point-relais : {{user.dropSpot.name}} , {{user.dropSpot.adress}}
-
-    <a href="{{ path('bdloc_app_user_updatedropspot', {'id':app.user.id}) }}" title="Changer de point-relais">Changer de point-relais</a><br/>
-
-    <a href="{{ path('bdloc_app_cart_validorder',{id:cart.id}) }}" title="Valider ma commande">Valider ma commande</a>
-
+<div class="col-md-6 ">
+     <div class="col-md-6 col-md-offset-2">
+        <img alt="titeuf" src="{{ asset('img/bd-perso/titeuf.jpg') }}"></a>
+     </div>
+ </div>
 
 {% endblock %}

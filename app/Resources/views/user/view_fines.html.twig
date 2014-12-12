@@ -2,9 +2,12 @@
 
 {% block main_content %}
 
-    <h1>Paiement des amendes</h1>
-
-    <table>
+ <fieldset>
+        <legend>Paiement des amendes</legend>
+    </fieldset>
+    <div class="col-md-8">
+            <div class="table-responsive">
+                <table class="table table-hover">
         <tr>
             <th>Couverture</th>
             <th>Titre</th>
@@ -37,9 +40,19 @@
         </tr>
 
     </table>
+    </div> 
+    <div class="position-r">
+       <a href="{{ path('bdloc_app_book_allbooks', {'page':1, 'nombreParPage': 12, 'direction': 'ASC', 'entity': 'dateCreated'}) }}" title="Retour au catalogue" class="textbouq"><span class="glyphicon glyphicon-chevron-left"></span>Retour au catalogue</a>
 
-     <a href="{{ path('bdloc_app_user_payfines')}}" title="Payer une amende">Payer !</a><br/><br/><br/>
+        <a href="{{ path('bdloc_app_user_payfines')}}" title="Payer une amende" class="btn btn-panier-detail">Payer !</a>
+    </div>
 
-     <a href="{{ path('bdloc_app_book_allbooks', {'page':1, 'nombreParPage': 12, 'direction': 'ASC', 'entity': 'dateCreated'}) }}" title="Retour au catalogue">Retour au catalogue</a>
+    </div>
 
+    <div class="col-md-4 imagebd">
+            <img alt="police" src="{{ asset('img/bd-perso/police.jpg') }}"></a>
+    </div>
+
+</div>
+    
 {% endblock %}
