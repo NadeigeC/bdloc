@@ -19,7 +19,7 @@
         {% for fine in fines %}
 
             <tr>
-                <td><img src="{{ asset('img/Couvertures/'~fine.book.cover) }}" alt="{{ fine.book.title}}" title="{{ fine.book.title}}" width=70px height=100px/><br/><td>
+            <td><img src="{{ asset('img/Couvertures/'~fine.book.cover) }}" alt="{{ fine.book.title}}" title="{{ fine.book.title}}" width=70px height=100px/></td>
 
                 <td>{{ fine.book.title}}</td>
                 <td>{{ fine.cart.dateCreated|date()}}</td>
@@ -32,7 +32,7 @@
                 <th>TOTAL</th>
                 <th></th>
                 <th></th>
-                <th></th>
+
                 {% if fines %}
                 <th>{{total}}</th>
                 {% endif %}
