@@ -80,7 +80,7 @@
 
 
 					{% if app.user %}
-						{% if(book.stock == 1) %} 
+						{% if(book.stock == 1) %}
 							<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
 
 								<button type="submit" class="btn btn-panier" id="ajouter">
@@ -89,15 +89,16 @@
 										 	{% else %} {{ 'Bd indisponible' }}
 								    {% endif %}
 								</button>
-							
+
 							</form>
 
-					{% else %}	
+					{% else %}
 						{% if( app.user ) %}
+							{% if cart %}
 					  		{% for cartItem in cart.cartItems %}
-								{% if(cartItem.book.id == book.id) %} 
+								{% if(cartItem.book.id == book.id) %}
 									<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
-										
+
 									{<button type="submit" class="btn btn-panier-in" id="dansvotrepanier" disabled="disabled" >
 										{% if book.stock == 1 %}
 
@@ -114,21 +115,22 @@
 
 										{% endif %}
 											</button>
-										</form>						
+										</form>
 									{% endif %}
 
 								{% endfor %}
 
 							{% endif %}
+							{% endif %}
 
 						{% endif %}
 
-					{% endif %}	
+					{% endif %}
 				</div>
 			</div>
 
 			{% endfor %}
-			
+
 		</div>
 	</div>
 	<!--fin Affichage des BDs -->
