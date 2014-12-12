@@ -1,53 +1,87 @@
-//$interval2 = $intervalMax-$interval;
+bookController lignes 83 à 89 :
 
- protected function execute(InputInterface $input, OutputInterface $output){
-        $doctrine = $this->getContainer()->get("doctrine");
-        
+/*  $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
+      $user = $this->getUser();
 
-        $cartRepo = $doctrine->getRepository("BdlocAppBundle:Cart");
-        $carts = $cartRepo->findBy(
-             array('status'=>'courant')
-        );
-        
-        //$nb=count($carts);
-      
-        //$output->writeln($nb);
- 
-        $dateNow=new \DateTime();  
-        $intervalMax=new \DateTime('00:10:00');
+      $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
+      $cart = $cartRepo->findOneBy(
+             array('user'=>$user,'status'=>"courant")
+    );*/
 
-        for ($i=0;$i<count($carts);$i++){ 
-                    $carts[$i]->getDateCreated();
-                    $interval[$i] = $dateCreated->diff($dateNow);
-                    //$output->writeln($interval[$i]);
-        }
+    + ligne 94 :  //  $params['cart'] = $cart;
 
 
-        
+catalogue.twig lignes 76 à 99 :
 
-        for ($i=0;$i<count($carts);$i++){ 
-            $carts[$i]->setStatus("abandon");
-        }
+{#{% if(book.stock == 1) %}
+                            <form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
 
-        //$em = $doctrine->getManager();
-        //$em->flush();
+                                <button type="submit" class="btn btn-panier" id="ajouter">{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}</button>
 
-        for ($i=0;$i<count($carts);$i++){
+                            </form>
 
-            $cartItems=$carts[$i]->getCartItems();
+                        {% else %}
 
-                for ($i=0;$i<count($cartItems);$i++){
-                    $book = $cartItems[$i]->getBook();
-                    $book->setStock("1");
-                }
-        }
+                            {% if(cart) %}
+                                {% for cartItem in cart.cartItems %}
+                                    {% if(cartItem.book.id == book.id) %}
+                                        <form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
 
-        $em = $doctrine->getManager();
-        $em->flush();
+                                        {<button type="submit" class="btn btn-panier-in" id="dansvotrepanier" disabled="disabled" >{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}</button>
+                                        </form>
+                                    {% endif %}
 
-    }
+                                {% endfor %}
 
-$initDate = new DateTime("2010/08/24");
+                            {% endif %}
 
-$initDate->add(new DateInterval("PT15M"));
-echo $initDate->format("Y/m/d m:i:s");//result: 2010/08/24 08:15:00
+                        
+                    {% endif %} #}
+
+details.twig lignes 36 à 61 :
+
+{#{% if(book.stock == 1) %}
+            <form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
+
+                <button type="submit" class="btn btn-panier-detail">{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}</button>
+
+            </form>
+
+        {% else %}
+
+            {% if(cart) %}
+
+                {% for cartItem in cart.cartItems %}
+
+                    {% if(cartItem.book.id == book.id) %} 
+                        <form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
+                        
+                            <button type="submit" class="btn btn-panier-detail- in" id="dansvotrepanier" disabled="disabled" >{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}</button>
+                        </form>         
+
+                    {% endif %} 
+
+                {% endfor %}
+
+            {% endif %} 
+
+        {% endif %}#}   
+
+
+
+textButton.twig lignes 1 à 14 :
+
+{#{% if book.stock == 1 %}
+
+    {{ 'Ajouter au panier' }}
+
+{% elseif cartItem == 1 %}
+
+    {{ 'Dans votre panier' }}
+
+{% else %}
+
+    {{ 'Bd indisponible' }}
+
+
+{% endif %}#}

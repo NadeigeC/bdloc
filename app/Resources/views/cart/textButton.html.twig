@@ -1,16 +1,25 @@
-{% if book.stock == 1 %}
-
-    {{ 'Ajouter au panier' }}
-
-{% elseif cartItem == 1 %}
-
-    {{ 'Dans votre panier' }}
-
-{% else %}
-
-    {{ 'Bd indisponible' }}
 
 
+
+{% if book.stock == 1 %} 
+    <form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
+
+        <button type="submit" class="btn btn-panier" id="ajouter">Ajouter au panier</button>
+
+    </form>
+
+{% elseif cartItem  == 1 %}                         
+    {% if cart %}
+            {% for cartItem in cart.cartItems %}
+                {% if(cartItem.book.id == book.id) %}
+
+                    <form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
+                        <button type="submit" class="btn btn-panier-in" id="dansvotrepanier" disabled="disabled" >Dans votre panier</button>
+                    </form>
+
+                {% endif %}
+            {% endfor %}
+     {% endif %}       
 {% endif %}
 
-
+   

@@ -28,23 +28,17 @@ class PanierCommand extends ContainerAwareCommand
              array('status'=>'courant')
         );
         
-        //$nb=count($carts);
-      
-        //$output->writeln($nb);
- 
+     
         $dateNow=new \DateTime();  
-        //$intervalMax=new \DateTime('00:10:00');
+        
 
-//initDate = new DateTime("2010/08/24");
 
-    
 
         for ($i=0;$i<count($carts);$i++){ 
-                    $carts[$i]->getDateCreated();
-                    $carts[$i]->add(new DateInterval("PT1OM"));       
-                    //$interval[$i] = $dateCreated->diff($dateNow);
-                    //$output->writeln($interval[$i]);
-                    if ($carts[i] < $dateNow){
+                    $dateCreated = $carts[$i]->getDateCreated();
+                   $dateCreated->add(new \DateInterval("PT10M"));       
+                   
+                    if ($dateCreated< $dateNow){
                         $carts[$i]->setStatus("abandon");
 
                         $cartItems=$carts[$i]->getCartItems();
@@ -56,26 +50,8 @@ class PanierCommand extends ContainerAwareCommand
 
                     }
         }
-
-
-        
-
-       // for ($i=0;$i<count($carts);$i++){ 
-        //    $carts[$i]->setStatus("abandon");
-        //}
-
-        //$em = $doctrine->getManager();
-        //$em->flush();
-
-       /* for ($i=0;$i<count($carts);$i++){
-
-            $cartItems=$carts[$i]->getCartItems();
-
-                for ($i=0;$i<count($cartItems);$i++){
-                    $book = $cartItems[$i]->getBook();
-                    $book->setStock("1");
-                }
-        }*/
+     
+    
 
         $em = $doctrine->getManager();
         $em->flush();

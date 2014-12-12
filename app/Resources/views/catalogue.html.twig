@@ -73,31 +73,8 @@
 					<!-- Bouton Ajouter au panier -->
 
 					{% if app.user %}
-						{% if(book.stock == 1) %}
-							<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
-
-								<button type="submit" class="btn btn-panier" id="ajouter">{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}</button>
-
-							</form>
-
-						{% else %}
-
-							{% if(cart) %}
-					  			{% for cartItem in cart.cartItems %}
-									{% if(cartItem.book.id == book.id) %}
-										<form method="POST" action=" {{ path('bdloc_app_cart_add', {id: book.id})}}">
-
-										{<button type="submit" class="btn btn-panier-in" id="dansvotrepanier" disabled="disabled" >{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}</button>
-										</form>
-									{% endif %}
-
-								{% endfor %}
-
-							{% endif %}
-
-						{# {% endfor %}#}
-					{% endif %}
-
+						
+						{{ render(controller('BdlocAppBundle:Cart:textButton', {id:book.id}))}}
 
 					{% endif %}
 

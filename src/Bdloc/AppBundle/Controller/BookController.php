@@ -80,13 +80,7 @@ class BookController extends Controller
 
 		}
 
-      $userRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:User");
-      $user = $this->getUser();
-
-      $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
-      $cart = $cartRepo->findOneBy(
-             array('user'=>$user,'status'=>"courant")
-);
+    
  
 
         // Paramètres pour la vue
@@ -97,7 +91,7 @@ class BookController extends Controller
   		$params['entity'] = $entity;
   		$params['bookSearchForm'] = $bookSearchForm->createView();
   		$params['bookFilterForm'] = $bookFilterForm->createView();
-      $params['cart'] = $cart;
+   
 
 
       // j'envoie à la vue
