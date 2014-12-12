@@ -175,14 +175,20 @@
     public function viewProfileAction(Request $request){
 
         $user = $this->getUser();
+        //$carts = $user->getCarts();
 
         $fineRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Fine");
         $fines = $fineRepo->findBy(
             array('user'=>$user,'status'=>'a payer'));
 
+        $cartRepo = $this->getDoctrine()->getRepository("BdlocAppBundle:Cart");
+        $carts = $cartRepo->findBy(
+            array('user'=>$user,'status'=>'valide'));
+
         $params = array(
             "user" => $user,
-            "fines" => $fines);
+            "fines" => $fines,
+            "carts" => $carts);
 
        return $this->render("user/profile.html.twig", $params);
 
