@@ -724,6 +724,19 @@ form h6 a:hover {
 
 }
 
+#dansvotrepanier {
+	position: relative;
+	left: 257px;
+	top: -99px;
+	font-size: 14px;
+	width: 115px;
+	height: 40px;
+	color: #fff;
+	margin-top: 50px;
+	margin-left: -132px;
+}
+
+
 #dansvotrepanierdetails {
 	font-size: 14px;
 	width: 115px;
