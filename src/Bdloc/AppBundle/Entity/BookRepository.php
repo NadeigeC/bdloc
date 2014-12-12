@@ -19,9 +19,9 @@ class BookRepository extends EntityRepository
 	{
 
 	   $query = $this->createQueryBuilder('b')
-	                  ->select('COUNT(b)')     
+	                  ->select('COUNT(b)')
 	                  ->getQuery();
-	           
+
 	  return $query->getSingleScalarResult();
 	}
 
@@ -48,16 +48,19 @@ class BookRepository extends EntityRepository
 				    		$qb->orWhere ('s.style = :serie' . $i . '');
 				    		// Paramètre nommé avec les données reçues
 				    		$qb->setParameter('serie' . $i , $param);
-				
+
 
 				      }
         	          $qb->setFirstResult(($page-1) * $nombreParPage)
         			  ->setMaxResults($nombreParPage)
-        			  ->orderBy($entity, $direction)
-                      ;
+        			  ->orderBy($entity, $direction);
 
-        return $qb->getQuery()->getResult();
-    }
+                $paginator = new Paginator($qb);
+
+                //return $qb->getQuery()->getResult();
+                return $paginator;
+      }
+
 
 
 

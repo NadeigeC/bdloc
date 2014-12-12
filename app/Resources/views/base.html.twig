@@ -124,7 +124,15 @@
             <script src="{{ asset('js/app.js') }}"></script>
             <script src="{{ asset('js/jquery.event.move.js') }}"></script>
             <script src="{{ asset('js/responsive-slider.js') }}"></script>
-
+            <script>
+                $( document ).ready( function() {
+                  $('.responsive-slider').responsiveSlider({
+                    autoplay: true,
+                    interval: 5000,
+                    transitionTime: 300
+                  });
+                });
+            </script>
 {% endblock %}
 
     </body>

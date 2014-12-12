@@ -2,10 +2,21 @@
 
 {% block main_content %}
 
-    Votre commande est validée !<br/><br/>
-
-    Date limite de retour des bds : {{cart.dateReturn|date('d/m/Y')}}<br/><br/>
-
-    <a href="{{ path('bdloc_app_book_allbooks', {'page':1, 'nombreParPage': 12, 'direction': 'ASC', 'entity': 'dateCreated'}) }}" title="Retour au catalogue">Retour au catalogue</a>
+	<fieldset>
+        <legend>Votre commande est validée !</legend>
+    </fieldset>
     
+	<div class="col-md-6">
+	    <div class="form-group">
+	    <p>Date limite de retour des bds : {{cart.dateReturn|date('d/m/Y')}}</p>
+
+	    <a href="{{ path('bdloc_app_book_allbooks', {'page':1, 'nombreParPage': 12, 'direction': 'ASC', 'entity': 'dateCreated'}) }}" title="Retour au catalogue" class="textbouq"><span class="glyphicon glyphicon-chevron-left"></span>Retour au catalogue</a>
+     </div>
+</div>
+
+<div class="col-md-6 ">
+     <div class="col-md-6 col-md-offset-2">
+        <img alt="titeuf" src="{{ asset('img/bd-perso/titeuf.jpg') }}"></a>
+     </div>
+ </div>
 {% endblock %}

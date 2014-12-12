@@ -226,16 +226,32 @@ padding: 10px;
 	top: 160px;
 	position: absolute;
 	color: #fff;
-	background-color: #449d44;
-	border-color: #398439;
-}
-
-.btn-success:hover, .btn-success:focus, .btn-success.focus, .btn-success:active, .btn-success.active, .open > .dropdown-toggle.btn-success {
-	color: #fff;
 	background-color: #AA161A;
 	border-color: #AA161A;
 }
 
+.btn-success:hover, .btn-success:focus, .btn-success.focus, .btn-success:active, .btn-success.active, .open > .dropdown-toggle.btn-success {
+	color: #fff;
+	background-color: #449d44;
+	border-color: #398439;
+}
+
+
+.responsive-slider .slides ul li .slide-body .caption.header h1.slide2 {
+	text-transform: uppercase;
+	font-size: 65px;
+	font-weight: 700;
+	height: 250px;
+	top: 35%;
+	left: 5%;
+	color:#fff;
+}
+
+.slide3{
+	color:#fff;
+	font-size:42px;
+	font-weight:700;
+}
 /****************************************************
 *													*
 *													*
@@ -476,7 +492,9 @@ form h6 a:hover {
 
 }
 
-
+.btn {
+	padding: 6px 12px;
+}
 .btn-default-red:hover{
 	color: #333;
 	background-color: #e6e6e6;
@@ -561,7 +579,7 @@ form h6 a:hover {
 
 .flash-notice{
 	text-transform:uppercase;
-	color:#B8D561;
+	color:#BFFF00;
 	font-size:14px;
 	font-weight:400;
 	padding-bottom:10px;
@@ -578,7 +596,9 @@ form h6 a:hover {
 .etape{
 	font-weight:700;
 	position: absolute;
-	padding: 15px 75px;
+	top: 15px;
+	left: 70px;
+
 	letter-spacing:2px;
 	text-transform: uppercase;
 	color: #000;
@@ -600,7 +620,8 @@ form h6 a:hover {
 .etape-active {
 	font-weight:700;
 	position: absolute;
-	padding: 15px 75px;
+	top: 15px;
+	left: 70px;
 	letter-spacing:2px;
 	text-transform: uppercase;
 	color: #fff;
@@ -621,10 +642,6 @@ form h6 a:hover {
 
 #etape{
 	margin-bottom:25px;
-}
-
-label #bdloc_appbundle_user_captcha{
-	margin-right: 10px;
 }
 
 #bdloc_appbundle_user_raisons{
@@ -692,10 +709,19 @@ label #bdloc_appbundle_user_captcha{
 	font-size: 14px;
 	width: 115px;
 	height: 40px;
+	color: #454545;
+	background-color: #818181;
+	border-color: #818181;
+}
+
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+	background-color: #818181;
+	color: #FFFFFF;
+	border-color: #818181;
 	color: #fff;
 	margin-top: 50px;
 	margin-left: -132px;
-	
+
 }
 
 #dansvotrepanierdetails {
@@ -715,7 +741,6 @@ label #bdloc_appbundle_user_captcha{
 	margin-top: 50px;
 	margin-left: -132px;
 }
-
 
 /****************************************************
 *													*

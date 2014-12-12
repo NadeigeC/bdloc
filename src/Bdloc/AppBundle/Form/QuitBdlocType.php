@@ -19,7 +19,7 @@ class QuitBdlocType extends AbstractType
         $builder
 
             ->add('raisons', 'textarea', array(
-                'attr' => array('class' => 'form-control','rows' => '10'),
+                'attr' => array('class' => 'form-control captcha','rows' => '10'),
                 'mapped'=>false,
                 'label' => false,
                 'constraints' => array(
@@ -35,12 +35,13 @@ class QuitBdlocType extends AbstractType
                         'invalid_message' => 'Mauvais code',
                         'as_url' => true,
                         'reload' => true,
+
                     ))
 
             ->add('submit', 'submit', array(
                 "label" => "Quitter BDLOC !",
                 'attr' => array(
-                'class' => 'btn red-button btn-default-red')
+                'class' => 'btn red-button btn-default-red ')
                     ));
     }
 

@@ -93,6 +93,7 @@
 							</form>
 
 					{% else %}
+
 						{% if( app.user ) %}
 							{% if cart %}
 					  		{% for cartItem in cart.cartItems %}
@@ -111,7 +112,6 @@
 										{% else %}
 
     										{{ 'Bd indisponible' }}
-
 
 										{% endif %}
 											</button>
